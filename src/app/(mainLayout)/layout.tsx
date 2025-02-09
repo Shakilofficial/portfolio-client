@@ -11,8 +11,9 @@ const MainLayout = ({ children }: Props) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      
-      <main className="min-h-[calc(70vh-64px)] flex-grow">{children}</main>
+      <main className="flex-grow mx-auto max-w-7xl w-full px-4 sm:px-6 lg:px-8">
+        {children}
+      </main>
       <Footer />
     </div>
   );

@@ -1,5 +1,11 @@
-import { Button } from "@/components/ui/button";
+import Hero from "@/components/Hero";
 
-export default function Home() {
-  return <Button> Click me </Button>;
-}
+const HomePage = () => {
+  return (
+    <div className="w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12">
+      <Hero />
+    </div>
+  );
+};
+
+export default HomePage;
