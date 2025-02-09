@@ -18,8 +18,12 @@ const Hero = () => {
             Building Digital Experiences
           </p>
           <TypingAnimation>
-            I craft modern web applications with a focus on user experience,
-            performance, and scalability. Let&apos;s build something together.
+            I&apos;m a passionate full-stack developer dedicated to crafting
+            modern, high-performance web applications with a seamless user
+            experience.With a strong foundation in computer science and hands-on
+            expertise in modern technologies, I thrive on transforming ideas
+            into impactful digital solutions. Let&apos;s turn ideas into reality
+            and create something extraordinary together!
           </TypingAnimation>
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
             <ShinyButton>
