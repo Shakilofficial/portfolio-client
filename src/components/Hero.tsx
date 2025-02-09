@@ -17,7 +17,7 @@ const Hero = () => {
           <p className="text-primary text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight">
             Building Digital Experiences
           </p>
-          <TypingAnimation>
+          <TypingAnimation className="text-gray-500">
             I&apos;m a passionate full-stack developer dedicated to crafting
             modern, high-performance web applications with a seamless user
             experience.With a strong foundation in computer science and hands-on
