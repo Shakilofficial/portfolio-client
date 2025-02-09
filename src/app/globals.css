@@ -93,3 +93,9 @@ body {
 .animate-orbit {
   animation: orbit var(--duration) linear infinite;
 }
+
+@property --border-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: "<angle>";
+}
