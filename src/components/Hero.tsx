@@ -2,6 +2,7 @@ import { Download, Mail } from "lucide-react";
 import Image from "next/image";
 import { AuroraText } from "./magicui/aurora-text";
 import { Ripple } from "./magicui/ripple";
+import { ShinyButton } from "./magicui/shiny-button";
 import { TypingAnimation } from "./magicui/typing-animation";
 import { Button } from "./ui/button";
 
@@ -21,11 +22,14 @@ const Hero = () => {
             performance, and scalability. Let&apos;s build something together.
           </TypingAnimation>
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <Button size="lg">
+            <ShinyButton>
               <Mail className="mr-2 h-5 w-5" />
-              Contact Me
-            </Button>
-            <Button size="lg" variant="outline">
+            </ShinyButton>
+            <Button
+              size="lg"
+              variant="outline"
+              className="bg-purple-500 text-white"
+            >
               <Download className="mr-2 h-5 w-5" />
               Download CV
             </Button>
