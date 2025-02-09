@@ -64,7 +64,8 @@ export default {
   		},
   		animation: {
   			ripple: 'ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite',
-  			gradient: 'gradient 8s linear infinite'
+  			gradient: 'gradient 8s linear infinite',
+  			orbit: 'orbit calc(var(--duration)*1s) linear infinite'
   		},
   		keyframes: {
   			ripple: {
@@ -148,6 +149,14 @@ export default {
   				'90%': {
   					bottom: '50%',
   					right: '25%'
+  				}
+  			},
+  			orbit: {
+  				'0%': {
+  					transform: 'rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg))'
+  				},
+  				'100%': {
+  					transform: 'rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg))'
   				}
   			}
   		}

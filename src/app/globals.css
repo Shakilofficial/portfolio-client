@@ -80,3 +80,16 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(var(--radius)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--radius)) rotate(-360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit var(--duration) linear infinite;
+}
