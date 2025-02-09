@@ -1,8 +1,9 @@
+import { ThemeProvider } from "@/lib/providers/Provider";
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Space_Mono } from "next/font/google";
 import "./globals.css";
 
-const roboto = Roboto({
+const spaceMono = Space_Mono({
   weight: "400",
   subsets: ["latin"],
 });
@@ -18,8 +19,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <body className={spaceMono.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
