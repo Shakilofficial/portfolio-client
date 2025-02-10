@@ -1,3 +1,4 @@
+import Providers from "@/lib/providers";
 import { ThemeProvider } from "@/lib/providers/Provider";
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google";
@@ -19,17 +20,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={spaceMono.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <Providers>
+      <html lang="en" suppressHydrationWarning>
+        <body className={spaceMono.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </Providers>
   );
 }
