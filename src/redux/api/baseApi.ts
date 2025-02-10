@@ -53,6 +53,7 @@ const baseQueryWithInterceptor: BaseQueryFn<
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
+  tagTypes: ["Project"],
   baseQuery: baseQueryWithInterceptor,
   endpoints: () => ({}),
 });
