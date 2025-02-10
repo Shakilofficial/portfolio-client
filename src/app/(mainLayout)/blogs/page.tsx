@@ -4,9 +4,7 @@ import BlogFilter from "@/components/blog/BlogFilter";
 import { useBlogFilters } from "@/components/blog/useBlogFilters";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import Pagination from "@/components/project/Pagination";
-
 import { Skeleton } from "@/components/ui/skeleton";
-
 import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
 import { motion } from "framer-motion";
 
