@@ -1,4 +1,5 @@
 import { Download, Mail } from "lucide-react";
+import Head from "next/head";
 import Image from "next/image";
 import { AuroraText } from "./magicui/aurora-text";
 import { Ripple } from "./magicui/ripple";
@@ -7,6 +8,13 @@ import { TypingAnimation } from "./magicui/typing-animation";
 import { Button } from "./ui/button";
 
 const Hero = () => {
+  <Head>
+    <link
+      rel="preload"
+      as="image"
+      href="https://res.cloudinary.com/dcyupktj6/image/upload/v1739116773/lx1aeznvlqo7htectued.png"
+    />
+  </Head>;
   return (
     <section className="container mx-auto px-4 py-12 sm:py-16 lg:py-20 overflow-hidden">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
@@ -48,7 +56,6 @@ const Hero = () => {
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="relative z-10 rounded-full object-cover border-4 border-purple-500 shadow-xl"
-              priority
             />
           </div>
         </div>

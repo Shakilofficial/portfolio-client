@@ -140,7 +140,7 @@ const Certifications = () => {
             </div>
             {certificationsData.education.map((edu, index) => (
               <motion.div key={index} variants={item}>
-                <div className="group bg-gradient-to-t from-[#1a0b2e] to-[#2d1b69] hover:from-[#251444] hover:to-[#3b1d8c] relative before:absolute before:inset-0 before:bg-[url('/noise.gif')] before:opacity-5 rounded-2xl border border-white/10">
+                <div className="group bg-gradient-to-t from-[#1a0b2e] to-[#2d1b69] hover:from-[#251444] hover:to-[#3b1d8c] relative before:absolute before:inset-0  before:opacity-5 rounded-2xl border border-white/10">
                   <div className="relative px-6 py-8">
                     <div className="bg-purple-500 group-hover:bg-purple-400 transition-all duration-500 ease-in-out w-fit px-3 rounded-full text-sm py-1 text-white mb-4">
                       Education
@@ -204,7 +204,7 @@ const Certifications = () => {
               {certificationsData.certifications.map((cert, index) => (
                 <motion.div key={index} variants={item}>
                   <div
-                    className={`group bg-gradient-to-t ${cert.gradient} relative before:absolute before:inset-0 before:bg-[url('/noise.gif')] before:opacity-5 rounded-2xl border border-white/10`}
+                    className={`group bg-gradient-to-t ${cert.gradient} relative before:absolute before:inset-0  before:opacity-5 rounded-2xl border border-white/10`}
                   >
                     <div className="relative px-6 py-8">
                       <div

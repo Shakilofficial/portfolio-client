@@ -90,7 +90,7 @@ const Skills = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className={`group bg-gradient-to-t ${data.gradient} relative before:absolute before:inset-0 before:bg-[url('/noise.gif')] before:opacity-5 rounded-2xl border border-white/10`}
+              className={`group bg-gradient-to-t ${data.gradient} relative before:absolute before:inset-0 before:opacity-5 rounded-2xl border border-white/10`}
             >
               <div className="relative">
                 <div className="px-6 py-5">
@@ -114,8 +114,13 @@ const Skills = () => {
                         <Image
                           src={skill.icon}
                           alt={skill.name}
-                          width={16}
-                          height={16}
+                          width={24}
+                          height={24}
+                          style={{
+                            width: "24px",
+                            height: "24px",
+                            objectFit: "contain",
+                          }}
                           className="mr-2"
                         />
                         <span className="text-sm text-slate-300">
