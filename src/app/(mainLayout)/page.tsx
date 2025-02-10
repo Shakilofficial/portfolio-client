@@ -1,4 +1,5 @@
 import Certifications from "@/components/Certifications";
+import FeaturedProjects from "@/components/FeaturedProjects";
 import Hero from "@/components/Hero";
 import LatestBlogs from "@/components/LatestBlogs";
 
@@ -11,6 +12,7 @@ const HomePage = () => {
       <Hero />
       <Skills />
       <MyService />
+      <FeaturedProjects />
       <Certifications />
       <LatestBlogs />
       {/* featured projects */}
