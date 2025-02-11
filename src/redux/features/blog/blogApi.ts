@@ -60,7 +60,33 @@ const blogApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Blog"],
     }),
+
+    // Toggle blog featured status
+    toggleBlogFeatured: builder.mutation({
+      query: (id: string) => ({
+        url: `/blogs/${id}/featured`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Blog"],
+    }),
+
+    // Toggle blog published status
+    toggleBlogPublished: builder.mutation({
+      query: (id: string) => ({
+        url: `/blogs/${id}/published`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Blog"],
+    }),
   }),
 });
 
-export const { useGetAllBlogsQuery, useGetSingleBlogQuery, useCreateBlogMutation, useUpdateBlogMutation, useDeleteBlogMutation } = blogApi;
+export const {
+  useGetAllBlogsQuery,
+  useGetSingleBlogQuery,
+  useCreateBlogMutation,
+  useUpdateBlogMutation,
+  useDeleteBlogMutation,
+  useToggleBlogFeaturedMutation,
+  useToggleBlogPublishedMutation,
+} = blogApi;

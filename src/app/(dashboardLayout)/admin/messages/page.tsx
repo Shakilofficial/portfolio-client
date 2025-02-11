@@ -8,6 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Pagination } from "@/components/ui/pagination";
 import {
   Table,
@@ -17,7 +25,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllMessageQuery } from "@/redux/features/message/messageApi";
+import {
+  useDeleteMessageMutation,
+  useGetAllMessageQuery,
+} from "@/redux/features/message/messageApi";
 import type { TMessage } from "@/types/message.type";
 import { format } from "date-fns";
 import { Loader2, Mail, Trash2 } from "lucide-react";
@@ -32,6 +43,10 @@ const AdminMessagesPage = () => {
     { name: "limit", value: limit },
   ]);
 
+  const [deleteMessage] = useDeleteMessageMutation();
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [messageToDelete, setMessageToDelete] = useState<TMessage | null>(null);
+
   if (isFetching || isLoading) {
     return (
       <div className="flex items-center justify-center h-96">
@@ -39,6 +54,20 @@ const AdminMessagesPage = () => {
       </div>
     );
   }
+
+  const handleDeleteBlog = (messageId: string) => {
+    setMessageToDelete(
+      data?.data?.find((message) => message._id === messageId) || null
+    );
+    setDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (messageToDelete) {
+      await deleteMessage(messageToDelete._id);
+      setDeleteDialogOpen(false);
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -100,6 +129,7 @@ const AdminMessagesPage = () => {
                         variant="ghost"
                         size="icon"
                         className="hover:text-red-600 dark:hover:text-red-400"
+                        onClick={() => handleDeleteBlog(message._id)}
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
@@ -120,6 +150,31 @@ const AdminMessagesPage = () => {
           )}
         </CardContent>
       </Card>
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogTrigger />
+        <DialogContent className="max-w-[380px] rounded-lg border border-purple-200 dark:border-purple-800 p-6">
+          <DialogHeader className="mt-4">
+            <DialogTitle>
+              Are you sure you want to delete this message?
+            </DialogTitle>
+            <DialogDescription>
+              Deleting this message will permanently remove it from your
+              messages.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-end space-x-2 mt-4">
+            <Button
+              variant="outline"
+              onClick={() => setDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Delete
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

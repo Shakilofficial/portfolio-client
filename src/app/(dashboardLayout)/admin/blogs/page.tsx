@@ -31,6 +31,8 @@ import {
 import {
   useDeleteBlogMutation,
   useGetAllBlogsQuery,
+  useToggleBlogFeaturedMutation,
+  useToggleBlogPublishedMutation,
 } from "@/redux/features/blog/blogApi";
 import type { TBlog } from "@/types/blog.type";
 import { Loader2, Trash2 } from "lucide-react";
@@ -47,6 +49,9 @@ const AdminBlogsPage = () => {
   ]);
 
   const [deleteBlog] = useDeleteBlogMutation();
+  const [toggleBlogFeatured] = useToggleBlogFeaturedMutation();
+  const [toggleBlogPublished] = useToggleBlogPublishedMutation();
+
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [blogToDelete, setBlogToDelete] = useState<TBlog | null>(null);
 
@@ -68,6 +73,14 @@ const AdminBlogsPage = () => {
       await deleteBlog(blogToDelete._id);
       setDeleteDialogOpen(false);
     }
+  };
+
+  const handleToggleFeatured = async (blogId: string) => {
+    await toggleBlogFeatured(blogId);
+  };
+
+  const handleTogglePublished = async (blogId: string) => {
+    await toggleBlogPublished(blogId);
   };
 
   return (
@@ -135,24 +148,36 @@ const AdminBlogsPage = () => {
                       </div>
                     </TableCell>
                     <TableCell>
-                      {blog.isPublished ? (
-                        <span className="text-green-600 dark:text-green-400">
-                          Published
-                        </span>
-                      ) : (
-                        <span className="text-yellow-600 dark:text-yellow-400">
-                          Draft
-                        </span>
-                      )}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleTogglePublished(blog._id)}
+                      >
+                        {blog.isPublished ? (
+                          <span className="text-green-600 dark:text-green-400">
+                            Published
+                          </span>
+                        ) : (
+                          <span className="text-yellow-600 dark:text-yellow-400">
+                            Draft
+                          </span>
+                        )}
+                      </Button>
                     </TableCell>
                     <TableCell>
-                      {blog.isFeatured ? (
-                        <span className="text-green-600 dark:text-green-400">
-                          Yes
-                        </span>
-                      ) : (
-                        <span className="text-gray-500">No</span>
-                      )}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleToggleFeatured(blog._id)}
+                      >
+                        {blog?.isFeatured ? (
+                          <span className="text-green-600 dark:text-green-400">
+                            Yes
+                          </span>
+                        ) : (
+                          <span className="text-gray-500">No</span>
+                        )}
+                      </Button>
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end space-x-2">
