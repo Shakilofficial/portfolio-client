@@ -1,6 +1,8 @@
 "use client";
 
 import placeholderImage from "@/assets/placeholder.jpg";
+import AddBlogDialog from "@/components/blog/AddBlogDialog";
+import EditBlogDialog from "@/components/blog/EditBlogDialog";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,6 +11,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Pagination } from "@/components/ui/pagination";
 import {
   Table,
@@ -18,9 +28,12 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
+import {
+  useDeleteBlogMutation,
+  useGetAllBlogsQuery,
+} from "@/redux/features/blog/blogApi";
 import type { TBlog } from "@/types/blog.type";
-import { Edit, Loader2, Plus, Trash2 } from "lucide-react";
+import { Loader2, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -33,6 +46,10 @@ const AdminBlogsPage = () => {
     { name: "limit", value: limit },
   ]);
 
+  const [deleteBlog] = useDeleteBlogMutation();
+  const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [blogToDelete, setBlogToDelete] = useState<TBlog | null>(null);
+
   if (isFetching || isLoading) {
     return (
       <div className="flex items-center justify-center h-96">
@@ -40,16 +57,28 @@ const AdminBlogsPage = () => {
       </div>
     );
   }
+
+  const handleDeleteBlog = (blogId: string) => {
+    setBlogToDelete(data?.data?.find((blog) => blog._id === blogId) || null);
+    setDeleteDialogOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (blogToDelete) {
+      await deleteBlog(blogToDelete._id);
+      setDeleteDialogOpen(false);
+    }
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-3xl font-bold tracking-tight text-purple-700 dark:text-purple-400">
           Blogs
         </h2>
-        <Button className="bg-purple-600 hover:bg-purple-700">
-          <Plus className="mr-2 h-4 w-4" /> Add Blog
-        </Button>
+        <AddBlogDialog />
       </div>
+
       <Card className="shadow-lg">
         <CardHeader className="bg-purple-50 dark:bg-purple-900/20 text-center">
           <CardTitle className="text-xl text-purple-700 dark:text-purple-300">
@@ -127,17 +156,12 @@ const AdminBlogsPage = () => {
                     </TableCell>
                     <TableCell className="text-right">
                       <div className="flex justify-end space-x-2">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="hover:text-purple-600 dark:hover:text-purple-400"
-                        >
-                          <Edit className="h-4 w-4" />
-                        </Button>
+                        <EditBlogDialog blog={blog} />
                         <Button
                           variant="ghost"
                           size="icon"
                           className="hover:text-red-600 dark:hover:text-red-400"
+                          onClick={() => handleDeleteBlog(blog._id)}
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
@@ -159,6 +183,32 @@ const AdminBlogsPage = () => {
           )}
         </CardContent>
       </Card>
+
+      <Dialog open={isDeleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <DialogTrigger />
+        <DialogContent className="max-w-[380px] rounded-lg border border-purple-200 dark:border-purple-800 p-6">
+          <DialogHeader className="mt-4">
+            <DialogTitle>
+              Are you sure you want to delete this blog?
+            </DialogTitle>
+            <DialogDescription>
+              Deleting this blog will permanently remove it from your blog
+              posts.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-end space-x-2 mt-4">
+            <Button
+              variant="outline"
+              onClick={() => setDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button variant="destructive" onClick={confirmDelete}>
+              Delete
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

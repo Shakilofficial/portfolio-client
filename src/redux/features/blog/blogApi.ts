@@ -31,7 +31,36 @@ const blogApi = baseApi.injectEndpoints({
       transformResponse: (response: TResponseRedux<TBlog>) => response.data,
       providesTags: ["Blog"],
     }),
+
+    //create a new blog
+    createBlog: builder.mutation({
+      query: (blog) => ({
+        url: "/blogs",
+        method: "POST",
+        body: blog,
+      }),
+      invalidatesTags: ["Blog"],
+    }),
+
+    //update a blog
+    updateBlog: builder.mutation({
+      query: (blog) => ({
+        url: `/blogs/${blog._id}`,
+        method: "PATCH",
+        body: blog,
+      }),
+      invalidatesTags: ["Blog"],
+    }),
+
+    //delete a blog
+    deleteBlog: builder.mutation({
+      query: (id: string) => ({
+        url: `/blogs/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Blog"],
+    }),
   }),
 });
 
-export const { useGetAllBlogsQuery, useGetSingleBlogQuery } = blogApi;
+export const { useGetAllBlogsQuery, useGetSingleBlogQuery, useCreateBlogMutation, useUpdateBlogMutation, useDeleteBlogMutation } = blogApi;
