@@ -1,5 +1,7 @@
 "use client";
 
+import Header from "@/components/dashboard/Header";
+import Sidebar from "@/components/dashboard/Sidebar";
 import { selectCurrentToken } from "@/redux/features/auth/authSlice";
 import { useAppSelector } from "@/redux/hook";
 import { useRouter } from "next/navigation";
@@ -21,18 +23,17 @@ const DashboardLayout = ({ children }: Props) => {
     }
   }, [token, router]);
 
-  if (!isClient) {
-    return null;
-  }
-
-  if (!token) {
+  if (!isClient || !token) {
     return null;
   }
 
   return (
-    <div className="flex h-screen">
-      <aside className="w-64 bg-gray-900 text-white p-4">Sidebar</aside>
-      <main className="flex-grow p-6">{children}</main>
+    <div className="flex h-screen overflow-hidden">
+      <Sidebar />
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <Header />
+        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+      </div>
     </div>
   );
 };
