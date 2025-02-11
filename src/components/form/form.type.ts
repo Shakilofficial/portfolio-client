@@ -27,3 +27,8 @@ export interface PasswordInputProps extends BaseInputProps {
 export interface TextareaProps extends BaseInputProps {
   placeholder?: string;
 }
+
+export interface SelectProps extends BaseInputProps {
+  options: { value: string; label: string }[];
+  placeholder?: string;
+}

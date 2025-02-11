@@ -13,3 +13,10 @@ export type TProject = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export const CATEGORY_OPTIONS = ["frontend", "backend", "fullstack"] as const;
+
+export const categoryOptions = CATEGORY_OPTIONS.map((cat) => ({
+  value: cat,
+  label: cat,
+}));

@@ -66,7 +66,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="space-y-6 px-5">
+    <div className="space-y-6 px-5 my-4">
       {/* Form */}
       <Form form={form} onSubmit={onSubmit}>
         <TextInput

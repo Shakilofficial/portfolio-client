@@ -31,7 +31,43 @@ const projectApi = baseApi.injectEndpoints({
       transformResponse: (response: TResponseRedux<TProject>) => response.data,
       providesTags: ["Project"],
     }),
+
+    //create a new project
+    createProject: builder.mutation({
+      query: (project) => ({
+        url: "/projects",
+        method: "POST",
+        body: project,
+      }),
+      invalidatesTags: ["Project"],
+    }),
+
+    //update a project
+
+    updateProject: builder.mutation({
+      query: (project) => ({
+        url: `/projects/${project._id}`,
+        method: "PATCH",
+        body: project,
+      }),
+      invalidatesTags: ["Project"],
+    }),
+
+    //delete a project
+    deleteProject: builder.mutation({
+      query: (id: string) => ({
+        url: `/projects/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Project"],
+    }),
   }),
 });
 
-export const { useGetAllProjectsQuery, useGetSingleProjectQuery } = projectApi;
+export const {
+  useGetAllProjectsQuery,
+  useGetSingleProjectQuery,
+  useCreateProjectMutation,
+  useUpdateProjectMutation,
+  useDeleteProjectMutation,
+} = projectApi;
