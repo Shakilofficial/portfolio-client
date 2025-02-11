@@ -48,7 +48,7 @@ const FeaturedProjectCard = ({ project }: FeaturedProjectCardProps) => {
         {/* Technologies Used */}
         <CardItem translateZ="50">
           <div className="flex flex-wrap gap-2 mt-10">
-            {project?.technologies.slice(0, 3).map((tech, index) => (
+            {project?.technologies?.slice(0, 3).map((tech, index) => (
               <Badge
                 key={index}
                 variant="secondary"
@@ -57,12 +57,12 @@ const FeaturedProjectCard = ({ project }: FeaturedProjectCardProps) => {
                 {tech}
               </Badge>
             ))}
-            {project?.technologies.length > 3 && (
+            {project?.technologies?.length > 3 && (
               <Badge
                 variant="secondary"
                 className="bg-purple-200 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300"
               >
-                +{project?.technologies.length - 3}
+                +{project?.technologies?.length - 3}
               </Badge>
             )}
           </div>

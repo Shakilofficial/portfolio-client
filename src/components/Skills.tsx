@@ -90,12 +90,12 @@ const Skills = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className={`group bg-gradient-to-t ${data.gradient} relative before:absolute before:inset-0 before:opacity-5 rounded-2xl border border-white/10`}
+              className={`group bg-gradient-to-t ${data?.gradient} relative before:absolute before:inset-0 before:opacity-5 rounded-2xl border border-white/10`}
             >
               <div className="relative">
                 <div className="px-6 py-5">
                   <div
-                    className={`${data.tagColor} transition-all duration-500 ease-in-out w-fit px-3 rounded-full text-sm py-1 text-white mb-1`}
+                    className={`${data?.tagColor} transition-all duration-500 ease-in-out w-fit px-3 rounded-full text-sm py-1 text-white mb-1`}
                   >
                     {category}
                   </div>
@@ -103,17 +103,17 @@ const Skills = () => {
                     {category}
                   </h3>
                   <p className="text-sm text-slate-400 mb-4">
-                    {data.description}
+                    {data?.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {data.skills.map((skill) => (
+                    {data?.skills?.map((skill) => (
                       <div
-                        key={skill.name}
+                        key={skill?.name}
                         className="flex items-center bg-white/5 rounded-full px-3 py-1 transition-all duration-300 hover:bg-white/10"
                       >
                         <Image
-                          src={skill.icon}
-                          alt={skill.name}
+                          src={skill?.icon}
+                          alt={skill?.name}
                           width={24}
                           height={24}
                           style={{
@@ -124,7 +124,7 @@ const Skills = () => {
                           className="mr-2"
                         />
                         <span className="text-sm text-slate-300">
-                          {skill.name}
+                          {skill?.name}
                         </span>
                       </div>
                     ))}

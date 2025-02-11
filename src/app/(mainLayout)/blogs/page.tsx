@@ -2,6 +2,7 @@
 import BlogCard from "@/components/blog/BlogCard";
 import BlogFilter from "@/components/blog/BlogFilter";
 import { useBlogFilters } from "@/components/blog/useBlogFilters";
+import Error from "@/components/feedback/Error";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import Pagination from "@/components/project/Pagination";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,7 +19,9 @@ const BlogsPage = () => {
     getQueryParams,
   } = useBlogFilters();
 
-  const { data, error, isLoading } = useGetAllBlogsQuery(getQueryParams());
+  const { isFetching, isLoading, isError, data, error } = useGetAllBlogsQuery(
+    getQueryParams()
+  );
 
   const BlogsSkeleton = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -46,10 +49,10 @@ const BlogsPage = () => {
 
       <BlogFilter sortBy={sortBy} onSortChange={setSortBy} />
 
-      {isLoading ? (
+      {isFetching || isLoading ? (
         <BlogsSkeleton />
-      ) : error ? (
-        <div>Error loading blog posts.</div>
+      ) : isError || error ? (
+        <Error message="Error loading blog posts" />
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -57,7 +60,7 @@ const BlogsPage = () => {
               <BlogCard key={blog._id} blog={blog} />
             ))}
           </div>
-          {data?.data?.length === 0 && <div>No blog posts found.</div>}
+          {data?.data?.length === 0 && <Error message="No blog posts found" />}
           <Pagination
             currentPage={currentPage}
             totalPages={data?.meta?.totalPage || 1}

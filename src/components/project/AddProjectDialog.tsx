@@ -56,10 +56,8 @@ const AddProjectDialog = () => {
     },
   });
 
-  // Open/Close Dialog state
   const [open, setOpen] = useState(false);
 
-  // Handle form submission
   const onSubmit = async (data: FormValues) => {
     const toastId = toast.loading("Adding your project...");
     try {
@@ -75,7 +73,7 @@ const AddProjectDialog = () => {
         isFeatured: data.isFeatured,
       }).unwrap();
       toast.success("Project added successfully", { id: toastId });
-      setOpen(false); // Close the dialog after success
+      setOpen(false);
     } catch (error) {
       toast.error("Failed to add project", { id: toastId });
     }
@@ -150,7 +148,7 @@ const AddProjectDialog = () => {
             </div>
           </Form>
         </motion.div>
-        <DialogFooter></DialogFooter>
+        <DialogFooter className="sr-only">Add Project</DialogFooter>
       </DialogContent>
     </Dialog>
   );

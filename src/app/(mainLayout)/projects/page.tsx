@@ -1,5 +1,6 @@
 "use client";
 
+import Error from "@/components/feedback/Error";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import Pagination from "@/components/project/Pagination";
 import ProjectCard from "@/components/project/ProjectCard";
@@ -20,7 +21,8 @@ const ProjectsPage = () => {
     getQueryParams,
   } = useProjectFilters();
 
-  const { data, error, isLoading } = useGetAllProjectsQuery(getQueryParams());
+  const { isFetching, isLoading, isError, data, error } =
+    useGetAllProjectsQuery(getQueryParams());
 
   const ProjectsSkeleton = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -47,18 +49,18 @@ const ProjectsPage = () => {
         onSortChange={setSortBy}
       />
 
-      {isLoading ? (
+      {isFetching || isLoading ? (
         <ProjectsSkeleton />
-      ) : error ? (
-        <div>Error loading projects.</div>
+      ) : isError || error ? (
+        <Error message="Error fetching projects" />
       ) : (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {data?.data?.map((project) => (
-              <ProjectCard key={project._id} project={project} />
+              <ProjectCard key={project?._id} project={project} />
             ))}
           </div>
-          {data?.data?.length === 0 && <div>No projects found.</div>}
+          {data?.data?.length === 0 && <Error message="No projects found" />}
           <Pagination
             currentPage={currentPage}
             totalPages={data?.meta?.totalPage || 1}

@@ -53,12 +53,12 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                 {tech}
               </Badge>
             ))}
-          {project?.technologies.length > 3 && (
+          {project?.technologies?.length > 3 && (
             <Badge
               variant="secondary"
               className="bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300"
             >
-              +{project?.technologies.length - 3}
+              +{project?.technologies?.length - 3}
             </Badge>
           )}
         </div>

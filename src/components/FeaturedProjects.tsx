@@ -4,10 +4,11 @@ import { TQueryParam } from "@/types/global";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Error from "./feedback/Error";
+import GridSkeleton from "./feedback/GridSkeleton";
 import { AuroraText } from "./magicui/aurora-text";
 import { ShinyButton } from "./magicui/shiny-button";
 import FeaturedProjectCard from "./project/FeaturedProjectCard";
-import { Skeleton } from "./ui/skeleton";
 
 const FeaturedProjects = () => {
   const queryParams: TQueryParam[] = [
@@ -17,14 +18,15 @@ const FeaturedProjects = () => {
     { name: "limit", value: 3 },
   ];
 
-  const { data, error, isLoading } = useGetAllProjectsQuery(queryParams);
+  const { isFetching, isLoading, isError, error, data } =
+    useGetAllProjectsQuery(queryParams);
 
-  if (isLoading) {
-    return <ProjectsSkeleton />;
+  if (isFetching || isLoading) {
+    return <GridSkeleton />;
   }
 
-  if (error || !data?.data) {
-    return <div className="text-red-500">Error loading projects.</div>;
+  if (isError || error || !data?.data) {
+    return <Error message="Featured Projects Not Found" />;
   }
 
   return (
@@ -44,14 +46,12 @@ const FeaturedProjects = () => {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-          {data.data.length > 0 ? (
-            data.data.map((project) => (
-              <FeaturedProjectCard key={project._id} project={project} />
+          {data?.data?.length > 0 ? (
+            data?.data?.map((project) => (
+              <FeaturedProjectCard key={project?._id} project={project} />
             ))
           ) : (
-            <p className="text-gray-500 text-center col-span-full">
-              No featured projects available.
-            </p>
+            <Error message="No featured projects found" />
           )}
         </div>
 
@@ -71,11 +71,3 @@ const FeaturedProjects = () => {
 };
 
 export default FeaturedProjects;
-
-const ProjectsSkeleton = () => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {[...Array(3)].map((_, index) => (
-      <Skeleton key={index} className="h-[400px] w-full rounded-lg" />
-    ))}
-  </div>
-);

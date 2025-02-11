@@ -5,9 +5,11 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import BlogCard from "./blog/BlogCard";
+import Error from "./feedback/Error";
+
+import GridSkeleton from "./feedback/GridSkeleton";
 import { AuroraText } from "./magicui/aurora-text";
 import { ShinyButton } from "./magicui/shiny-button";
-import { Skeleton } from "./ui/skeleton";
 
 const LatestBlogs = () => {
   const queryParams: TQueryParam[] = [
@@ -16,14 +18,15 @@ const LatestBlogs = () => {
     { name: "limit", value: 3 },
   ];
 
-  const { data, error, isLoading } = useGetAllBlogsQuery(queryParams);
+  const { isFetching, isLoading, isError, data, error } =
+    useGetAllBlogsQuery(queryParams);
 
-  if (isLoading) {
-    return <BlogsSkeleton />;
+  if (isFetching || isLoading) {
+    return <GridSkeleton />;
   }
 
-  if (error || !data?.data) {
-    return <div className="text-red-500">Error loading blog posts. </div>;
+  if (isError || error || !data?.data) {
+    return <Error message="No blogs found" />;
   }
 
   return (
@@ -44,8 +47,8 @@ const LatestBlogs = () => {
           </p>
         </motion.div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {data.data.length > 0 ? (
-            data.data.map((blog) => <BlogCard key={blog._id} blog={blog} />)
+          {data?.data?.length > 0 ? (
+            data?.data?.map((blog) => <BlogCard key={blog?._id} blog={blog} />)
           ) : (
             <p className="text-gray-500 text-center col-span-full">
               No blogs available.
@@ -69,11 +72,3 @@ const LatestBlogs = () => {
 };
 
 export default LatestBlogs;
-
-const BlogsSkeleton = () => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {[...Array(3)].map((_, index) => (
-      <Skeleton key={index} className="h-[400px] w-full rounded-lg" />
-    ))}
-  </div>
-);

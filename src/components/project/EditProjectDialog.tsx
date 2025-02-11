@@ -56,7 +56,7 @@ const EditProjectDialog = ({ project }: { project: any }) => {
   const onSubmit = async (data: FormValues) => {
     const toastId = toast.loading("Updating project...");
     try {
-      await updateProject({ ...data, _id: project._id }).unwrap();
+      await updateProject({ ...data, _id: project?._id }).unwrap();
       toast.success("Project updated successfully", { id: toastId });
       setOpen(false);
     } catch (error) {

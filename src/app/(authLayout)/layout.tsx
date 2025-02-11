@@ -13,7 +13,7 @@ const AuthLayout = ({ children }: Props) => {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(${bgImage.src})`,
+          backgroundImage: `url(${bgImage?.src})`,
           opacity: 0.3,
           filter: "blur(8px)",
         }}
