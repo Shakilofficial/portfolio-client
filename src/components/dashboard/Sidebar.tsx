@@ -17,10 +17,10 @@ import { useState } from "react";
 import Logo from "../shared/Logo";
 
 const navItems = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Projects", href: "/admin/projects", icon: Briefcase },
-  { name: "Blogs", href: "/admin/blogs", icon: FileText },
-  { name: "Messages", href: "/admin/messages", icon: MessageSquare },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Projects", href: "/dashboard/projects", icon: Briefcase },
+  { name: "Blogs", href: "/dashboard/blogs", icon: FileText },
+  { name: "Messages", href: "/dashboard/messages", icon: MessageSquare },
 ];
 
 const Sidebar = () => {

@@ -3,13 +3,13 @@
 import { Form } from "@/components/form/Form";
 import { PasswordInput } from "@/components/form/PasswordInput";
 import { TextInput } from "@/components/form/TextInput";
+import SocialLogin from "@/components/SocialLogin";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
 import { setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hook";
 import { verifyToken } from "@/utils/verifyToken";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Lock, Mail } from "lucide-react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -52,7 +52,7 @@ const LoginPage = () => {
           toast.success("Logged in successfully", { id: toastId });
 
           // Navigate to admin dashboard
-          router.push("/admin");
+          router.push("/dashboard");
         } else {
           toast.error("Access denied: Admins only", { id: toastId });
         }
@@ -85,19 +85,8 @@ const LoginPage = () => {
       </Form>
 
       {/* Additional Links */}
-      <div className="text-center space-y-2">
-        <Link
-          href="#"
-          className="text-sm text-muted-foreground hover:underline"
-        >
-          Forgot your password?
-        </Link>
-        <div className="text-sm">
-          Don&apos;t have an account?{" "}
-          <Link href="#" className="text-primary hover:underline">
-            Register
-          </Link>
-        </div>
+      <div className="flex flex-col items-center justify-center space-y-2">
+        <SocialLogin />
       </div>
     </div>
   );

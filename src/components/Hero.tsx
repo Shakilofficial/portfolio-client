@@ -43,7 +43,7 @@ const Hero = () => {
             <ShinyButton onClick={handleEmailClick}>
               <Mail className="mr-2 h-5 w-5" />
             </ShinyButton>
-            <a href={CV} download>
+            <a href={CV} download="Resume-of-Shakil-Hossain.pdf">
               <ShinyButton className="flex items-center gap-2 bg-slate-400/50 hover:text-rose-600 bg--500 dark:text-purple-400 dark:hover:text-rose-400 dark:hover:bg-purple-900/50 transition-all duration-300 px-4 py-2 rounded-lg">
                 <div className="flex items-center gap-2">
                   <span>Download CV</span>

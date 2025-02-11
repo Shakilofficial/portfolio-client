@@ -19,7 +19,7 @@ const socials = [
 
 const importantLinks = [
   { href: "/login", label: "Login" },
-  { href: "/admin", label: "Dashboard" },
+  { href: "/dashboard", label: "Dashboard" },
 ];
 
 const Footer = () => {
