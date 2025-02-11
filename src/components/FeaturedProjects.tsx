@@ -26,7 +26,6 @@ const FeaturedProjects = () => {
   if (error || !data?.data) {
     return <div className="text-red-500">Error loading projects.</div>;
   }
-  console.log(data);
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-background/80">
