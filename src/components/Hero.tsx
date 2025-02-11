@@ -1,3 +1,4 @@
+"use client";
 import { Download, Mail } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
@@ -5,6 +6,7 @@ import { AuroraText } from "./magicui/aurora-text";
 import { Ripple } from "./magicui/ripple";
 import { ShinyButton } from "./magicui/shiny-button";
 import { TypingAnimation } from "./magicui/typing-animation";
+const CV = "/public/Resume-of-Shakil-Hossain.pdf";
 
 const Hero = () => {
   <Head>
@@ -14,6 +16,11 @@ const Hero = () => {
       href="https://res.cloudinary.com/dcyupktj6/image/upload/v1739116773/lx1aeznvlqo7htectued.png"
     />
   </Head>;
+
+  const handleEmailClick = () => {
+    window.location.href = "mailto:MrShakilHossain@outlook.com";
+  };
+
   return (
     <section className="container mx-auto px-4 py-12 sm:py-16 lg:py-20 overflow-hidden">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
@@ -33,15 +40,17 @@ const Hero = () => {
             and create something extraordinary together!
           </TypingAnimation>
           <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-            <ShinyButton>
+            <ShinyButton onClick={handleEmailClick}>
               <Mail className="mr-2 h-5 w-5" />
             </ShinyButton>
-            <ShinyButton className="flex items-center gap-2 bg-slate-400/50 hover:text-rose-600 bg--500 dark:text-purple-400 dark:hover:text-rose-400 dark:hover:bg-purple-900/50 transition-all duration-300 px-4 py-2 rounded-lg">
-              <div className="flex items-center gap-2">
-                <span>Download CV</span>
-                <Download className="h-5 w-5" />
-              </div>
-            </ShinyButton>
+            <a href={CV} download>
+              <ShinyButton className="flex items-center gap-2 bg-slate-400/50 hover:text-rose-600 bg--500 dark:text-purple-400 dark:hover:text-rose-400 dark:hover:bg-purple-900/50 transition-all duration-300 px-4 py-2 rounded-lg">
+                <div className="flex items-center gap-2">
+                  <span>Download CV</span>
+                  <Download className="h-5 w-5" />
+                </div>
+              </ShinyButton>
+            </a>
           </div>
         </div>
         <div className="flex-shrink-0 w-full max-w-sm lg:max-w-md xl:max-w-lg">

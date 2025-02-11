@@ -6,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import BlogCard from "./blog/BlogCard";
 import Error from "./feedback/Error";
-
 import GridSkeleton from "./feedback/GridSkeleton";
 import { AuroraText } from "./magicui/aurora-text";
 import { ShinyButton } from "./magicui/shiny-button";
