@@ -1,4 +1,5 @@
 "use client";
+import placeholderImage from "@/assets/placeholder.jpg";
 import { AuroraText } from "@/components/magicui/aurora-text";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -51,11 +52,12 @@ const BlogDetailsPage = () => {
       {/* Blog Image */}
       <Card className="mb-12 shadow-lg rounded-lg overflow-hidden">
         <Image
-          src={blog.coverImage || "/placeholder-blog.svg"}
+          src={blog.coverImage || placeholderImage}
           alt={blog.title}
           width={800}
           height={400}
-          className="w-full h-[400px] object-cover rounded-lg"
+          className="object-cover rounded-lg w-full h-auto"
+          priority
         />
       </Card>
 

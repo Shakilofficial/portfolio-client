@@ -1,10 +1,10 @@
+import placeholderImage from "@/assets/placeholder.jpg";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { TBlog } from "@/types/blog.type";
 import { ArrowRight, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
 interface BlogCardProps {
   blog: TBlog;
 }
@@ -14,7 +14,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
     <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-[#252525] dark:border-0 border border-gray-200 rounded-md dark:text-white text-black">
       <div className="relative w-full h-80 overflow-hidden">
         <Image
-          src={blog.coverImage || "/placeholder-blog.svg"}
+          src={blog.coverImage || placeholderImage}
           alt={blog.title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
