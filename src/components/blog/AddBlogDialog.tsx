@@ -97,7 +97,7 @@ const AddBlogDialog = () => {
             </div>
           </Form>
         </motion.div>
-        <DialogFooter></DialogFooter>
+        <DialogFooter className="sr-only">Add blog</DialogFooter>
       </DialogContent>
     </Dialog>
   );

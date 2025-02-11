@@ -65,10 +65,7 @@ const EditBlogDialog = ({ blog }: { blog: any }) => {
       <DialogContent className="max-w-[380px] md:max-w-screen-sm rounded-lg p-6 border border-purple-200 dark:border-purple-800">
         <DialogHeader>
           <DialogTitle>Edit Blog</DialogTitle>
-          <DialogDescription className="sr-only">
-            {" "}
-            Update blog{" "}
-          </DialogDescription>
+          <DialogDescription className="sr-only">Update blog</DialogDescription>
         </DialogHeader>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
