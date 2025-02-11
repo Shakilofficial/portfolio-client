@@ -37,7 +37,7 @@ const FeaturedProjectCard = ({ project }: FeaturedProjectCardProps) => {
         {/* Project Thumbnail */}
         <CardItem translateZ="100" className="w-full mt-4">
           <Image
-            src={project?.coverImage || "/placeholder.svg"}
+            src={project?.coverImage}
             height={1000}
             width={1000}
             className="h-48 w-full object-cover rounded-xl aspect-[16/9] group-hover/card:shadow-xl transition-transform duration-300 hover:scale-[1.02]"

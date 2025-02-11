@@ -13,6 +13,8 @@ const Logo = () => {
           sizes="40"
           fill
           className="object-contain"
+          priority
+          loading="eager"
         />
       </div>
     </Link>

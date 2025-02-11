@@ -67,7 +67,7 @@ const ProjectDetailsPage = () => {
       {/* Project Image */}
       <Card className="mb-12 overflow-hidden">
         <Image
-          src={project.coverImage || "/placeholder.svg"}
+          src={project.coverImage}
           alt={project.title}
           width={1200}
           height={675}

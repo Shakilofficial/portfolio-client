@@ -23,7 +23,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       <CardHeader className="p-0 overflow-hidden">
         <div className="relative h-48 w-full">
           <Image
-            src={project?.coverImage || "/placeholder.svg"}
+            src={project?.coverImage}
             alt={project?.title || "Project Image"}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
