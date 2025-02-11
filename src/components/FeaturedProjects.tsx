@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { AuroraText } from "./magicui/aurora-text";
 import { ShinyButton } from "./magicui/shiny-button";
-import ProjectCard from "./project/ProjectCard";
+import FeaturedProjectCard from "./project/FeaturedProjectCard";
 import { Skeleton } from "./ui/skeleton";
 
 const FeaturedProjects = () => {
@@ -44,10 +44,10 @@ const FeaturedProjects = () => {
             Explore my highlighted projects showcasing my latest work.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {data.data.length > 0 ? (
             data.data.map((project) => (
-              <ProjectCard key={project._id} project={project} />
+              <FeaturedProjectCard key={project._id} project={project} />
             ))
           ) : (
             <p className="text-gray-500 text-center col-span-full">
