@@ -1,5 +1,7 @@
 "use client";
 
+import Error from "@/components/feedback/Error";
+import Loader from "@/components/feedback/Loader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
@@ -13,7 +15,6 @@ import {
   ArrowUpRight,
   Briefcase,
   FileText,
-  Loader2,
   MessageSquare,
   Users,
 } from "lucide-react";
@@ -48,19 +49,11 @@ const AdminDashboardPage = () => {
     blogsLoading ||
     messagesLoading
   ) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
-      </div>
-    );
+    return <Loader />;
   }
 
   if (projectsError || blogsError || messagesError) {
-    return (
-      <div className="flex items-center justify-center h-screen text-red-600">
-        <span>Error loading data, please try again later.</span>
-      </div>
-    );
+    return <Error />;
   }
 
   const totalProjects = projectsData?.meta?.total || 0;
@@ -68,15 +61,15 @@ const AdminDashboardPage = () => {
   const totalMessages = messagesData?.meta?.total || 0;
 
   const featuredProjects =
-    projectsData?.data?.filter((project: TProject) => project.isFeatured)
+    projectsData?.data?.filter((project: TProject) => project?.isFeatured)
       .length || 0;
   const publishedBlogs =
-    blogsData?.data?.filter((blog: TBlog) => blog.isPublished).length || 0;
+    blogsData?.data?.filter((blog: TBlog) => blog?.isPublished).length || 0;
 
   const projectCategories = projectsData?.data?.reduce(
     (acc: Record<string, number>, project: TProject) => {
-      if (!project.isDeleted) {
-        acc[project.category] = (acc[project.category] || 0) + 1;
+      if (!project?.isDeleted) {
+        acc[project?.category] = (acc[project?.category] || 0) + 1;
       }
       return acc;
     },
@@ -175,11 +168,11 @@ const AdminDashboardPage = () => {
               <ul className="space-y-2">
                 {messagesData?.data?.slice(0, 5).map((message: TMessage) => (
                   <li
-                    key={message._id}
+                    key={message?._id}
                     className="text-sm px-2 py-1 rounded-md shadow-sm bg-purple-950/20"
                   >
-                    <span className="font-medium">{message.name}</span>:{" "}
-                    {message.message.substring(0, 50)}...
+                    <span className="font-medium">{message?.name}</span>:{" "}
+                    {message?.message?.substring(0, 50)}...
                   </li>
                 ))}
               </ul>

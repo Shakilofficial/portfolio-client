@@ -1,5 +1,7 @@
 "use client";
 
+import Error from "@/components/feedback/Error";
+import Loader from "@/components/feedback/Loader";
 import AddProjectDialog from "@/components/project/AddProjectDialog";
 import EditProjectDialog from "@/components/project/EditProjectDialog";
 import { Button } from "@/components/ui/button";
@@ -30,10 +32,11 @@ import {
 import {
   useDeleteProjectMutation,
   useGetAllProjectsQuery,
+  useToggleProjectFeaturedMutation,
 } from "@/redux/features/project/projectApi";
 import type { TProject } from "@/types/project.type";
 import { format } from "date-fns";
-import { ExternalLink, Loader2, Trash2 } from "lucide-react";
+import { ExternalLink, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -43,35 +46,40 @@ const AdminProjectsPage = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
 
-  const { isFetching, isLoading, data } = useGetAllProjectsQuery([
+  const { isFetching, isLoading, isError, data } = useGetAllProjectsQuery([
     { name: "page", value: page },
     { name: "limit", value: limit },
   ]);
 
   const [deleteProject] = useDeleteProjectMutation();
+  const [toggleProjectFeatured] = useToggleProjectFeaturedMutation();
+
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [projectToDelete, setProjectToDelete] = useState<TProject | null>(null);
 
   if (isFetching || isLoading) {
-    return (
-      <div className="flex items-center justify-center h-96">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
-      </div>
-    );
+    return <Loader />;
+  }
+  if (isError) {
+    return <Error />;
   }
 
   const handleDeleteProject = (projectId: string) => {
     setProjectToDelete(
-      data?.data?.find((project) => project._id === projectId) || null
+      data?.data?.find((project) => project?._id === projectId) || null
     );
     setDeleteDialogOpen(true);
   };
 
   const confirmDelete = async () => {
     if (projectToDelete) {
-      await deleteProject(projectToDelete._id);
+      await deleteProject(projectToDelete?._id);
       setDeleteDialogOpen(false);
     }
+  };
+
+  const handleToggleFeatured = async (projectId: string) => {
+    await toggleProjectFeatured(projectId);
   };
 
   return (
@@ -109,48 +117,54 @@ const AdminProjectsPage = () => {
               <TableBody>
                 {data?.data?.map((project: TProject) => (
                   <TableRow
-                    key={project._id}
+                    key={project?._id}
                     className="hover:bg-purple-50 dark:hover:bg-purple-900/10"
                   >
                     <TableCell>
                       <div className="relative h-12 w-20">
                         <Image
-                          src={project.coverImage || "/placeholder.png"}
-                          alt={project.title}
+                          src={project?.coverImage || "/placeholder.png"}
+                          alt={project?.title}
                           fill
                           className="object-cover rounded"
                         />
                       </div>
                     </TableCell>
                     <TableCell className="font-medium max-w-[200px] truncate">
-                      {project.title}
+                      {project?.title}
                     </TableCell>
                     <TableCell className="capitalize">
-                      {project.category}
+                      {project?.category}
                     </TableCell>
                     <TableCell>
-                      {project.isFeatured ? (
-                        <span className="text-green-600 dark:text-green-400">
-                          Yes
-                        </span>
-                      ) : (
-                        <span className="text-gray-500">No</span>
-                      )}
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => handleToggleFeatured(project?._id)}
+                      >
+                        {project?.isFeatured ? (
+                          <span className="text-green-600 dark:text-green-400">
+                            Yes
+                          </span>
+                        ) : (
+                          <span className="text-gray-500">No</span>
+                        )}
+                      </Button>
                     </TableCell>
                     <TableCell>
-                      {format(new Date(project.createdAt), "MMM d, yyyy")}
+                      {format(new Date(project?.createdAt), "MMM d, yyyy")}
                     </TableCell>
                     <TableCell>
                       <div className="flex space-x-2">
                         <Link
-                          href={project.githubUrl}
+                          href={project?.githubUrl}
                           target="_blank"
                           className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                         >
                           <FaGithub className="h-4 w-4" />
                         </Link>
                         <Link
-                          href={project.liveUrl}
+                          href={project?.liveUrl}
                           target="_blank"
                           className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                         >
@@ -165,7 +179,7 @@ const AdminProjectsPage = () => {
                           variant="ghost"
                           size="icon"
                           className="hover:text-red-600 dark:hover:text-red-400"
-                          onClick={() => handleDeleteProject(project._id)}
+                          onClick={() => handleDeleteProject(project?._id)}
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>

@@ -61,6 +61,15 @@ const projectApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Project"],
     }),
+
+    // Toggle project featured status
+    toggleProjectFeatured: builder.mutation({
+      query: (id: string) => ({
+        url: `/projects/${id}/featured`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["Project"],
+    }),
   }),
 });
 
@@ -70,4 +79,5 @@ export const {
   useCreateProjectMutation,
   useUpdateProjectMutation,
   useDeleteProjectMutation,
+  useToggleProjectFeaturedMutation,
 } = projectApi;

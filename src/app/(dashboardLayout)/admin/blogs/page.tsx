@@ -3,6 +3,8 @@
 import placeholderImage from "@/assets/placeholder.jpg";
 import AddBlogDialog from "@/components/blog/AddBlogDialog";
 import EditBlogDialog from "@/components/blog/EditBlogDialog";
+import Error from "@/components/feedback/Error";
+import Loader from "@/components/feedback/Loader";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -35,7 +37,7 @@ import {
   useToggleBlogPublishedMutation,
 } from "@/redux/features/blog/blogApi";
 import type { TBlog } from "@/types/blog.type";
-import { Loader2, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -43,7 +45,7 @@ const AdminBlogsPage = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
 
-  const { isFetching, isLoading, data } = useGetAllBlogsQuery([
+  const { isFetching, isLoading, isError, data } = useGetAllBlogsQuery([
     { name: "page", value: page },
     { name: "limit", value: limit },
   ]);
@@ -56,21 +58,20 @@ const AdminBlogsPage = () => {
   const [blogToDelete, setBlogToDelete] = useState<TBlog | null>(null);
 
   if (isFetching || isLoading) {
-    return (
-      <div className="flex items-center justify-center h-96">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
-      </div>
-    );
+    return <Loader />;
+  }
+  if (isError) {
+    return <Error />;
   }
 
   const handleDeleteBlog = (blogId: string) => {
-    setBlogToDelete(data?.data?.find((blog) => blog._id === blogId) || null);
+    setBlogToDelete(data?.data?.find((blog) => blog?._id === blogId) || null);
     setDeleteDialogOpen(true);
   };
 
   const confirmDelete = async () => {
     if (blogToDelete) {
-      await deleteBlog(blogToDelete._id);
+      await deleteBlog(blogToDelete?._id);
       setDeleteDialogOpen(false);
     }
   };
@@ -117,14 +118,14 @@ const AdminBlogsPage = () => {
               <TableBody>
                 {data?.data?.map((blog: TBlog) => (
                   <TableRow
-                    key={blog._id}
+                    key={blog?._id}
                     className="hover:bg-purple-50 dark:hover:bg-purple-900/10"
                   >
                     <TableCell>
                       <div className="relative h-12 w-20">
                         <Image
-                          src={blog.coverImage || placeholderImage}
-                          alt={blog.title}
+                          src={blog?.coverImage || placeholderImage}
+                          alt={blog?.title}
                           fill
                           className="object-cover rounded"
                           sizes="(max-width: 768px) 100px, (max-width: 1200px) 120px, 120px"
@@ -132,28 +133,30 @@ const AdminBlogsPage = () => {
                       </div>
                     </TableCell>
                     <TableCell className="font-medium max-w-[200px] truncate">
-                      {blog.title}
+                      {blog?.title}
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <div className="relative h-8 w-8">
                           <Image
-                            src={blog.author.profileImage || "/placeholder.png"}
-                            alt={blog.author.name}
+                            src={
+                              blog?.author.profileImage || "/placeholder.png"
+                            }
+                            alt={blog?.author.name}
                             fill
                             className="object-cover rounded-full"
                           />
                         </div>
-                        <span>{blog.author.name}</span>
+                        <span>{blog?.author.name}</span>
                       </div>
                     </TableCell>
                     <TableCell>
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => handleTogglePublished(blog._id)}
+                        onClick={() => handleTogglePublished(blog?._id)}
                       >
-                        {blog.isPublished ? (
+                        {blog?.isPublished ? (
                           <span className="text-green-600 dark:text-green-400">
                             Published
                           </span>
@@ -168,7 +171,7 @@ const AdminBlogsPage = () => {
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={() => handleToggleFeatured(blog._id)}
+                        onClick={() => handleToggleFeatured(blog?._id)}
                       >
                         {blog?.isFeatured ? (
                           <span className="text-green-600 dark:text-green-400">
@@ -186,7 +189,7 @@ const AdminBlogsPage = () => {
                           variant="ghost"
                           size="icon"
                           className="hover:text-red-600 dark:hover:text-red-400"
-                          onClick={() => handleDeleteBlog(blog._id)}
+                          onClick={() => handleDeleteBlog(blog?._id)}
                         >
                           <Trash2 className="h-4 w-4" />
                         </Button>
@@ -201,7 +204,7 @@ const AdminBlogsPage = () => {
             <div className="mt-4">
               <Pagination
                 currentPage={page}
-                totalPages={data.meta.totalPage}
+                totalPages={data?.meta?.totalPage}
                 onPageChange={setPage}
               />
             </div>

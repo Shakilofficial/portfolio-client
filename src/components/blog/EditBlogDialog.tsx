@@ -46,9 +46,9 @@ const EditBlogDialog = ({ blog }: { blog: any }) => {
   }, [blog, form]);
 
   const onSubmit = async (data: FormValues) => {
-    const toastId = toast.loading("Updating blog...");
+    const toastId = toast.loading("Updating blog?...");
     try {
-      await updateBlog({ ...data, _id: blog._id }).unwrap();
+      await updateBlog({ ...data, _id: blog?._id }).unwrap();
       toast.success("Blog updated successfully", { id: toastId });
       setOpen(false);
     } catch (error) {

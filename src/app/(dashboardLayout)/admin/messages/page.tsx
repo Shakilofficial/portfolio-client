@@ -1,5 +1,7 @@
 "use client";
 
+import Error from "@/components/feedback/Error";
+import Loader from "@/components/feedback/Loader";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -31,14 +33,14 @@ import {
 } from "@/redux/features/message/messageApi";
 import type { TMessage } from "@/types/message.type";
 import { format } from "date-fns";
-import { Loader2, Mail, Trash2 } from "lucide-react";
+import { Mail, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 const AdminMessagesPage = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
 
-  const { isFetching, isLoading, data } = useGetAllMessageQuery([
+  const { isFetching, isLoading, isError, data } = useGetAllMessageQuery([
     { name: "page", value: page },
     { name: "limit", value: limit },
   ]);
@@ -48,23 +50,22 @@ const AdminMessagesPage = () => {
   const [messageToDelete, setMessageToDelete] = useState<TMessage | null>(null);
 
   if (isFetching || isLoading) {
-    return (
-      <div className="flex items-center justify-center h-96">
-        <Loader2 className="h-8 w-8 animate-spin text-purple-600" />
-      </div>
-    );
+    return <Loader />;
+  }
+  if (isError) {
+    return <Error />;
   }
 
   const handleDeleteBlog = (messageId: string) => {
     setMessageToDelete(
-      data?.data?.find((message) => message._id === messageId) || null
+      data?.data?.find((message) => message?._id === messageId) || null
     );
     setDeleteDialogOpen(true);
   };
 
   const confirmDelete = async () => {
     if (messageToDelete) {
-      await deleteMessage(messageToDelete._id);
+      await deleteMessage(messageToDelete?._id);
       setDeleteDialogOpen(false);
     }
   };
@@ -106,30 +107,33 @@ const AdminMessagesPage = () => {
               <TableBody>
                 {data?.data?.map((message: TMessage) => (
                   <TableRow
-                    key={message._id}
+                    key={message?._id}
                     className="hover:bg-purple-50 dark:hover:bg-purple-900/10"
                   >
                     <TableCell className="font-medium">
-                      {message.name}
+                      {message?.name}
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <Mail className="h-4 w-4 text-purple-500" />
-                        {message.email}
+                        {message?.email}
                       </div>
                     </TableCell>
                     <TableCell className="max-w-[300px] truncate">
-                      {message.message}
+                      {message?.message}
                     </TableCell>
                     <TableCell>
-                      {format(new Date(message.createdAt), "MMM d, yyyy HH:mm")}
+                      {format(
+                        new Date(message?.createdAt),
+                        "MMM d, yyyy HH:mm"
+                      )}
                     </TableCell>
                     <TableCell className="text-right">
                       <Button
                         variant="ghost"
                         size="icon"
                         className="hover:text-red-600 dark:hover:text-red-400"
-                        onClick={() => handleDeleteBlog(message._id)}
+                        onClick={() => handleDeleteBlog(message?._id)}
                       >
                         <Trash2 className="h-4 w-4" />
                       </Button>
