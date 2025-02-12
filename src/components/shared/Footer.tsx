@@ -10,7 +10,7 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 
 const socials = [
-  { href: "https://www.linkedin.com/in/md-shakilhossain", icon: FaLinkedin },
+  { href: "https://www.linkedin.com/in/md-shakilhossain/", icon: FaLinkedin },
   { href: "https://github.com/Shakilofficial", icon: FaGithub },
   { href: "https://www.facebook.com/iamshakilhossain", icon: FaFacebook },
   { href: "https://www.instagram.com/shakilhossain75", icon: FaInstagram },
