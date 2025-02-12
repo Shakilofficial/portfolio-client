@@ -1,6 +1,6 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
 import { FaGithub, FaGoogle } from "react-icons/fa6";
 
 const SocialLogin = () => {
@@ -10,10 +10,9 @@ const SocialLogin = () => {
       <Button
         variant="outline"
         className="flex items-center gap-2 hover:bg-purple-500 hover:text-white transition-colors duration-300"
-        onClick={() => {
-          // Add GitHub login logic here
-          console.log("GitHub login clicked");
-        }}
+        onClick={() =>
+          signIn("github", { callbackUrl: "http://localhost:3000/dashboard" })
+        }
       >
         <FaGithub className="h-5 w-5" />
         <span>GitHub</span>
@@ -23,10 +22,6 @@ const SocialLogin = () => {
       <Button
         variant="outline"
         className="flex items-center gap-2 hover:bg-purple-500 hover:text-white transition-colors duration-300"
-        onClick={() => {
-          // Add Google login logic here
-          console.log("Google login clicked");
-        }}
       >
         <FaGoogle className="h-5 w-5" />
         <span>Google</span>
