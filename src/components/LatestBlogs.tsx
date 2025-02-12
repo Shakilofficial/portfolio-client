@@ -12,6 +12,7 @@ import { ShinyButton } from "./magicui/shiny-button";
 
 const LatestBlogs = () => {
   const queryParams: TQueryParam[] = [
+    { name: "isPublished", value: true },
     { name: "sortBy", value: "createdAt" },
     { name: "sortOrder", value: "desc" },
     { name: "limit", value: 3 },

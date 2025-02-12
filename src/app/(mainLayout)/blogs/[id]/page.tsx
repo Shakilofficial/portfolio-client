@@ -35,7 +35,7 @@ const BlogDetailsPage = () => {
     <div className="max-w-6xl mx-auto px-6 py-16 lg:py-24">
       {/* Blog Title */}
       <div className="mb-8">
-        <h1 className="text-5xl font-extrabold leading-tight mb-6">
+        <h1 className="text-xl md:3xl font-extrabold leading-tight mb-6">
           <AuroraText>{blog?.title}</AuroraText>
         </h1>
         <div className="flex items-center text-muted-foreground space-x-6 mb-6">

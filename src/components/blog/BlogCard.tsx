@@ -12,7 +12,7 @@ interface BlogCardProps {
 const BlogCard = ({ blog }: BlogCardProps) => {
   return (
     <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-[#252525] dark:border-0 border border-gray-200 rounded-md dark:text-white text-black">
-      <div className="relative w-full h-80 overflow-hidden">
+      <div className="relative w-full h-64 overflow-hidden">
         <Image
           src={blog?.coverImage || placeholderImage}
           alt={blog?.title}

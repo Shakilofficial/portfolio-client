@@ -43,6 +43,7 @@ const ContactPage = () => {
         message: data.message,
       }).unwrap();
       toast.success("Message sent successfully", { id: toastId });
+      form.reset();
     } catch (error) {
       toast.error("Failed to send message", { id: toastId });
     }

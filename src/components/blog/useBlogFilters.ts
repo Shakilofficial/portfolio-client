@@ -10,6 +10,7 @@ export const useBlogFilters = (initialLimit = 9) => {
 
   const getQueryParams = useCallback((): TQueryParam[] => {
     const params: TQueryParam[] = [
+      { name: "isPublished", value: true },
       { name: "page", value: currentPage },
       { name: "limit", value: limit },
     ];
