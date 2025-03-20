@@ -1,7 +1,17 @@
-const BlogsPage = () => {
+import ManageBlogs from "@/components/module/dashboard/blog/ManageBlogs";
+import { getAllBlogs } from "@/services/BlogService";
+
+const BlogsPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ page: string }>;
+}) => {
+  const { page } = await searchParams;
+  const { data, meta } = await getAllBlogs(page);
+
   return (
     <div>
-      <h1>This is the page component</h1>
+      <ManageBlogs blogs={data} meta={meta} />
     </div>
   );
 };

@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/tooltip";
 import { deleteSkill } from "@/services/skillService";
 import { IMeta, ISkill } from "@/types";
+import { motion } from "framer-motion";
 import { Calendar, Trash } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -164,9 +165,14 @@ const ManageSkills = ({ skills, meta }: ManageSkillsProps) => {
   ];
 
   return (
-    <div className="space-y-6">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="space-y-6"
+    >
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
+        <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
           Manage Skills
         </h1>
         <div className="flex flex-col sm:flex-row gap-3">
@@ -181,12 +187,12 @@ const ManageSkills = ({ skills, meta }: ManageSkillsProps) => {
       <ConfirmDialog
         isOpen={isOpen}
         title="Delete Skill"
-        description={`Are you sure you want to delete "${selectedItem}"? This action cannot be undone.`}
+        description={`Are you sure you want to delete ${selectedItem} skill? This action cannot be undone.`}
         confirmButtonText="Delete"
         onOpenChange={setIsOpen}
         onConfirm={handleDeleteConfirm}
       />
-    </div>
+    </motion.div>
   );
 };
 

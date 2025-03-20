@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-
 import { Form } from "@/components/form/Form";
 import { ImagePreviewer } from "@/components/form/ImagePreviewer";
 import { ImageUploader } from "@/components/form/ImageUploader";
 import { SelectDropdown } from "@/components/form/SelectDropdown";
+import { TextEditorField } from "@/components/form/TextEditorField";
 import { TextInput } from "@/components/form/TextInput";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,22 +14,22 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { skillsCategoryOptions } from "@/constants/skillsCategory";
-import { createSkill } from "@/services/skillService";
+import { blogCategoryOptions } from "@/constants/blogCategory";
+import { createBlog } from "@/services/BlogService";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ShieldCheck } from "lucide-react";
+import { FileText, Plus } from "lucide-react";
 import { useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { type FieldValues, type SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { createSkillValidationSchema } from "./skillsValidationSchema";
+import { createBlogValidationSchema } from "./blogValidationSchema";
 
-const CreateSkillDialog = () => {
+const CreateBlogDialog = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [imageFiles, setImageFiles] = useState<File[]>([]);
   const [imagePreview, setImagePreview] = useState<string[]>([]);
 
   const form = useForm({
-    resolver: zodResolver(createSkillValidationSchema),
+    resolver: zodResolver(createBlogValidationSchema),
     mode: "onChange",
   });
 
@@ -41,13 +41,15 @@ const CreateSkillDialog = () => {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const formData = new FormData();
-      formData.append("data", JSON.stringify(data));
-      formData.append("icon", imageFiles[0] as File);
 
-      const res = await createSkill(formData);
+      formData.append("data", JSON.stringify(data));
+      formData.append("thumbnail", imageFiles[0] as File);
+
+      const res = await createBlog(formData);
       if (res?.success) {
         toast.success(res?.message);
         reset();
+
         setImageFiles([]);
         setImagePreview([]);
         setIsOpen(false);
@@ -64,16 +66,17 @@ const CreateSkillDialog = () => {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <Button size={"sm"}>
-            <span>
-              <ShieldCheck />
+            <span className="flex justify-center items-center gap-1">
+              <Plus />
+              <FileText />
             </span>
-            Add Skill
+            Add Blog
           </Button>
         </DialogTrigger>
-        <DialogContent className="max-w-sm md:max-w-md rounded-lg border-2 border-primary/50">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg border-2 border-primary/50">
           <DialogHeader className="w-full mx-auto flex justify-center text-center text-primary">
-            <DialogTitle className="text-xl text-center ">
-              Add a New Skill
+            <DialogTitle className="text-xl text-center">
+              Add a New Blog
             </DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
@@ -84,15 +87,27 @@ const CreateSkillDialog = () => {
               isValid={isValid}
             >
               <TextInput
-                name="name"
-                label="Skill Name"
-                placeholder="Enter your skill name"
+                name="title"
+                label="Blog Title"
+                placeholder="Enter your blog title"
+              />
+              <TextInput
+                name="subtitle"
+                label="Blog Subtitle"
+                placeholder="Enter your blog subtitle"
               />
               <SelectDropdown
                 name="category"
                 label="Category"
-                options={skillsCategoryOptions}
+                options={blogCategoryOptions}
                 placeholder="Select a category"
+              />
+
+              <TextEditorField
+                name="content"
+                label="Blog Content"
+                description="Write your blog content here"
+                placeholder="Start writing your amazing blog post..."
               />
 
               <div className="flex flex-col">
@@ -105,8 +120,8 @@ const CreateSkillDialog = () => {
                   />
                 ) : (
                   <ImageUploader
-                    name="icon"
-                    label="Upload Icon"
+                    name="thumbnail"
+                    label="Upload Thumbnail"
                     setImageFiles={setImageFiles}
                     setImagePreview={setImagePreview}
                   />
@@ -120,4 +135,4 @@ const CreateSkillDialog = () => {
   );
 };
 
-export default CreateSkillDialog;
+export default CreateBlogDialog;
