@@ -17,7 +17,7 @@ import {
 import { skillsCategoryOptions } from "@/constants/skillsCategory";
 import { createSkill } from "@/services/skillService";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ShieldCheck } from "lucide-react";
+import { Plus, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -64,7 +64,8 @@ const CreateSkillDialog = () => {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <Button size={"sm"}>
-            <span>
+            <span className="flex justify-center items-center gap-1">
+              <Plus />
               <ShieldCheck />
             </span>
             Add Skill

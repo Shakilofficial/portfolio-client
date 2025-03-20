@@ -1,5 +1,11 @@
 import ManageExperience from "@/components/module/dashboard/experiences/ManageExperience";
 import { getAllExperiences } from "@/services/experienceService";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experiences | Shakils Portfolio",
+  description: "Manage your experiences",
+};
 
 const ExperiencesPage = async ({
   searchParams,

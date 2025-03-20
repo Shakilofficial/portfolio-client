@@ -1,5 +1,11 @@
 import LoginForm from "@/components/module/auth/LoginForm";
 import Logo from "@/components/shared/Logo";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Login | Shakils Portfolio",
+  description: "Login to your account",
+};
 
 const LoginPage = () => {
   return (

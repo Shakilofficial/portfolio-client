@@ -1,7 +1,13 @@
-const DashboardHomePage = () => {
+import DashboardOverview from "@/components/module/dashboard/DashboardOverview";
+import { getMetaData } from "@/services/metaService.ts";
+
+const DashboardHomePage = async () => {
+  const { data } = await getMetaData();
+  console.log(data);
+
   return (
     <div>
-      <h1>This is the DashboardHome component</h1>
+      <DashboardOverview data={data} />
     </div>
   );
 };

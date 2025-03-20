@@ -196,11 +196,11 @@ const ManageProjects = ({ projects, meta }: ManageProjectsProps) => {
       transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex justify-between">
         <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
           Manage Projects
         </h1>
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div>
           <CreateProjectDialog />
         </div>
       </div>

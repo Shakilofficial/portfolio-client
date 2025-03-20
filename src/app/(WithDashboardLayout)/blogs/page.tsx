@@ -1,5 +1,11 @@
 import ManageBlogs from "@/components/module/dashboard/blog/ManageBlogs";
 import { getAllBlogs } from "@/services/blogService";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blogs | Shakils Portfolio",
+  description: "Manage your blogs",
+};
 
 const BlogsPage = async ({
   searchParams,

@@ -1,5 +1,11 @@
 import ManageMasseges from "@/components/module/dashboard/masseges/ManageMasseges";
 import { getAllMessages } from "@/services/messageService";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Messages | Shakils Portfolio",
+  description: "Manage your messages",
+};
 
 const MessagesPage = async ({
   searchParams,

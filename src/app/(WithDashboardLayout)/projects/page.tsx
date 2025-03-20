@@ -1,5 +1,11 @@
 import ManageProjects from "@/components/module/dashboard/projects/ManageProjects";
 import { getAllProjects } from "@/services/projectService";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Projects | Shakils Portfolio",
+  description: "Manage your projects",
+};
 
 const ProjectsPage = async ({
   searchParams,
