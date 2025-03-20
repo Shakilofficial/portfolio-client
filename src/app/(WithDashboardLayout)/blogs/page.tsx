@@ -1,5 +1,5 @@
 import ManageBlogs from "@/components/module/dashboard/blog/ManageBlogs";
-import { getAllBlogs } from "@/services/BlogService";
+import { getAllBlogs } from "@/services/blogService";
 
 const BlogsPage = async ({
   searchParams,

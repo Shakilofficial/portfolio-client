@@ -16,7 +16,7 @@ import {
   deleteBlog,
   toggledFeaturedBlog,
   toggledPublishBlog,
-} from "@/services/BlogService";
+} from "@/services/blogService";
 import { IBlog, IMeta } from "@/types";
 import { motion } from "framer-motion";
 import { Calendar, Eye, EyeOff, Star, Trash } from "lucide-react";

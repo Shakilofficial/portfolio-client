@@ -15,7 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { blogCategoryOptions } from "@/constants/blogCategory";
-import { createBlog } from "@/services/BlogService";
+import { createBlog } from "@/services/blogService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FileText, Plus } from "lucide-react";
 import { useState } from "react";

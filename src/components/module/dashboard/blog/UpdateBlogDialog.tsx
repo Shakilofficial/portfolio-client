@@ -14,7 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { blogCategories, blogCategoryOptions } from "@/constants/blogCategory";
-import { updateBlog } from "@/services/BlogService";
+import { updateBlog } from "@/services/blogService";
 import type { IBlog } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Pencil } from "lucide-react";
