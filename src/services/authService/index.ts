@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 import { jwtDecode } from "jwt-decode";
@@ -20,7 +21,7 @@ export const loginUser = async (userData: FieldValues) => {
     }
     return result;
   } catch (error: any) {
-    return Error(error);
+    return Error(error.message);
   }
 };
 
@@ -55,6 +56,6 @@ export const getNewToken = async () => {
 
     return res.json();
   } catch (error: any) {
-    return Error(error);
+    return Error(error.message);
   }
 };

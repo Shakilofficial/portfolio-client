@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -13,9 +15,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { useFormContext } from "react-hook-form";
-import { DatePickerProps } from "./types";
+import type { DatePickerProps } from "./types";
 
 export function DatePicker({
   name,
@@ -32,7 +36,7 @@ export function DatePicker({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className={cn("flex flex-col")}>
           <FormLabel className="flex items-center gap-2">
             {Icon && <Icon className="h-4 w-4" />}
             {label}
@@ -42,24 +46,30 @@ export function DatePicker({
               <FormControl>
                 <Button
                   variant="outline"
-                  className="w-full justify-start text-left font-normal"
+                  className={cn(
+                    "w-full justify-start text-left font-normal",
+                    !field.value && "text-muted-foreground"
+                  )}
                   disabled={disabled}
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {field.value ? (
-                    field.value.toDateString()
+                    format(new Date(field.value), "PPP")
                   ) : (
                     <span>{placeholder}</span>
                   )}
                 </Button>
               </FormControl>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
+            <PopoverContent className="w-auto p-0" align="start">
               <Calendar
                 mode="single"
-                selected={field.value}
-                onSelect={field.onChange}
+                selected={field.value ? new Date(field.value) : undefined}
+                onSelect={(date) => {
+                  field.onChange(date ? date.toISOString() : null);
+                }}
                 disabled={disabled}
+                initialFocus
               />
             </PopoverContent>
           </Popover>

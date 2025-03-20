@@ -82,9 +82,9 @@ const DTable = <TData, TValue>({
                 colSpan={columns.length}
                 className="h-32 text-center text-muted-foreground"
               >
-                <div className="flex flex-col items-center justify-center space-y-2">
+                <div className="flex flex-col items-center justify-center space-y-2 text-destructive">
                   <div className="rounded-full bg-muted/30 p-3">
-                    <FileWarning />
+                    <FileWarning className="h-6 w-6" />
                   </div>
                   <p>No data found !!!</p>
                 </div>
