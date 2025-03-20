@@ -7,3 +7,9 @@ export interface IUser {
   iat?: number;
   exp?: number;
 }
+
+export interface PUser {
+  _id: string;
+  email: string;
+  name: string;
+}

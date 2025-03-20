@@ -1,8 +1,4 @@
-export interface ICreatedBy {
-  _id: string;
-  name: string;
-  profileImage: string;
-}
+import { PUser } from "./user";
 
 export interface IBlog {
   _id: string;
@@ -13,7 +9,7 @@ export interface IBlog {
   thumbnail: string;
   isPublished: boolean;
   isFeatured: boolean;
-  createdBy: ICreatedBy;
+  createdBy: PUser;
   slug: string;
   createdAt: Date;
   updatedAt: Date;

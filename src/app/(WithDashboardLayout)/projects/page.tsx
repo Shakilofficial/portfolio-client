@@ -1,12 +1,17 @@
-const ProjectsPage = () => {
+import ManageProjects from "@/components/module/dashboard/projects/ManageProjects";
+import { getAllProjects } from "@/services/projectService";
+
+const ProjectsPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ page: string }>;
+}) => {
+  const { page } = await searchParams;
+  const { data, meta } = await getAllProjects(page);
+
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-3xl font-bold tracking-tight text-purple-700 dark:text-purple-400">
-          Manage Projects
-        </h2>
-        {/*  <AddProjectDialog /> */}
-      </div>
+    <div>
+      <ManageProjects projects={data} meta={meta} />
     </div>
   );
 };
