@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import {
@@ -40,7 +41,7 @@ export function ImageUploader({
         reader.readAsDataURL(file);
       });
     }
-    event.target.value = ""; // Clear the input
+    event.target.value = ""; 
   };
 
   return (
@@ -52,8 +53,8 @@ export function ImageUploader({
           <FormLabel>{label}</FormLabel>
           <FormControl>
             <div>
-              {" "}
-              {/* Added wrapper div */}
+       
+          
               <Input
                 id={`${name}-upload`}
                 type="file"
