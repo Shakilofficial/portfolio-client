@@ -30,7 +30,7 @@ export const createExperienceValidationSchema = z.object({
   description: z
     .string()
     .min(3, "Description must be at least 3 characters")
-    .max(500, "Description must be less than 500 characters")
+    .max(1000, "Description must be less than 500 characters")
     .optional(),
 });
 
@@ -70,6 +70,6 @@ export const updateExperienceValidationSchema = z.object({
   description: z
     .string()
     .min(3, "Description must be at least 3 characters")
-    .max(500, "Description must be less than 500 characters")
+    .max(1000, "Description must be less than 500 characters")
     .optional(),
 });

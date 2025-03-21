@@ -28,10 +28,12 @@ const DTable = <TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) => {
   const table = useReactTable({
-    data,
+    data: data || [],
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
+
+  const rows = table.getRowModel()?.rows || [];
 
   return (
     <div className="rounded-lg border border-border/40 overflow-hidden bg-card/60 backdrop-blur-sm shadow-md">
@@ -59,8 +61,8 @@ const DTable = <TData, TValue>({
           ))}
         </TableHeader>
         <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row, index) => (
+          {rows.length > 0 ? (
+            rows.map((row, index) => (
               <motion.tr
                 key={row.id}
                 initial={{ opacity: 0, y: 10 }}

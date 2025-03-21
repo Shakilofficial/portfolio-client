@@ -1,9 +1,9 @@
 import Providers from "@/providers";
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Sofia_Sans } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const spaceMono = Sofia_Sans({
   weight: "400",
   subsets: ["latin"],
 });
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={spaceGrotesk.className}>
+      <body className={spaceMono.className}>
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -124,7 +124,7 @@ const DashboardOverview = ({ data }: { data: any }) => {
     >
       <motion.div className="flex items-center justify-between" variants={item}>
         <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
-          Portfolio Dashboard
+          Overview Dashboard
         </h1>
       </motion.div>
 

@@ -4,6 +4,20 @@
 import { getValidToken } from "@/utils/verifyToken";
 import { revalidateTag } from "next/cache";
 
+export const getAllProjects = async (page?: string, limit?: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_API}/projects?limit=${limit}&page=${page}`,
+      {
+        next: { tags: ["PROJECTS"] },
+      }
+    );
+    return res.json();
+  } catch (error: any) {
+    return Error(error.message);
+  }
+};
+
 export const createProject = async (data: FormData) => {
   const token = await getValidToken();
   try {
@@ -60,29 +74,6 @@ export const toggledProjectFeatured = async (id: string) => {
     const result = await res.json();
     revalidateTag("PROJECTS");
     return result;
-  } catch (error: any) {
-    return Error(error.message);
-  }
-};
-
-export const getAllProjects = async (
-  page?: string,
-  limit?: string,
-  query?: { [key: string]: string | string[] | undefined }
-) => {
-  const params = new URLSearchParams();
-
-  if (query?.searchTerm)
-    params.append("searchTerm", query.searchTerm.toString());
-
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/projects?limit=${limit}&page=${page}&${params}`,
-      {
-        next: { tags: ["PROJECTS"] },
-      }
-    );
-    return res.json();
   } catch (error: any) {
     return Error(error.message);
   }

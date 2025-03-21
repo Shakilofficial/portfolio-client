@@ -66,7 +66,7 @@ export function DatePicker({
                 mode="single"
                 selected={field.value ? new Date(field.value) : undefined}
                 onSelect={(date) => {
-                  field.onChange(date ? date.toISOString() : null);
+                  field.onChange(date);
                 }}
                 disabled={disabled}
                 initialFocus

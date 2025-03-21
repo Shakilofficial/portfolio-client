@@ -3,7 +3,6 @@ import { getMetaData } from "@/services/metaService.ts";
 
 const DashboardHomePage = async () => {
   const { data } = await getMetaData();
-  console.log(data);
 
   return (
     <div>
