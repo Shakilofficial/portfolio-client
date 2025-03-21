@@ -58,10 +58,20 @@ const DashboardOverview = ({ data }: { data: any }) => {
       link: "/blogs",
     },
     {
+      title: "Experiences",
+      value: data.counts.experiences,
+      icon: Briefcase,
+      description: "All experiences",
+      color: "from-rose-500 to-rose-600",
+      textColor: "text-rose-500",
+      bgColor: "bg-rose-500/10",
+      link: "/experiences",
+    },
+    {
       title: "Messages",
       value: data.counts.messages,
       icon: MessageSquare,
-      description: "Unread messages",
+      description: "All messages",
       color: "from-orange-500 to-orange-600",
       textColor: "text-orange-500",
       bgColor: "bg-orange-500/10",
@@ -129,7 +139,7 @@ const DashboardOverview = ({ data }: { data: any }) => {
       </motion.div>
 
       <motion.div
-        className="grid gap-4 md:grid-cols-2 lg:grid-cols-4"
+        className="grid gap-4 md:grid-cols-2 lg:grid-cols-5"
         variants={container}
       >
         {stats.map((stat, index) => (

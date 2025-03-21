@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -44,11 +42,11 @@ export const MultiSelect = ({ name, label, options }: MultiSelectProps) => {
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-full p-2">
-                <ScrollArea className="max-h-40">
+                <ScrollArea className="max-h-64 overflow-y-auto">
                   {options.map((option) => (
                     <div
                       key={option.value}
-                      className="flex items-center space-x-2 p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                      className="flex items-center space-x-2 p-2 rounded-md cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 text-xs"
                       onClick={() => {
                         const newValue = selectedValues.includes(option.value)
                           ? selectedValues.filter(
