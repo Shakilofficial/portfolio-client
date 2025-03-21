@@ -4,7 +4,7 @@ import { useUser } from "@/context/UserContext";
 import { logoutUser } from "@/services/authService";
 import { LogOut, User } from "lucide-react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
@@ -20,7 +20,6 @@ import {
 const UserProfile = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { setIsLoading, user } = useUser();
-  const pathname = usePathname();
   const router = useRouter();
 
   const handleLogOut = async () => {
