@@ -115,3 +115,69 @@ body {
   initial-value: 0deg;
   syntax: "<angle>";
 }
+
+/* Rich text content styling */
+.prose {
+  @apply text-gray-800 dark:text-gray-200;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  @apply text-gray-900 dark:text-white font-bold my-4;
+}
+
+.prose h1 {
+  @apply text-3xl;
+}
+
+.prose h2 {
+  @apply text-2xl;
+}
+
+.prose h3 {
+  @apply text-xl;
+}
+
+.prose p {
+  @apply my-4 leading-relaxed;
+}
+
+.prose ul {
+  @apply list-disc pl-6 my-4;
+}
+
+.prose ol {
+  @apply list-decimal pl-6 my-4;
+}
+
+.prose li {
+  @apply my-1;
+}
+
+.prose a {
+  @apply text-purple-600 dark:text-purple-400 hover:underline;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-purple-300 dark:border-purple-700 pl-4 italic my-4 text-gray-600 dark:text-gray-400;
+}
+
+.prose code {
+  @apply bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded text-sm;
+}
+
+.prose pre {
+  @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-md overflow-x-auto my-4;
+}
+
+.prose img {
+  @apply rounded-md my-6 mx-auto;
+}
+
+.prose strong {
+  @apply font-bold text-gray-900 dark:text-white;
+}

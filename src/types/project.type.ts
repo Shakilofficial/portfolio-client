@@ -1,18 +1,26 @@
-export type TProject = {
+export interface TProject {
   _id: string;
   title: string;
   subtitle: string;
   description: string;
-  coverImage: string;
   category: string;
-  githubUrl: string;
-  liveUrl: string;
-  technologies: string[];
+  coverImage: string;
+  githubUrl?: string;
+  liveUrl?: string;
   isFeatured: boolean;
-  isDeleted: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-};
+  technologies: {
+    _id: string;
+    name: string;
+    icon?: string;
+  }[];
+  createdAt: string;
+  updatedAt: string;
+  createdBy: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+}
 
 export const CATEGORY_OPTIONS = ["frontend", "backend", "fullstack"] as const;
 

@@ -18,8 +18,7 @@ const socials = [
 ];
 
 const importantLinks = [
-  { href: "/login", label: "Login" },
-  { href: "/dashboard", label: "Dashboard" },
+  { href: "https://shakil-portfolio-dashboard.vercel.app", label: "Dashboard" },
 ];
 
 const Footer = () => {

@@ -6,7 +6,6 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 import { toast } from "sonner";
-import { RootState } from "../store";
 
 interface ErrorData {
   message: string;
@@ -24,13 +23,6 @@ const API_BASE_URL = "https://portfolio-server-livid-alpha.vercel.app/api/v1";
 const baseQuery = fetchBaseQuery({
   baseUrl: API_BASE_URL,
   credentials: "include",
-  prepareHeaders: (headers, { getState }) => {
-    const token = (getState() as RootState).auth.token;
-    if (token) {
-      headers.set("Authorization", `Bearer ${token}`);
-    }
-    return headers;
-  },
 });
 
 const baseQueryWithInterceptor: BaseQueryFn<
@@ -53,7 +45,7 @@ const baseQueryWithInterceptor: BaseQueryFn<
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
-  tagTypes: ["Project", "Blog", "Message"],
+  tagTypes: ["Project", "Blog", "Message", "Skills", "Experience"],
   baseQuery: baseQueryWithInterceptor,
   endpoints: () => ({}),
 });

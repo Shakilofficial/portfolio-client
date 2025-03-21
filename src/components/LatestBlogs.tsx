@@ -1,9 +1,10 @@
 "use client";
 import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
-import { TQueryParam } from "@/types/global";
+import type { TQueryParam } from "@/types/global";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+
 import BlogCard from "./blog/BlogCard";
 import Error from "./feedback/Error";
 import GridSkeleton from "./feedback/GridSkeleton";

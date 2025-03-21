@@ -4,7 +4,6 @@ import { TProject } from "@/types/project.type";
 
 const projectApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // Get all projects with optional query parameters
     getAllProjects: builder.query({
       query: (args?: TQueryParam[]) => {
         const params = new URLSearchParams();
@@ -31,53 +30,7 @@ const projectApi = baseApi.injectEndpoints({
       transformResponse: (response: TResponseRedux<TProject>) => response.data,
       providesTags: ["Project"],
     }),
-
-    //create a new project
-    createProject: builder.mutation({
-      query: (project) => ({
-        url: "/projects",
-        method: "POST",
-        body: project,
-      }),
-      invalidatesTags: ["Project"],
-    }),
-
-    //update a project
-
-    updateProject: builder.mutation({
-      query: (project) => ({
-        url: `/projects/${project._id}`,
-        method: "PATCH",
-        body: project,
-      }),
-      invalidatesTags: ["Project"],
-    }),
-
-    //delete a project
-    deleteProject: builder.mutation({
-      query: (id: string) => ({
-        url: `/projects/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["Project"],
-    }),
-
-    // Toggle project featured status
-    toggleProjectFeatured: builder.mutation({
-      query: (id: string) => ({
-        url: `/projects/${id}/featured`,
-        method: "PATCH",
-      }),
-      invalidatesTags: ["Project"],
-    }),
   }),
 });
 
-export const {
-  useGetAllProjectsQuery,
-  useGetSingleProjectQuery,
-  useCreateProjectMutation,
-  useUpdateProjectMutation,
-  useDeleteProjectMutation,
-  useToggleProjectFeaturedMutation,
-} = projectApi;
+export const { useGetAllProjectsQuery, useGetSingleProjectQuery } = projectApi;
