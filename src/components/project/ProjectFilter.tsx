@@ -26,7 +26,7 @@ const ProjectFilter = ({
       <Tabs
         value={category}
         onValueChange={onCategoryChange}
-        className="w-full sm:w-auto"
+        className="w-full sm:w-auto text-sm md:text-base"
       >
         <TabsList className="bg-purple-100 dark:bg-purple-900/50 border border-purple-300 dark:border-purple-700">
           <TabsTrigger

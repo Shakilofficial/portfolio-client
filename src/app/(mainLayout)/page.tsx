@@ -2,7 +2,6 @@ import Certifications from "@/components/Certifications";
 import Experience from "@/components/Experience";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import Hero from "@/components/HeroSection";
-
 import LatestBlogs from "@/components/LatestBlogs";
 import MyService from "@/components/MyService";
 import TechSkills from "@/components/TechSkills";

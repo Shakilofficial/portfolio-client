@@ -11,7 +11,8 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "Shakil's Portfolio",
-  description: "A portfolio website of Shakil",
+  description:
+    "Md Shakil Hossain is a software engineer and a full stack developer. He is passionate about building scalable and high-performance web applications. He has a strong background  development and has experience in building full-stack applications using various technologies.",
 };
 
 export default function RootLayout({
