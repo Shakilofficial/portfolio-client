@@ -1,66 +1,229 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
-import { Menu, X } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
-import { Button } from "../ui/button";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import ModeToggle from "./ModeToggle";
-import NavItems from "./NavItems";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blogs", label: "Blogs" },
+  { href: "/contact", label: "Contact" },
+];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setScrolled(offset > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Set active item based on pathname
+  useEffect(() => {
+    const active =
+      navItems.find((item) => item.href === pathname)?.href || null;
+    setActiveItem(active);
+  }, [pathname]);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Logo />
-          <div className="hidden md:flex items-center space-x-4">
-            <NavItems />
-          </div>
-          <div className="flex items-center space-x-4">
-            <ModeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsOpen(true)}
-            >
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Open menu</span>
-            </Button>
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, x: "100%" }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: "100%" }}
-                  transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                  className="fixed inset-y-0 right-0 w-full bg-background p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-                >
-                  <div className="flex items-center justify-between">
-                    <Logo />
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <X className="h-6 w-6" />
-                      <span className="sr-only">Close menu</span>
-                    </Button>
-                  </div>
-                  <div className="mt-6 flow-root bg-background">
-                    <div className="space-y-2 py-6">
-                      <NavItems />
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+    <>
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "py-3 backdrop-blur-xl bg-white/70 dark:bg-slate-950/70"
+            : "py-5 bg-transparent"
+        }`}
+      >
+        {/* Progress bar that appears when scrolled */}
+        <motion.div
+          className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: scrolled ? 1 : 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          style={{ transformOrigin: "left" }}
+        />
+
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between">
+            <Logo />
+            <div className="hidden md:flex items-center space-x-1">
+              <ul className="flex items-center space-x-1">
+                {navItems.map((item) => {
+                  const isActive = activeItem === item.href;
+
+                  return (
+                    <motion.li key={item.href} className="relative">
+                      <Link
+                        href={item.href}
+                        className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors flex items-center ${
+                          isActive
+                            ? "text-white"
+                            : "text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400"
+                        }`}
+                        onMouseEnter={() =>
+                          !isActive && setActiveItem(item.href)
+                        }
+                        onMouseLeave={() =>
+                          !isActive && setActiveItem(pathname)
+                        }
+                      >
+                        {isActive && (
+                          <motion.span
+                            layoutId="navBackground"
+                            className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full -z-10"
+                            initial={false}
+                            transition={{
+                              type: "spring",
+                              bounce: 0.2,
+                              duration: 0.6,
+                            }}
+                          />
+                        )}
+                        {item.label}
+                      </Link>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+
+              <ModeToggle />
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="flex items-center md:hidden">
+              <ModeToggle />
+              <motion.button
+                className="ml-2 p-2 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsOpen(true)}
+              >
+                <Menu className="w-5 h-5" />
+              </motion.button>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile Navigation Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 md:hidden"
+          >
+            {/* Backdrop with glassmorphism */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl"
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Content container */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+              className="relative h-full flex flex-col p-6 overflow-hidden"
+            >
+              {/* Header with close button */}
+              <div className="flex items-center justify-between mb-8">
+                <Logo />
+                <motion.button
+                  whileHover={{ rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+                >
+                  <X className="w-5 h-5" />
+                </motion.button>
+              </div>
+
+              {/* Navigation items */}
+              <div className="flex-1 flex flex-col justify-center">
+                <motion.ul
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.1,
+                        delayChildren: 0.1,
+                      },
+                    },
+                  }}
+                  className="space-y-6"
+                >
+                  {navItems.map((item, index) => {
+                    const isActive = pathname === item.href;
+
+                    return (
+                      <motion.li
+                        key={item.href}
+                        variants={{
+                          hidden: { opacity: 0, x: -20 },
+                          visible: { opacity: 1, x: 0 },
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className={`group flex items-center text-4xl font-bold transition-colors ${
+                            isActive
+                              ? "text-purple-600 dark:text-purple-400"
+                              : "text-slate-800 dark:text-slate-200"
+                          }`}
+                        >
+                          <span className="inline-block relative">
+                            {item.label}
+                          </span>
+                          <motion.span
+                            initial={{ opacity: 0, x: -10 }}
+                            whileHover={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="ml-2 text-purple-500"
+                          >
+                            <ArrowUpRight className="w-6 h-6" />
+                          </motion.span>
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
+                </motion.ul>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-purple-500/10 to-pink-500/10 blur-3xl" />
+              <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 blur-3xl" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

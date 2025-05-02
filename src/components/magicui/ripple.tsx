@@ -1,58 +1,34 @@
-import React, { ComponentPropsWithoutRef, CSSProperties } from "react";
+"use client";
 
-import { cn } from "@/lib/utils";
-
-interface RippleProps extends ComponentPropsWithoutRef<"div"> {
-  mainCircleSize?: number;
-  mainCircleOpacity?: number;
-  numCircles?: number;
+interface RippleProps {
+  className?: string;
+  color?: string;
+  duration?: number;
+  count?: number;
 }
 
-export const Ripple = React.memo(function Ripple({
-  mainCircleSize = 210,
-  mainCircleOpacity = 0.24,
-  numCircles = 8,
-  className,
-  ...props
-}: RippleProps) {
+export const Ripple = ({
+  className = "",
+  color = "rgba(147, 51, 234, 0.3)", // Purple-500 with opacity
+  duration = 2,
+  count = 4,
+}: RippleProps) => {
   return (
-    <div
-      className={cn(
-        "pointer-events-none absolute inset-0 select-none [mask-image:linear-gradient(to_bottom,white,transparent)]",
-        className
-      )}
-      {...props}
-    >
-      {Array.from({ length: numCircles }, (_, i) => {
-        const size = mainCircleSize + i * 70;
-        const opacity = mainCircleOpacity - i * 0.03;
-        const animationDelay = `${i * 0.06}s`;
-        const borderStyle = i === numCircles - 1 ? "dashed" : "solid";
-        const borderOpacity = 5 + i * 5;
-
-        return (
-          <div
-            key={i}
-            className={`[--i: absolute animate-ripple rounded-full border bg-purple-500/50 shadow-xl${i}]`}
-            style={
-              {
-                width: `${size}px`,
-                height: `${size}px`,
-                opacity,
-                animationDelay,
-                borderStyle,
-                borderWidth: "1px",
-                borderColor: `hsl(var(--foreground), ${borderOpacity / 100})`,
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%) scale(1)",
-              } as CSSProperties
-            }
-          />
-        );
-      })}
+    <div className={`relative ${className}`}>
+      {Array.from({ length: count }).map((_, i) => (
+        <div
+          key={i}
+          className="absolute left-1/2 top-1/2 rounded-full"
+          style={{
+            border: `2px solid ${color}`,
+            height: "100%",
+            width: "100%",
+            transform: "translate(-50%, -50%) scale(1)",
+            opacity: 1,
+            animation: `ripple ${duration}s ease ${i * 0.5}s infinite`,
+          }}
+        />
+      ))}
     </div>
   );
-});
-
-Ripple.displayName = "Ripple";
+};

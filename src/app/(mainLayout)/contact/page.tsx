@@ -50,7 +50,7 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-background py-20 px-6 md:px-12">
+    <div className="relative w-full min-h-screen bg-background py-20 px-6 md:px-12 ">
       <motion.div
         className="text-center mb-8"
         initial={{ opacity: 0, y: 20 }}

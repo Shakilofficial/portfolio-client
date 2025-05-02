@@ -32,13 +32,18 @@ const FeaturedProjects = () => {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-background/80">
-      <div className="max-w-6xl mx-auto">
+    <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20">
+            <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
+              My Projects
+            </span>
+          </div>
           <h2 className="text-3xl font-bold mb-3">
             <AuroraText>Featured Projects</AuroraText>
           </h2>

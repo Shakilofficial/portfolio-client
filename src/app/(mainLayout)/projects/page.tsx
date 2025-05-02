@@ -25,7 +25,7 @@ const ProjectsPage = () => {
     useGetAllProjectsQuery(getQueryParams());
 
   const ProjectsSkeleton = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
       {[...Array(limit)].map((_, index) => (
         <Skeleton key={index} className="h-[400px] w-full" />
       ))}
@@ -33,7 +33,7 @@ const ProjectsPage = () => {
   );
 
   return (
-    <div className="w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12 my-16">
+    <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12">
       <div className="text-center mb-8">
         <h2 className="text-2xl lg:text-4xl font-bold mb-4">
           <AuroraText>All Projects</AuroraText>
@@ -55,7 +55,7 @@ const ProjectsPage = () => {
         <Error message="Error fetching projects" />
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {data?.data?.map((project) => (
               <ProjectCard key={project?._id} project={project} />
             ))}

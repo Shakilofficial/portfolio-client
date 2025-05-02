@@ -1,7 +1,7 @@
 import { Skeleton } from "../ui/skeleton";
 
 const DetailsSkeleton = () => (
-  <div className="max-w-4xl mx-auto px-4 py-12 lg:py-20">
+  <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12">
     <Skeleton className="h-12 w-3/4 mb-4" />
     <Skeleton className="h-6 w-1/2 mb-6" />
     <div className="flex flex-wrap gap-4 mb-6">

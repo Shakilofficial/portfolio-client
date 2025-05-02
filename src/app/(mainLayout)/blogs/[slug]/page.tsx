@@ -34,7 +34,7 @@ const BlogDetailsPage = () => {
   console.log(blog);
   return (
     <div className="min-h-screen">
-      <div className="max-w-5xl mx-auto px-4 py-12 md:py-20">
+      <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

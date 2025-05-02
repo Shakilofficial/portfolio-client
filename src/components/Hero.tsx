@@ -16,7 +16,6 @@ const Hero = () => {
   };
 
   const handleDownloadCV = () => {
-    // Create an anchor element to trigger the download
     const link = document.createElement("a");
     link.href = cvPath;
     link.download =
@@ -57,7 +56,7 @@ const Hero = () => {
             </ShinyButton>
             <ShinyButton
               onClick={handleDownloadCV}
-              className="flex items-center gap-2 bg-slate-400/50 hover:text-rose-600 dark:text-purple-400 dark:hover:text-rose-400 dark:hover:bg-purple-900/50 transition-all duration-300 px-4 py-2 rounded-lg"
+              className="flex items-center gap-2 bg-slate-400/50 hover:text-rose-600 dark:text-purple-400 dark:hover:text-rose-400 dark:hover:bg-purple-900/50 transition-all duration-300 px-4 py-2 rounded-lg" 
             >
               <div className="flex items-center gap-2">
                 <span>Download CV</span>

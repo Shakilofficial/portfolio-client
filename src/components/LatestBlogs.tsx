@@ -16,7 +16,7 @@ const LatestBlogs = () => {
     { name: "isPublished", value: true },
     { name: "sortBy", value: "createdAt" },
     { name: "sortOrder", value: "desc" },
-    { name: "limit", value: 3 },
+    { name: "limit", value: 4 },
   ];
 
   const { isFetching, isLoading, isError, data, error } =
@@ -32,13 +32,18 @@ const LatestBlogs = () => {
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-background/80">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20">
+            <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
+              My Blogs
+            </span>
+          </div>
           <h2 className="text-3xl font-bold mb-3">
             <AuroraText>Latest Blog Posts</AuroraText>
           </h2>
@@ -47,7 +52,7 @@ const LatestBlogs = () => {
             projects.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {data?.data?.length > 0 ? (
             data?.data?.map((blog) => <BlogCard key={blog?._id} blog={blog} />)
           ) : (
