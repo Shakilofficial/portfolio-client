@@ -316,7 +316,7 @@ const Hero = () => {
 
           <motion.div
             variants={itemVariants}
-            className="flex-shrink-0 w-full max-w-sm lg:max-w-md xl:max-w-lg"
+            className="flex-shrink-0 w-full max-w-sm lg:max-w-md xl:max-w-lg px-4"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
