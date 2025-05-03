@@ -35,7 +35,7 @@ const ProjectsPage = () => {
   return (
     <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 mt-12 flex flex-col gap-12">
       <div className="text-center mb-8">
-        <h2 className="text-2xl lg:text-4xl font-bold mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
           <AuroraText>All Projects</AuroraText>
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">

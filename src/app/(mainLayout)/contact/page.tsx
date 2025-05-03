@@ -50,14 +50,14 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="relative w-full min-h-screen bg-background py-20 pt-12 px-6 md:px-12 ">
+    <div className="relative w-full min-h-screen bg-background py-20 pt-24 px-6 md:px-12 ">
       <motion.div
-        className="text-center mb-8"
+        className="text-center my-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-2xl lg:text-4xl font-bold mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
           <AuroraText>Contact</AuroraText>
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">

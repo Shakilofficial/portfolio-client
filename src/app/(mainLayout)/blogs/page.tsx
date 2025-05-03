@@ -39,8 +39,8 @@ const BlogsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-2xl lg:text-4xl font-bold mb-4">
-          <AuroraText>Blog Posts</AuroraText>
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+          <AuroraText>All Blogs</AuroraText>
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Explore my thoughts, tutorials, and insights on various topics.

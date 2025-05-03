@@ -12,6 +12,7 @@ import ModeToggle from "./ModeToggle";
 
 const navItems = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { href: "/blogs", label: "Blogs" },
   { href: "/contact", label: "Contact" },
@@ -98,7 +99,7 @@ const Navbar = () => {
 
               <ShinyButton
                 onClick={() => window.open(driveLink, "_blank")}
-             className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
+                className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
               >
                 <span>Resume</span>
                 <ExternalLink className="ml-1 h-4 w-4" />
@@ -106,9 +107,9 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center md:hidden gap-2">
-            <ShinyButton
+              <ShinyButton
                 onClick={() => window.open(driveLink, "_blank")}
-             className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
+                className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
               >
                 <span>Resume</span>
                 <ExternalLink className="ml-1 h-4 w-4" />
