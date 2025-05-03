@@ -8,8 +8,7 @@ import TechSkills from "@/components/TechSkills";
 
 const HomePage = () => {
   return (
-    <div className="py-12 lg:py-20 flex flex-col gap-12">
-      {/*  <Hero /> */}
+    <div className="flex flex-col">
       <Hero />
       <TechSkills />
       <Experience />

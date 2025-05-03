@@ -143,11 +143,11 @@ const Footer = () => {
 
       {/* Page scroll progress indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 z-[100]"
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600/70 via-pink-500/70 to-indigo-600/70 z-[100]"
         style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
       />
 
-      <footer className="w-full relative overflow-hidden mt-20 backdrop-blur-3xl bg-white/30 dark:bg-slate-950/10 border-t border-white/10 dark:border-slate-900 shadow-inner shadow-white/10 dark:shadow-black/10">
+      <footer className="w-full relative overflow-hidden backdrop-blur-3xl bg-white/30 dark:bg-slate-950/10 border-t border-white/10 dark:border-slate-900 shadow-inner shadow-white/10 dark:shadow-black/10">
         {/* Wave decoration */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-none transform -translate-y-full">
           <svg

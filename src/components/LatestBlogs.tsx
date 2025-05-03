@@ -70,7 +70,7 @@ const LatestBlogs = () => {
   ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
+    <section className="py-16 px-4 md:px-6 lg:px-8 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
       {/* Text pattern background */}
       <div className="absolute inset-0 opacity-[0.03] overflow-hidden">
         {textSnippets.map((snippet, index) => (

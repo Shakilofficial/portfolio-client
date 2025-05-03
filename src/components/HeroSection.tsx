@@ -127,12 +127,12 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative overflow-hidden py-12 sm:py-16 lg:py-24">
+    <section className="relative overflow-hidden py-12 md:py-16 lg:py-40">
       <Head>
         <link
           rel="preload"
           as="image"
-          href="https://res.cloudinary.com/dcyupktj6/image/upload/v1739116773/lx1aeznvlqo7htectued.png"
+          href="https://res.cloudinary.com/dcyupktj6/image/upload/v1746154677/my-avtar-profile_ezyfub.png"
         />
       </Head>
 
@@ -394,7 +394,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.02 }}
               >
                 <Image
-                  src="https://res.cloudinary.com/dcyupktj6/image/upload/v1739116773/lx1aeznvlqo7htectued.png"
+                  src="https://res.cloudinary.com/dcyupktj6/image/upload/v1746154677/my-avtar-profile_ezyfub.png"
                   alt="Profile"
                   fill
                   priority
