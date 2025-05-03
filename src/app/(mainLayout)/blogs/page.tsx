@@ -32,7 +32,7 @@ const BlogsPage = () => {
   );
 
   return (
-    <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 mt-12 flex flex-col gap-12">
+    <div className="max-w-[1400px] w-full mx-auto py-12 lg:py-20 mt-12 flex flex-col gap-12">
       <motion.div
         className="text-center mb-8"
         initial={{ opacity: 0, y: 20 }}

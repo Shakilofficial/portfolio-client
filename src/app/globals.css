@@ -47,17 +47,21 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
+/* =====================
+   Custom Animations
+======================*/
+
+/* Ripple */
 @keyframes ripple {
   0% {
     transform: translate(-50%, -50%) scale(1);
@@ -69,6 +73,7 @@
   }
 }
 
+/* Shimmer */
 @keyframes shimmer {
   0% {
     background-position: 0% 50%;
@@ -81,18 +86,23 @@
   }
 }
 
+/* Floating */
 @keyframes float {
   0% {
-    transform: translateY(0px) translateX(0px);
+    transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-20px) translateX(10px);
+    transform: translateY(-10px) rotate(2deg);
   }
   100% {
-    transform: translateY(0px) translateX(0px);
+    transform: translateY(0) rotate(0deg);
   }
 }
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
 
+/* Orbit */
 @keyframes orbit {
   from {
     transform: rotate(0deg) translateX(var(--radius)) rotate(0deg);
@@ -101,12 +111,12 @@
     transform: rotate(360deg) translateX(var(--radius)) rotate(-360deg);
   }
 }
-
 .animate-orbit {
   animation: orbit var(--duration) linear infinite;
 }
 
-@keyframes pulse {
+/* Pulse (opacity based) */
+@keyframes pulse-opacity {
   0%,
   100% {
     opacity: 0.7;
@@ -114,4 +124,81 @@
   50% {
     opacity: 0.3;
   }
+}
+
+/* Pulse (shadow based) */
+@keyframes pulse-shadow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(139, 92, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+  }
+}
+.animate-pulse-purple {
+  animation: pulse-shadow 2s infinite;
+}
+
+/* =====================
+   Scroll Animations
+======================*/
+
+[data-scroll] {
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-scroll="fade-up"] {
+  transform: translateY(50px);
+}
+
+[data-scroll="fade-down"] {
+  transform: translateY(-50px);
+}
+
+[data-scroll="fade-left"] {
+  transform: translateX(50px);
+}
+
+[data-scroll="fade-right"] {
+  transform: translateX(-50px);
+}
+
+[data-scroll="zoom"] {
+  transform: scale(0.9);
+}
+
+[data-scroll].scroll-visible {
+  opacity: 1;
+  transform: translate(0) scale(1);
+}
+
+/* =====================
+   Underline Hover Effect
+======================*/
+
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(
+    to right,
+    theme("colors.purple.500"),
+    transparent
+  );
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
 }

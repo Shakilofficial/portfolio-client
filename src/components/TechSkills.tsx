@@ -134,8 +134,76 @@ const TechSkills = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-b from-background via-background/90 to-background/80">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gradient-to-b from-background via-background/90 to-background/80 relative overflow-hidden">
+      {/* Circular gradient patterns in background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Large gradient circles */}
+        <div
+          className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full opacity-10 dark:opacity-[0.07] blur-3xl"
+          style={{
+            background: `radial-gradient(circle at center, ${
+              getCurrentCategoryStyle().color
+            } 0%, transparent 70%)`,
+          }}
+        />
+        <div
+          className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full opacity-10 dark:opacity-[0.07] blur-3xl"
+          style={{
+            background: `radial-gradient(circle at center, ${
+              getCurrentCategoryStyle().color
+            } 0%, transparent 70%)`,
+          }}
+        />
+
+        {/* Medium gradient circles */}
+        <div
+          className="absolute top-1/3 right-10 w-[300px] h-[300px] rounded-full opacity-10 dark:opacity-[0.05] blur-2xl"
+          style={{
+            background: `radial-gradient(circle at center, ${
+              getCurrentCategoryStyle().color
+            } 0%, transparent 70%)`,
+          }}
+        />
+        <div
+          className="absolute bottom-1/4 left-20 w-[250px] h-[250px] rounded-full opacity-10 dark:opacity-[0.05] blur-2xl"
+          style={{
+            background: `radial-gradient(circle at center, ${
+              getCurrentCategoryStyle().color
+            } 0%, transparent 70%)`,
+          }}
+        />
+
+        {/* Small gradient circles */}
+        {categoryOrder.map((category, index) => {
+          const categoryStyle =
+            categoryColors[category as keyof typeof categoryColors] ||
+            defaultColor;
+          return (
+            <div
+              key={category}
+              className="absolute w-[150px] h-[150px] rounded-full opacity-10 dark:opacity-[0.05] blur-xl"
+              style={{
+                background: `radial-gradient(circle at center, ${categoryStyle.color} 0%, transparent 70%)`,
+                top: `${15 + index * 20}%`,
+                left: `${(index % 2 === 0 ? 80 : 10) + index * 5}%`,
+                transform: `translate(-50%, -50%) scale(${0.8 + index * 0.1})`,
+              }}
+            />
+          );
+        })}
+
+        {/* Subtle dot pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, currentColor 1px, transparent 1px)",
+            backgroundSize: "30px 30px",
+          }}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -165,7 +233,7 @@ const TechSkills = () => {
             <div className="mb-8">
               <Select value={activeTab} onValueChange={setActiveTab}>
                 <SelectTrigger
-                  className="w-full mb-4 border-2 transition-all duration-300 rounded-xl shadow-md"
+                  className="w-full mb-4 border-2 transition-all duration-300 rounded-xl shadow-md backdrop-blur-sm"
                   style={{
                     borderColor: getCurrentCategoryStyle().color,
                     backgroundColor: `${getCurrentCategoryStyle().color}15`,
@@ -278,9 +346,23 @@ const TechSkills = () => {
                   </div>
 
                   <div
-                    className={`p-6 sm:p-8 rounded-3xl bg-gradient-to-br ${categoryStyle.gradient} backdrop-blur-sm border border-border/30 ${categoryStyle.shadow} shadow-lg`}
+                    className={`p-6 sm:p-8 rounded-3xl bg-gradient-to-br ${categoryStyle.gradient} backdrop-blur-sm border border-border/30 ${categoryStyle.shadow} shadow-lg relative overflow-hidden`}
                   >
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+                    {/* Inner circular gradient for the card */}
+                    <div
+                      className="absolute inset-0 opacity-30"
+                      style={{
+                        background: `radial-gradient(circle at 30% 30%, ${categoryStyle.color}30 0%, transparent 60%)`,
+                      }}
+                    />
+                    <div
+                      className="absolute inset-0 opacity-20"
+                      style={{
+                        background: `radial-gradient(circle at 70% 70%, ${categoryStyle.color}20 0%, transparent 50%)`,
+                      }}
+                    />
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 relative z-10">
                       {category.skills.map((skill, index) => (
                         <motion.div
                           key={skill._id}
@@ -300,7 +382,6 @@ const TechSkills = () => {
                           className={`flex flex-col items-center justify-center bg-card/90 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-border/50 transition-all duration-300 hover:border-opacity-80 ${categoryStyle.shadowHover}`}
                           style={{
                             borderColor: categoryStyle.color,
-                            opacity: 0.3,
                           }}
                         >
                           <div className="relative w-12 h-12 sm:w-16 sm:h-16 mb-3 sm:mb-4 p-2 rounded-full bg-background/90 flex items-center justify-center shadow-md">

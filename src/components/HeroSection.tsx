@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Download, ExternalLink, Mail } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -69,15 +69,13 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
-    }, 2000);
+    }, 3500);
     return () => clearInterval(interval);
   }, [roles.length]);
 
-  // In a real implementation, store your CV in the public folder
   const cvFileName = "Md-Shakil-Hossain-Full-Stack-Developer-CV.pdf";
   const cvPath = `/cv/${cvFileName}`;
 
-  // For demo purposes, we'll use the Google Drive link as a fallback
   const driveLink =
     "https://drive.google.com/file/d/1VGMuYOQF5bgM7xshoMJ5Qnp3QnvmnydK/view?usp=sharing";
 
@@ -246,6 +244,13 @@ const Hero = () => {
                     }`}
                   />
                 </div>
+              </ShinyButton>
+              <ShinyButton
+                onClick={() => window.open(driveLink, "_blank")}
+                className="flex items-center gap-2 border border-purple-500/30 hover:border-purple-500/70 text-primary transition-all duration-300 px-6 py-2.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
+              >
+                <span>View CV</span>
+                <ExternalLink className="ml-2 h-4 w-4" />
               </ShinyButton>
             </motion.div>
 

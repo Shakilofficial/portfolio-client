@@ -18,7 +18,7 @@ const BlogCard = ({ blog }: BlogCardProps) => {
   };
 
   return (
-    <Card className="group overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-900 border border-purple-100 dark:border-purple-900/30 rounded-lg">
+    <Card className="w-full group overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-gray-900 border border-purple-100 dark:border-purple-900/30 rounded-lg">
       <div className="relative w-full h-52 overflow-hidden">
         <Image
           src={blog?.thumbnail || "/placeholder.svg"}

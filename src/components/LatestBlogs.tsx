@@ -2,7 +2,15 @@
 import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
 import type { TQueryParam } from "@/types/global";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  FileText,
+  Hash,
+  MessageCircle,
+  MessageSquare,
+  Quote,
+} from "lucide-react";
 import Link from "next/link";
 
 import BlogCard from "./blog/BlogCard";
@@ -30,9 +38,112 @@ const LatestBlogs = () => {
     return <Error message="No blogs found" />;
   }
 
+  // Generate random positions for speech bubbles and text elements
+  const generateRandomElements = (count: number) => {
+    return Array.from({ length: count }).map((_, index) => ({
+      id: index,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 20 + 15,
+      rotation: Math.random() * 30 - 15,
+      type: index % 6, // 0: message, 1: quote, 2: book, 3: file, 4: hash, 5: message-square
+      opacity: Math.random() * 0.15 + 0.05,
+    }));
+  };
+
+  const elements = generateRandomElements(12);
+
+  // Generate random text snippets for the background
+  const textSnippets = [
+    "const BlogPost = () => { ... }",
+    "function readTime(content) { ... }",
+    "export default Blog",
+    "<article>...</article>",
+    "# Markdown Heading",
+    "![Image Alt](url)",
+    "```jsx",
+    "npm install",
+    "git commit",
+    "yarn dev",
+    "// TODO: Add comments",
+    "/* CSS styles */",
+  ];
+
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-background/80">
-      <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
+      {/* Text pattern background */}
+      <div className="absolute inset-0 opacity-[0.03] overflow-hidden">
+        {textSnippets.map((snippet, index) => (
+          <div
+            key={index}
+            className="absolute font-mono text-xs text-indigo-800 dark:text-indigo-200 whitespace-nowrap"
+            style={{
+              left: `${(index * 17) % 100}%`,
+              top: `${(index * 23) % 100}%`,
+              transform: `rotate(${((index * 7) % 90) - 45}deg)`,
+              opacity: 0.3 + (index % 7) * 0.1,
+            }}
+          >
+            {snippet}
+          </div>
+        ))}
+      </div>
+
+      {/* Communication icons */}
+      <div className="absolute inset-0 overflow-hidden">
+        {elements.map((element) => (
+          <div
+            key={element.id}
+            className="absolute transform transition-transform duration-[15000ms] ease-in-out"
+            style={{
+              left: `${element.x}%`,
+              top: `${element.y}%`,
+              opacity: element.opacity,
+              transform: `rotate(${element.rotation}deg)`,
+              width: `${element.size}px`,
+              height: `${element.size}px`,
+              animation: `float-blog-${element.id % 3} ${
+                15 + (element.id % 10)
+              }s infinite ease-in-out`,
+            }}
+          >
+            {element.type === 0 && (
+              <MessageCircle className="w-full h-full text-blue-500" />
+            )}
+            {element.type === 1 && (
+              <Quote className="w-full h-full text-purple-500" />
+            )}
+            {element.type === 2 && (
+              <BookOpen className="w-full h-full text-indigo-500" />
+            )}
+            {element.type === 3 && (
+              <FileText className="w-full h-full text-violet-500" />
+            )}
+            {element.type === 4 && (
+              <Hash className="w-full h-full text-fuchsia-500" />
+            )}
+            {element.type === 5 && (
+              <MessageSquare className="w-full h-full text-pink-500" />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* Gradient overlays */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-10 dark:opacity-[0.07] blur-3xl bg-gradient-to-br from-blue-500 to-indigo-500" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-10 dark:opacity-[0.07] blur-3xl bg-gradient-to-br from-purple-500 to-pink-500" />
+
+      {/* Dotted pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, currentColor 1px, transparent 1px)",
+          backgroundSize: "20px 20px",
+        }}
+      />
+
+      <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12 relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -73,6 +184,37 @@ const LatestBlogs = () => {
           </Link>
         </div>
       </div>
+
+      {/* CSS for floating animations */}
+      <style jsx global>{`
+        @keyframes float-blog-0 {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-15px) rotate(3deg);
+          }
+        }
+        @keyframes float-blog-1 {
+          0%,
+          100% {
+            transform: translateY(0) rotate(0deg);
+          }
+          50% {
+            transform: translateY(15px) rotate(-3deg);
+          }
+        }
+        @keyframes float-blog-2 {
+          0%,
+          100% {
+            transform: translateX(0) rotate(0deg);
+          }
+          50% {
+            transform: translateX(15px) rotate(3deg);
+          }
+        }
+      `}</style>
     </section>
   );
 };

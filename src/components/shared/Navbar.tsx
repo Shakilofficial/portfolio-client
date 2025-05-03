@@ -2,10 +2,11 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ShinyButton } from "../magicui/shiny-button";
 import Logo from "./Logo";
 import ModeToggle from "./ModeToggle";
 
@@ -22,7 +23,9 @@ const Navbar = () => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const pathname = usePathname();
 
-  // Handle scroll effect
+  const driveLink =
+    "https://drive.google.com/file/d/1HYhZ7ApwPkrFpDJM1TvigWJarxeqsRdn/view?usp=sharing";
+
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -33,7 +36,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Set active item based on pathname
   useEffect(() => {
     const active =
       navItems.find((item) => item.href === pathname)?.href || null;
@@ -49,19 +51,10 @@ const Navbar = () => {
             : "py-5 bg-transparent"
         }`}
       >
-        {/* Progress bar that appears when scrolled */}
-        <motion.div
-          className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: scrolled ? 1 : 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          style={{ transformOrigin: "left" }}
-        />
-
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
             <Logo />
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden md:flex items-center space-x-3">
               <ul className="flex items-center space-x-1">
                 {navItems.map((item) => {
                   const isActive = activeItem === item.href;
@@ -70,7 +63,7 @@ const Navbar = () => {
                     <motion.li key={item.href} className="relative">
                       <Link
                         href={item.href}
-                        className={`relative px-4 py-2 text-sm font-medium rounded-full transition-colors flex items-center ${
+                        className={`relative px-3 py-1.5 text-sm font-medium rounded-full transition-colors flex items-center ${
                           isActive
                             ? "text-white"
                             : "text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400"
@@ -85,7 +78,7 @@ const Navbar = () => {
                         {isActive && (
                           <motion.span
                             layoutId="navBackground"
-                            className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full -z-10"
+                            className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl -z-10"
                             initial={false}
                             transition={{
                               type: "spring",
@@ -102,10 +95,24 @@ const Navbar = () => {
               </ul>
 
               <ModeToggle />
+
+              <ShinyButton
+                onClick={() => window.open(driveLink, "_blank")}
+             className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
+              >
+                <span>Resume</span>
+                <ExternalLink className="ml-1 h-4 w-4" />
+              </ShinyButton>
             </div>
 
-            {/* Mobile menu button */}
-            <div className="flex items-center md:hidden">
+            <div className="flex items-center md:hidden gap-2">
+            <ShinyButton
+                onClick={() => window.open(driveLink, "_blank")}
+             className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
+              >
+                <span>Resume</span>
+                <ExternalLink className="ml-1 h-4 w-4" />
+              </ShinyButton>
               <ModeToggle />
               <motion.button
                 className="ml-2 p-2 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
@@ -120,7 +127,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Navigation Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -130,7 +136,6 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 md:hidden"
           >
-            {/* Backdrop with glassmorphism */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -139,7 +144,6 @@ const Navbar = () => {
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Content container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -147,7 +151,6 @@ const Navbar = () => {
               transition={{ type: "spring", bounce: 0, duration: 0.4 }}
               className="relative h-full flex flex-col p-6 overflow-hidden"
             >
-              {/* Header with close button */}
               <div className="flex items-center justify-between mb-8">
                 <Logo />
                 <motion.button
@@ -160,7 +163,6 @@ const Navbar = () => {
                 </motion.button>
               </div>
 
-              {/* Navigation items */}
               <div className="flex-1 flex flex-col justify-center">
                 <motion.ul
                   initial="hidden"
@@ -216,7 +218,6 @@ const Navbar = () => {
                 </motion.ul>
               </div>
 
-              {/* Decorative elements */}
               <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-purple-500/10 to-pink-500/10 blur-3xl" />
               <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 blur-3xl" />
             </motion.div>
