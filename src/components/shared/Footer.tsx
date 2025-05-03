@@ -197,7 +197,7 @@ const Footer = () => {
                   <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-purple-400 dark:to-indigo-400">
                     Md Shakil Hossain
                   </h2>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                     Full Stack Developer
                   </p>
                 </div>
@@ -310,35 +310,52 @@ const Footer = () => {
                 Contact
                 <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-transparent"></span>
               </h3>
+
               <div className="space-y-4">
+                {/* Email */}
                 <motion.div
                   whileHover={{ x: 3 }}
-                  className="flex items-center text-sm text-slate-600 dark:text-slate-400 group"
+                  className="flex items-center text-sm text-slate-600 dark:text-slate-400 group transition-all"
                 >
                   <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center mr-3 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/30 transition-colors">
                     <Mail className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   </div>
-                  <span>MrShakilHossain@outlook.com</span>
+                  <span className="group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    mrshakilhossain@outlook.com
+                  </span>
                 </motion.div>
 
+                {/* Phone */}
                 <motion.div
                   whileHover={{ x: 3 }}
-                  className="flex items-center text-sm text-slate-600 dark:text-slate-400 group"
+                  className="flex flex-col items-start text-sm text-slate-600 dark:text-slate-400 group transition-all"
                 >
-                  <div className="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900/20 flex items-center justify-center mr-3 group-hover:bg-blue-200 dark:group-hover:bg-blue-800/30 transition-colors">
-                    <Phone className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center mr-3 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/30 transition-colors">
+                      <Phone className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        +880 1620-521215
+                      </span>
+                      <span className="group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                        +880 1521-765486
+                      </span>
+                    </div>
                   </div>
-                  <span>+880 1234 567890</span>
                 </motion.div>
 
+                {/* Location */}
                 <motion.div
                   whileHover={{ x: 3 }}
-                  className="flex items-start text-sm text-slate-600 dark:text-slate-400 group"
+                  className="flex items-center text-sm text-slate-600 dark:text-slate-400 group transition-all"
                 >
-                  <div className="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/20 flex items-center justify-center mr-3 mt-0.5 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800/30 transition-colors">
-                    <MapPin className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                  <div className="w-8 h-8 rounded-full bg-purple-100 dark:bg-purple-900/20 flex items-center justify-center mr-3 group-hover:bg-purple-200 dark:group-hover:bg-purple-800/30 transition-colors">
+                    <MapPin className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   </div>
-                  <span>Dhaka, Bangladesh</span>
+                  <span className="group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    Tangail, Dhaka, Bangladesh
+                  </span>
                 </motion.div>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-3">
