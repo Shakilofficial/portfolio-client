@@ -127,7 +127,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative overflow-hidden py-12 md:py-16 lg:py-40">
+    <section className="relative overflow-hidden py-28 lg:py-32">
       <Head>
         <link
           rel="preload"
@@ -256,7 +256,7 @@ const Hero = () => {
 
             {/* Social Media Links */}
             <div>
-              <div className="flex space-x-3">
+              <div className="flex space-x-3 justify-center lg:justify-start">
                 {socials.map((social, index) => (
                   <motion.div
                     key={index}
@@ -268,7 +268,6 @@ const Hero = () => {
                     <Link
                       href={social.href}
                       target="_blank"
-                      rel="noopener noreferrer"
                       aria-label={social.label}
                       className="relative group"
                     >

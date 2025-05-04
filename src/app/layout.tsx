@@ -1,10 +1,10 @@
 import Providers from "@/lib/providers";
 
 import type { Metadata } from "next";
-import { Space_Mono } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceMono = Space_Mono({
+const share_tech = JetBrains_Mono({
   weight: "400",
   subsets: ["latin"],
 });
@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={spaceMono.className}>
+      <body className={share_tech.className}>
         <Providers>{children}</Providers>
       </body>
     </html>
