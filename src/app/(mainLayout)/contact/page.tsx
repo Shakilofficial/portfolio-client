@@ -15,13 +15,13 @@ import {
   Clock,
   Copy,
   ExternalLink,
+  Facebook,
   Github,
   Linkedin,
   Mail,
   MapPin,
   MessageCircle,
   Phone,
-  Twitter,
   User,
 } from "lucide-react";
 import Link from "next/link";
@@ -77,32 +77,32 @@ const ContactPage = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "contact@example.com",
-      action: () => copyToClipboard("contact@example.com", "Email"),
+      value: "mrshakilhossain@outlook.com",
+      action: () => copyToClipboard("mrshakilhossain@outlook.com", "Email"),
       actionIcon: Copy,
       isActive: copied === "Email",
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      action: () => copyToClipboard("+1 (555) 123-4567", "Phone"),
+      value: "+880 1620-521215",
+      action: () => copyToClipboard("+880 1620-521215", "Phone"),
       actionIcon: Copy,
       isActive: copied === "Phone",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "New York, NY, USA",
+      value: "Tangail, Dhaka, Bangladesh",
       action: () =>
-        window.open("https://maps.google.com/?q=New+York,+NY,+USA", "_blank"),
+        window.open("https://maps.app.goo.gl/f4q9wJC6hVmjynB16", "_blank"),
       actionIcon: ExternalLink,
       isActive: false,
     },
     {
       icon: Clock,
-      label: "Working Hours",
-      value: "Mon - Fri, 9:00 AM - 5:00 PM",
+      label: "Availability",
+      value: "Anytime",
       action: null,
       actionIcon: null,
       isActive: false,
@@ -110,16 +110,20 @@ const ContactPage = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/yourusername", label: "GitHub" },
+    {
+      icon: Github,
+      href: "https://github.com/ShakilOfficial",
+      label: "GitHub",
+    },
     {
       icon: Linkedin,
-      href: "https://linkedin.com/in/yourusername",
+      href: "https://linkedin.com/in/md-shakilhossain",
       label: "LinkedIn",
     },
     {
-      icon: Twitter,
-      href: "https://twitter.com/yourusername",
-      label: "Twitter",
+      icon: Facebook,
+      href: "https://www.facebook.com/iamshakilhossain",
+      label: "Facebook",
     },
   ];
 
@@ -318,31 +322,6 @@ const ContactPage = () => {
             </Card>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 text-center"
-        >
-          <p className="text-muted-foreground">
-            By contacting me, you agree to our{" "}
-            <Link
-              href="/privacy-policy"
-              className="text-purple-600 dark:text-purple-400 hover:underline"
-            >
-              Privacy Policy
-            </Link>{" "}
-            and{" "}
-            <Link
-              href="/terms-of-service"
-              className="text-purple-600 dark:text-purple-400 hover:underline"
-            >
-              Terms of Service
-            </Link>
-            .
-          </p>
-        </motion.div>
       </div>
     </div>
   );

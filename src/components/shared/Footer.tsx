@@ -402,19 +402,7 @@ const Footer = () => {
               &copy; {new Date().getFullYear()} Md Shakil Hossain. All rights
               reserved.
             </p>
-            <div className="flex space-x-6">
-              <Link
-                href="/privacy-policy"
-                className="text-sm text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-sm text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
-              >
-                Terms of Service
-              </Link>
+            <div>
               <Link
                 href="https://shakil-portfolio-dashboard.vercel.app"
                 className="text-sm text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors flex items-center"

@@ -17,9 +17,19 @@ const services = [
   {
     title: "Full-Stack Development",
     description:
-      "End-to-end web applications with seamless integration of frontend and backend using modern technologies.",
+      "End-to-end web development using modern JavaScript/TypeScript, combining scalable backend with interactive frontend.",
     icon: Layers,
-    skills: ["React", "Next.js", "Node.js", "Express", "MongoDB"],
+    skills: [
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "TypeScript",
+      "JWT",
+      "Zod",
+      "Next Auth",
+    ],
     color: "from-fuchsia-500 to-pink-600",
     darkColor: "from-fuchsia-600 to-pink-800",
     pattern: "circuit",
@@ -29,9 +39,20 @@ const services = [
   {
     title: "Frontend Development",
     description:
-      "Modern, responsive, and animated interfaces with reusable components and efficient styling.",
+      "Responsive and interactive UI with reusable components, animation, and modern design systems.",
     icon: Palette,
-    skills: ["React", "Next.js", "Tailwind CSS", "Framer Motion", "TypeScript", "Redux Toolkit"],
+    skills: [
+      "React.js",
+      "Next.js",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Redux Toolkit",
+      "React Hook Form",
+      "TypeScript",
+      "Shadcn UI",
+      "Material UI",
+      "Ant Design",
+    ],
     color: "from-sky-500 to-cyan-600",
     darkColor: "from-sky-600 to-cyan-800",
     pattern: "dots",
@@ -41,9 +62,19 @@ const services = [
   {
     title: "Backend Development",
     description:
-      "Scalable and secure server-side development with structured APIs and clean architecture.",
+      "Secure and efficient backend systems with RESTful APIs, authentication, and scalable MongoDB integration.",
     icon: Server,
-    skills: ["Node.js", "Express", "MongoDB", "REST APIs", "JWT"],
+    skills: [
+      "Node.js",
+      "Express.js",
+      "Mongoose",
+      "Prisma",
+      "RESTful APIs",
+      "GraphQL",
+      "JWT",
+      "Zod",
+      "OAuth",
+    ],
     color: "from-lime-500 to-green-600",
     darkColor: "from-lime-600 to-green-800",
     pattern: "grid",
@@ -53,9 +84,15 @@ const services = [
   {
     title: "System Architecture",
     description:
-      "Designing maintainable and scalable systems with best practices like MVC and Modular Monolith.",
+      "Designing maintainable architecture using Modular Monolith and MVC patterns with clean code principles.",
     icon: LayoutDashboard,
-    skills: ["MVC", "Modular Monolith", "REST APIs", "Clean Code"],
+    skills: [
+      "MVC",
+      "Modular Monolith",
+      "Clean Code",
+      "Agile Development",
+      "Project Structuring",
+    ],
     color: "from-indigo-500 to-blue-600",
     darkColor: "from-indigo-600 to-blue-800",
     pattern: "hexagons",
@@ -63,11 +100,17 @@ const services = [
     highlightColor: "indigo",
   },
   {
-    title: "Database Design",
+    title: "Database & Integrations",
     description:
-      "Efficient schema design and data modeling for fast, reliable, and scalable applications.",
+      "Effective data modeling, storage solutions, and third-party integrations for modern applications.",
     icon: Database,
-    skills: ["MongoDB", "PostgreSQL", "Firebase"],
+    skills: [
+      "MongoDB",
+      "Firebase",
+      "PostgreSQL",
+      "Cloudinary",
+      "Nodemailer",
+    ],
     color: "from-orange-500 to-amber-600",
     darkColor: "from-orange-600 to-amber-800",
     pattern: "squares",
@@ -77,9 +120,15 @@ const services = [
   {
     title: "Performance Optimization",
     description:
-      "Improving application speed and responsiveness using proven frontend and backend techniques.",
+      "Improving app speed, responsiveness, and SEO using smart optimization strategies and tools.",
     icon: Zap,
-    skills: ["Lazy Loading", "Code Splitting", "Caching", "Compression"],
+    skills: [
+      "Lazy Loading",
+      "Code Splitting",
+      "Caching",
+      "Compression",
+      "Responsive Design",
+    ],
     color: "from-rose-500 to-red-600",
     darkColor: "from-rose-600 to-red-800",
     pattern: "triangles",
@@ -87,7 +136,6 @@ const services = [
     highlightColor: "rose",
   },
 ];
-
 
 const MyService = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

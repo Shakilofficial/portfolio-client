@@ -44,6 +44,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@inspira-ui/plugins": "^0.0.1",
+    "@radix-ui/react-toast": "^1.2.11",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
