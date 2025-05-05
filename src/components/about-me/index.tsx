@@ -172,7 +172,7 @@ const AboutMe = () => {
         </div>
       </div>
 
-      <div className="w-full container mx-auto">
+      <div className="w-full container mx-auto px-2 md:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -180,7 +180,7 @@ const AboutMe = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
             <AuroraText>About Me</AuroraText>
           </h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
@@ -282,7 +282,7 @@ const AboutMe = () => {
               </div>
 
               {/* Interests card */}
-              <div className="bg-white/90 dark:bg-violet-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-xl p-6">
+              <div className="bg-white/90 dark:bg-violet-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-xl p-2">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-2">
                   <Heart className="w-5 h-5 text-rose-500" />
                   <span>Interests & Hobbies</span>
