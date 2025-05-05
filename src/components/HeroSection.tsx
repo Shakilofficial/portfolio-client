@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa6";
 import { AuroraText } from "./magicui/aurora-text";
 import { ShinyButton } from "./magicui/shiny-button";
+import { SparklesText } from "./magicui/sparkles-text";
 import { TypingAnimation } from "./magicui/typing-animation";
 
 const socials = [
@@ -200,9 +201,9 @@ const Hero = () => {
             </motion.div>
 
             <motion.div variants={itemVariants} className="relative">
-              <p className="text-primary text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight">
+              <SparklesText className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight">
                 Building Digital Experiences
-              </p>
+              </SparklesText>
             </motion.div>
 
             <motion.div variants={itemVariants}>
