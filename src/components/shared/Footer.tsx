@@ -27,46 +27,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  FaFacebook,
-  FaGithub,
-  FaInstagram,
-  FaLinkedin,
-  FaTwitter,
-} from "react-icons/fa6";
-
-const socials = [
-  {
-    href: "https://www.linkedin.com/in/md-shakilhossain/",
-    icon: FaLinkedin,
-    label: "LinkedIn",
-    color: "bg-[#0077B5]",
-  },
-  {
-    href: "https://github.com/Shakilofficial",
-    icon: FaGithub,
-    label: "GitHub",
-    color: "bg-[#333]",
-  },
-  {
-    href: "https://www.facebook.com/iamshakilhossain",
-    icon: FaFacebook,
-    label: "Facebook",
-    color: "bg-[#1877F2]",
-  },
-  {
-    href: "https://www.instagram.com/shakilhossain75",
-    icon: FaInstagram,
-    label: "Instagram",
-    color: "bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]",
-  },
-  {
-    href: "https://x.com/creative_shakil",
-    icon: FaTwitter,
-    label: "Twitter",
-    color: "bg-[#1DA1F2]",
-  },
-];
+import Socials from "./Socials";
 
 const services = [
   { name: "Web Development", icon: Code },
@@ -148,21 +109,6 @@ const Footer = () => {
       />
 
       <footer className="w-full relative overflow-hidden backdrop-blur-3xl bg-white/30 dark:bg-slate-950/10 border-t border-white/10 dark:border-slate-900 shadow-inner shadow-white/10 dark:shadow-black/10">
-        {/* Wave decoration */}
-        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none transform -translate-y-full">
-          <svg
-            className="relative block w-full h-16 text-white dark:text-slate-950"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
-              className="fill-current"
-            ></path>
-          </svg>
-        </div>
-
         {/* Decorative elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
@@ -210,33 +156,7 @@ const Footer = () => {
               </p>
 
               <div className="flex space-x-3">
-                {socials.map((social, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <Link
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="relative group"
-                    >
-                      <div
-                        className={`flex items-center justify-center w-10 h-10 rounded-full ${social.color} text-white shadow-lg`}
-                      >
-                        <social.icon size={18} />
-                      </div>
-                      <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs font-medium text-slate-600 dark:text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        {social.label}
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
+                <Socials />
               </div>
             </motion.div>
 

@@ -4,52 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Download, ExternalLink, Mail } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  FaFacebook,
-  FaGithub,
-  FaInstagram,
-  FaLinkedin,
-  FaTwitter,
-} from "react-icons/fa6";
 import { AuroraText } from "./magicui/aurora-text";
 import { ShinyButton } from "./magicui/shiny-button";
 import { SparklesText } from "./magicui/sparkles-text";
 import { TypingAnimation } from "./magicui/typing-animation";
-
-const socials = [
-  {
-    href: "https://www.linkedin.com/in/md-shakilhossain/",
-    icon: FaLinkedin,
-    label: "LinkedIn",
-    color: "bg-[#0077B5]",
-  },
-  {
-    href: "https://github.com/Shakilofficial",
-    icon: FaGithub,
-    label: "GitHub",
-    color: "bg-[#333]",
-  },
-  {
-    href: "https://www.facebook.com/iamshakilhossain",
-    icon: FaFacebook,
-    label: "Facebook",
-    color: "bg-[#1877F2]",
-  },
-  {
-    href: "https://www.instagram.com/shakilhossain75",
-    icon: FaInstagram,
-    label: "Instagram",
-    color: "bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45]",
-  },
-  {
-    href: "https://x.com/creative_shakil",
-    icon: FaTwitter,
-    label: "Twitter",
-    color: "bg-[#1DA1F2]",
-  },
-];
+import Socials from "./shared/Socials";
 
 const Hero = () => {
   const [isDownloading, setIsDownloading] = useState(false);
@@ -258,31 +218,7 @@ const Hero = () => {
             {/* Social Media Links */}
             <div>
               <div className="flex space-x-3 justify-center lg:justify-start">
-                {socials.map((social, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    whileHover={{ y: -5 }}
-                  >
-                    <Link
-                      href={social.href}
-                      target="_blank"
-                      aria-label={social.label}
-                      className="relative group"
-                    >
-                      <div
-                        className={`flex items-center justify-center w-10 h-10 rounded-full ${social.color} text-white shadow-lg`}
-                      >
-                        <social.icon size={18} />
-                      </div>
-                      <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs font-medium text-slate-600 dark:text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                        {social.label}
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
+                <Socials />
               </div>
             </div>
 
