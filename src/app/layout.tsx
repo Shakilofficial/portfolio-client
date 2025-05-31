@@ -1,10 +1,10 @@
 import Providers from "@/lib/providers";
 
 import type { Metadata } from "next";
-import { Share_Tech_Mono } from "next/font/google";
+import { Share_Tech } from "next/font/google";
 import "./globals.css";
 
-const share_tech = Share_Tech_Mono({
+const share_tech = Share_Tech({
   weight: "400",
   subsets: ["latin"],
 });
