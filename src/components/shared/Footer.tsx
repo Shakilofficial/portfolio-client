@@ -18,7 +18,6 @@ import {
   CheckCircle2,
   ChevronRight,
   Code,
-  ExternalLink,
   Mail,
   MapPin,
   PenTool,
@@ -41,6 +40,7 @@ const quickLinks = [
   { name: "Projects", href: "/projects" },
   { name: "Blogs", href: "/blogs" },
   { name: "Contact", href: "/contact" },
+  { name: "Dashboard", href: "https://shakil-portfolio-dashboard.vercel.app" },
 ];
 
 const Footer = () => {
@@ -279,26 +279,30 @@ const Footer = () => {
                 </motion.div>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-3">
-                  <div className="relative">
-                    <Input
-                      type="email"
-                      placeholder="Subscribe to newsletter"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="pr-10 border-slate-300 dark:border-slate-700 focus:border-purple-500 dark:focus:border-purple-500 bg-white dark:bg-slate-900"
-                    />
-                    <Button
-                      type="submit"
-                      size="sm"
-                      className="absolute right-1 top-1 bottom-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white"
-                    >
-                      {isSubmitted ? (
-                        <CheckCircle2 className="h-4 w-4" />
-                      ) : (
-                        <ArrowRight className="h-4 w-4" />
-                      )}
-                    </Button>
+                  <div className="w-full max-w-md mx-auto">
+                    <form onSubmit={handleSubmit}>
+                      <div className="relative flex items-center">
+                        <Input
+                          type="email"
+                          placeholder="Enter your email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                          className="w-full pr-12 py-2 rounded-md border border-slate-300 dark:border-stone-700 focus:border-purple-500 dark:focus:border-purple-500 bg-white dark:bg-purple-950/5 placeholder:text-sm placeholder:text-slate-400"
+                        />
+                        <Button
+                          type="submit"
+                          size="icon"
+                          className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8 rounded-md p-0 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md"
+                        >
+                          {isSubmitted ? (
+                            <CheckCircle2 className="h-4 w-4" />
+                          ) : (
+                            <ArrowRight className="h-4 w-4" />
+                          )}
+                        </Button>
+                      </div>
+                    </form>
                   </div>
 
                   {isSubmitted && (
@@ -317,19 +321,11 @@ const Footer = () => {
           </div>
 
           {/* Bottom section */}
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 md:mb-0">
+          <div className="flex flex-col md:flex-row justify-center items-center">
+            <p className="text-sm text-slate-600 dark:text-slate-400 mb-4 md:mb-0 uppercase">
               &copy; {new Date().getFullYear()} Md Shakil Hossain. All rights
               reserved.
             </p>
-            <div>
-              <Link
-                href="https://shakil-portfolio-dashboard.vercel.app"
-                className="text-sm text-slate-600 dark:text-slate-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors flex items-center"
-              >
-                Dashboard <ExternalLink className="ml-1 w-3 h-3" />
-              </Link>
-            </div>
           </div>
         </div>
       </footer>

@@ -20,9 +20,6 @@ const config = {
       },
     },
     extend: {
-      fontFamily: {
-        "dank-mono": ['"Dank Mono"', "monospace"],
-      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
