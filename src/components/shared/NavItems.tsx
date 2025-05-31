@@ -1,152 +1,137 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
-import { useState } from "react"
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
-const navItems = [
-  { href: "/", label: "Home", icon: "🏠" },
-  { href: "/projects", label: "Projects", icon: "💼" },
-  { href: "/blogs", label: "Blogs", icon: "✏️" },
-  { href: "/contact", label: "Contact", icon: "📧" },
-]
+type NavItem = {
+  href: string;
+  label: string;
+  icon: string;
+};
 
 type NavItemsProps = {
-  mobile?: boolean
-  setIsOpen?: (value: boolean) => void
-}
+  items: NavItem[];
+  mobile?: boolean;
+  setIsOpen?: (value: boolean) => void;
+};
 
-const NavItems = ({ mobile = false, setIsOpen }: NavItemsProps) => {
-  const pathname = usePathname()
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null)
+const NavItems = ({ items, mobile = false, setIsOpen }: NavItemsProps) => {
+  const pathname = usePathname();
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   const handleLinkClick = () => {
     if (mobile && setIsOpen) {
-      setIsOpen(false)
+      setIsOpen(false);
     }
-  }
+  };
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
 
   if (mobile) {
     return (
-      <motion.div
-        className="py-4"
+      <motion.ul
+        className="py-6 space-y-4 px-2"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
-        {navItems.map((item, index) => {
-          const isActive = pathname === item.href
-          
+        {items.map((item) => {
+          const isActive = pathname === item.href;
+
           return (
-            <motion.div
+            <motion.li
               key={item.href}
               variants={itemVariants}
-              className="mb-6 last:mb-0"
+              className="relative"
             >
               <Link
                 href={item.href}
                 onClick={handleLinkClick}
-                className={`relative flex items-center p-3 rounded-xl transition-all duration-300 ${
-                  isActive 
-                    ? "bg-primary/10 text-primary font-medium" 
-                    : "text-muted-foreground hover:bg-slate-100 dark:hover:bg-slate-800/60"
+                className={`flex items-center p-4 rounded-xl transition-all duration-300 ${
+                  isActive
+                    ? "bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 text-purple-600 dark:text-purple-300"
+                    : "text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800/50"
                 }`}
-                onMouseEnter={() => setHoveredItem(item.href)}
-                onMouseLeave={() => setHoveredItem(null)}
               >
-                <span className="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-100 dark:bg-slate-800 mr-3">
-                  <span className="text-lg">{item.icon}</span>
+                <span className="flex items-center justify-center w-12 h-12 rounded-full bg-gray-100 dark:bg-gray-800 mr-4 shadow-sm">
+                  <span className="text-xl">{item.icon}</span>
                 </span>
-                
                 <div className="flex flex-col">
-                  <span className="text-base font-medium">{item.label}</span>
+                  <span className="text-xl font-semibold">{item.label}</span>
                   {isActive && (
-                    <span className="text-xs text-muted-foreground">
-                      Currently viewing
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      Active
                     </span>
                   )}
                 </div>
-                
                 {isActive && (
                   <motion.div
                     layoutId="activeIndicatorMobile"
-                    className="absolute right-3 w-2 h-full flex items-center"
+                    className="absolute right-4 w-2.5 h-2.5 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                  >
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
-                  </motion.div>
+                  />
                 )}
               </Link>
-            </motion.div>
-          )
+            </motion.li>
+          );
         })}
-      </motion.div>
-    )
+      </motion.ul>
+    );
   }
 
   return (
-    <div className="flex items-center space-x-1 md:space-x-2">
-      {navItems.map((item) => {
-        const isActive = pathname === item.href
-        const isHovered = hoveredItem === item.href
-        
+    <motion.ul className="flex items-center space-x-1 sm:space-x-2 lg:space-x-3">
+      {items.map((item) => {
+        const isActive = pathname === item.href;
+        const isHovered = hoveredItem === item.href;
+
         return (
-          <div key={item.href} className="relative">
+          <motion.li
+            key={item.href}
+            className="relative"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
             <Link
               href={item.href}
-              className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-md flex items-center ${
-                isActive ? "text-primary" : "text-muted-foreground hover:text-primary"
+              className={`relative px-2.5 py-2 text-sm font-semibold uppercase transition-colors rounded-lg ${
+                isActive
+                  ? "text-purple-600 dark:text-purple-400"
+                  : "text-gray-700 dark:text-gray-200 hover:text-purple-600 dark:hover:text-purple-300"
               }`}
               onMouseEnter={() => setHoveredItem(item.href)}
               onMouseLeave={() => setHoveredItem(null)}
             >
               {item.label}
-              
-              {/* Hover effect */}
               {isHovered && !isActive && (
                 <motion.span
                   layoutId="hoverIndicator"
-                  className="absolute inset-0 rounded-md bg-slate-100 dark:bg-slate-800/60 -z-10"
+                  className="absolute inset-0 rounded-lg bg-gray-100 dark:bg-gray-800/50 -z-10"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 />
               )}
-              
-              {/* Active indicator */}
-              {isActive && (
-                <motion.div
-                  layoutId="activeIndicator"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-primary/60"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
             </Link>
-          </div>
-        )
+          </motion.li>
+        );
       })}
-    </div>
-  )
-}
+    </motion.ul>
+  );
+};
 
-export default NavItems
+export default NavItems;

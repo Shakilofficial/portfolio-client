@@ -2,26 +2,24 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, Menu, X } from "lucide-react";
-import Link from "next/link";
+import { ExternalLink, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ShinyButton } from "../magicui/shiny-button";
 import Logo from "./Logo";
 import ModeToggle from "./ModeToggle";
+import NavItems from "./NavItems";
 
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/blogs", label: "Blogs" },
-  { href: "/contact", label: "Contact" },
+const NAV_ITEMS = [
+  { href: "/", label: "HOME", icon: "🏠" },
+  { href: "/about", label: "About", icon: "👨‍💻" },
+  { href: "/projects", label: "PROJECTS", icon: "💼" },
+  { href: "/blogs", label: "BLOGS", icon: "✏️" },
+  { href: "/contact", label: "CONTACT", icon: "📧" },
 ];
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeItem, setActiveItem] = useState<string | null>(null);
   const pathname = usePathname();
 
   const driveLink =
@@ -29,105 +27,121 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const offset = window.scrollY;
-      setScrolled(offset > 10);
+      setScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const active =
-      navItems.find((item) => item.href === pathname)?.href || null;
-    setActiveItem(active);
-  }, [pathname]);
-
   return (
     <>
+      <style jsx global>{`
+        @keyframes gradientBorder {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+        .gradient-border {
+          position: relative;
+          border: 1px solid transparent;
+          border-radius: 1rem; /* Reduced from 9999px */
+          background: linear-gradient(45deg, #6b7280, #a5b4fc, #6b7280)
+            border-box;
+          background-size: 200% 200%;
+          animation: gradientBorder 6s ease infinite;
+          -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+            linear-gradient(#fff 0 0);
+          mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        }
+
+        .dark .gradient-border {
+          background: linear-gradient(45deg, #4b5563, #818cf8, #4b5563)
+            border-box;
+        }
+
+        .gradient-border::before {
+          content: "";
+          position: absolute;
+          inset: 1px;
+          border-radius: 1rem; /* Match outer radius */
+          background: white;
+          z-index: -1;
+        }
+
+        .dark .gradient-border::before {
+          background: #1f2937;
+        }
+      `}</style>
+
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "py-3 backdrop-blur-xl bg-white/70 dark:bg-gray-950/70"
-            : "py-5 bg-transparent"
+            ? "py-3 backdrop-blur-lg bg-white/95 dark:bg-zinc-950/95 shadow-md"
+            : "py-4 bg-transparent"
         }`}
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
+            {/* Logo */}
             <Logo />
-            <div className="hidden md:flex items-center space-x-3">
-              <ul className="flex items-center space-x-1">
-                {navItems.map((item) => {
-                  const isActive = activeItem === item.href;
 
-                  return (
-                    <motion.li key={item.href} className="relative">
-                      <Link
-                        href={item.href}
-                        className={`relative px-3 py-1.5 text-sm font-medium rounded-full transition-colors flex items-center ${
-                          isActive
-                            ? "text-white"
-                            : "text-slate-700 dark:text-slate-300 hover:text-purple-600 dark:hover:text-purple-400"
-                        }`}
-                        onMouseEnter={() =>
-                          !isActive && setActiveItem(item.href)
-                        }
-                        onMouseLeave={() =>
-                          !isActive && setActiveItem(pathname)
-                        }
-                      >
-                        {isActive && (
-                          <motion.span
-                            layoutId="navBackground"
-                            className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl -z-10"
-                            initial={false}
-                            transition={{
-                              type: "spring",
-                              bounce: 0.2,
-                              duration: 0.6,
-                            }}
-                          />
-                        )}
-                        {item.label}
-                      </Link>
-                    </motion.li>
-                  );
-                })}
-              </ul>
-
-              <ModeToggle />
-
-              <ShinyButton
-                onClick={() => window.open(driveLink, "_blank")}
-                className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
-              >
-                <span>Resume</span>
-                <ExternalLink className="ml-1 h-4 w-4" />
-              </ShinyButton>
+            {/* Center: Nav Items with Animated Gradient Border */}
+            <div className="hidden md:flex flex-1 justify-center">
+              <div className="gradient-border px-3 py-1.5">
+                <NavItems items={NAV_ITEMS} />
+              </div>
             </div>
 
-            <div className="flex items-center md:hidden gap-2">
-              <ShinyButton
-                onClick={() => window.open(driveLink, "_blank")}
-                className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-3 py-1.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
-              >
-                <span>Resume</span>
-                <ExternalLink className="ml-1 h-4 w-4" />
-              </ShinyButton>
+            {/* Right: CTA & Mode Toggle */}
+            <div className="hidden md:flex items-center space-x-4">
               <ModeToggle />
-              <motion.button
-                className="ml-2 p-2 rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              <motion.a
+                href={driveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative flex justify-center overflow-hidden px-4 py-2 text-sm font-semibold uppercase text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+              >
+                <span>Hire Me</span>
+                <ExternalLink className="inline-block ml-2 h-4 w-4" />
+              </motion.a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="flex items-center md:hidden gap-3">
+              <ModeToggle />
+              <motion.a
+                href={driveLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative flex justify-center overflow-hidden px-4 py-2 text-sm font-semibold uppercase text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Resume</span>
+                <ExternalLink className="inline-block ml-1 h-4 w-4" />
+              </motion.a>
+              <motion.button
+                className="p-2 rounded-full text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => setIsOpen(true)}
               >
-                <Menu className="w-5 h-5" />
+                <Menu className="w-6 h-6" />
               </motion.button>
             </div>
           </div>
         </div>
       </nav>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -141,86 +155,32 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl"
+              className="absolute inset-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg"
               onClick={() => setIsOpen(false)}
             />
-
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              className="relative h-full flex flex-col p-6 overflow-hidden"
+              initial={{ y: "-100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ type: "spring", bounce: 0, duration: 0.5 }}
+              className="relative h-full flex flex-col p-6"
             >
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex items-center justify-between mb-10">
                 <Logo />
                 <motion.button
                   whileHover={{ rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300"
+                  className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-6 h-6" />
                 </motion.button>
               </div>
-
               <div className="flex-1 flex flex-col justify-center">
-                <motion.ul
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: {
-                      opacity: 1,
-                      transition: {
-                        staggerChildren: 0.1,
-                        delayChildren: 0.1,
-                      },
-                    },
-                  }}
-                  className="space-y-6"
-                >
-                  {navItems.map((item, index) => {
-                    const isActive = pathname === item.href;
-
-                    return (
-                      <motion.li
-                        key={item.href}
-                        variants={{
-                          hidden: { opacity: 0, x: -20 },
-                          visible: { opacity: 1, x: 0 },
-                        }}
-                        className="overflow-hidden"
-                      >
-                        <Link
-                          href={item.href}
-                          onClick={() => setIsOpen(false)}
-                          className={`group flex items-center text-4xl font-bold transition-colors ${
-                            isActive
-                              ? "text-purple-600 dark:text-purple-400"
-                              : "text-slate-800 dark:text-slate-200"
-                          }`}
-                        >
-                          <span className="inline-block relative">
-                            {item.label}
-                          </span>
-                          <motion.span
-                            initial={{ opacity: 0, x: -10 }}
-                            whileHover={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="ml-2 text-purple-500"
-                          >
-                            <ArrowUpRight className="w-6 h-6" />
-                          </motion.span>
-                        </Link>
-                      </motion.li>
-                    );
-                  })}
-                </motion.ul>
+                <NavItems items={NAV_ITEMS} mobile setIsOpen={setIsOpen} />
               </div>
-
-              <div className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-gradient-to-br from-purple-500/10 to-pink-500/10 blur-3xl" />
-              <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 blur-3xl" />
+              <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-gradient-to-br from-purple-500/30 to-indigo-500/30 blur-3xl" />
+              <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-gradient-to-br from-blue-500/30 to-purple-500/30 blur-3xl" />
             </motion.div>
           </motion.div>
         )}

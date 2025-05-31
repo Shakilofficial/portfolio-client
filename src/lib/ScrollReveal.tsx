@@ -27,7 +27,6 @@ export default function ScrollReveal({
   const ref = useRef(null);
   const inView = useInView(ref, { once, amount: 0.3 });
 
-  // Set initial animation states based on direction
   const getInitialState = () => {
     switch (direction) {
       case "up":
@@ -45,7 +44,6 @@ export default function ScrollReveal({
     }
   };
 
-  // Set animation target states based on direction
   const getAnimateState = () => {
     switch (direction) {
       case "up":
@@ -75,7 +73,7 @@ export default function ScrollReveal({
       transition={{
         duration,
         delay,
-        ease: [0.25, 0.1, 0.25, 1], // Improved easing function
+        ease: [0.25, 0.1, 0.25, 1],
       }}
       style={{ width }}
       className={className}
