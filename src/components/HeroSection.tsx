@@ -161,7 +161,7 @@ const Hero = () => {
             </motion.div>
 
             <motion.div variants={itemVariants} className="relative">
-              <SparklesText className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight">
+              <SparklesText className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight font-big-shoulders uppercase">
                 Building Digital Experiences
               </SparklesText>
             </motion.div>
