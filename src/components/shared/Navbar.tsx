@@ -72,7 +72,7 @@ const Navbar = () => {
                   href={driveLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex justify-center relative overflow-hidden px-4 py-2 text-sm font-semibold uppercase text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl shadow-purple-500/25 hover:shadow-purple-500/35"
+                  className="group flex justify-center relative overflow-hidden px-4 py-2 text-sm font-semibold uppercase text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl shadow-purple-500/25 hover:shadow-purple-500/35"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

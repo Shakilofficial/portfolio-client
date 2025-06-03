@@ -43,7 +43,7 @@ const ModeToggle = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="relative h-9 w-9 rounded-full bg-background border border-primary/20 hover:bg-primary/10 hover:border-primary/30"
+        className="relative h-9 w-9 rounded-full bg-gradient-to-r from-purple-600/10 to-indigo-600/10 border border-purple-200/40 dark:border-purple-700/40 shadow-lg shadow-purple-500/10 dark:shadow-purple-500/20"
         onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
         aria-label="Toggle theme"
       >
@@ -70,7 +70,7 @@ const ModeToggle = () => {
 
         {/* Decorative ring */}
         <motion.div
-          className="absolute inset-0 rounded-full border border-primary/30"
+          className="absolute inset-0 rounded-full border border-purple-200/40 dark:border-purple-700/40 shadow-lg shadow-purple-500/10 dark:shadow-purple-500/20"
           initial={{ opacity: 0 }}
           animate={{
             opacity: isHovered ? 1 : 0,
