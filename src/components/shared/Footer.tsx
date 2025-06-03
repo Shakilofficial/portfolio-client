@@ -87,16 +87,16 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-6 z-50"
+            className="fixed bottom-24 right-3 lg:bottom-6 lg:right-6 z-50"
           >
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={scrollToTop}
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
               aria-label="Scroll to top"
             >
-              <ArrowUp className="h-5 w-5" />
+              <ArrowUp className="h-4 w-4" />
             </motion.button>
           </motion.div>
         )}
@@ -104,7 +104,7 @@ const Footer = () => {
 
       {/* Page scroll progress indicator */}
       <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-600/70 via-pink-500/70 to-indigo-600/70 z-[100]"
+        className="fixed top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-purple-600/70 via-pink-500/70 to-indigo-600/70 z-[100]"
         style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
       />
 

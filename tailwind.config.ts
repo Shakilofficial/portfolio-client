@@ -21,7 +21,6 @@ const config = {
     },
     extend: {
       fontFamily: {
-        "share-tech": ['"Share Tech"', "monospace"],
         "big-shoulders": ['"Big Shoulders Text"', "sans-serif"],
       },
       colors: {

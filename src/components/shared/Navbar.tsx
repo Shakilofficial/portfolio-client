@@ -57,7 +57,7 @@ const Navbar = () => {
 
             {/* Center Navigation - Hidden on mobile, shown on lg+ */}
             <div className="hidden lg:flex flex-1 justify-center">
-              <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-full px-3 py-1.5 border border-purple-200/40 dark:border-purple-700/40 shadow-lg shadow-purple-500/10 dark:shadow-purple-500/20 uppercase">
+              <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md rounded-xl px-3 py-1.5 border border-purple-200/40 dark:border-purple-700/40 shadow-lg shadow-purple-500/10 dark:shadow-purple-500/20 uppercase">
                 <NavItems items={NAV_ITEMS} />
               </div>
             </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
                   href={driveLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex justify-center relative overflow-hidden px-4 py-2 text-sm font-semibold uppercase text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl shadow-purple-500/25 hover:shadow-purple-500/35"
+                  className="group flex justify-center relative overflow-hidden px-4 py-2 text-sm font-semibold uppercase text-white bg-gradient-to-r from-purple-600/90 to-indigo-600/90 rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl shadow-purple-500/25 hover:shadow-purple-500/35"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -2,7 +2,7 @@
 import Providers from "@/lib/providers";
 
 import type { Metadata } from "next";
-import { Big_Shoulders_Text, Share_Tech } from "next/font/google";
+import { Big_Shoulders_Text, Share_Tech_Mono } from "next/font/google";
 import "./globals.css";
 
 const bigshoulders = Big_Shoulders_Text({
@@ -10,7 +10,7 @@ const bigshoulders = Big_Shoulders_Text({
   subsets: ["latin"],
 });
 
-const share_tech = Share_Tech({
+const share_tech = Share_Tech_Mono({
   weight: "400",
   subsets: ["latin"],
 });

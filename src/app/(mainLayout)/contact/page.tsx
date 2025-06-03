@@ -23,6 +23,7 @@ import {
   MessageCircle,
   Phone,
   User,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -286,7 +287,7 @@ const ContactPage = () => {
               <CardContent className="p-6 md:p-8">
                 <h3 className="text-2xl font-semibold mb-6 flex items-center">
                   <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 p-2 rounded-lg mr-3">
-                    <Linkedin className="h-5 w-5" />
+                    <Users className="h-5 w-5" />
                   </span>
                   Connect With Me
                 </h3>

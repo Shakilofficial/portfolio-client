@@ -35,7 +35,7 @@ const NavItems = ({ items }: NavItemsProps) => {
           >
             <Link
               href={item.href}
-              className={`relative px-4 py-2.5 font-medium transition-all duration-200 rounded-lg ${
+              className={`relative px-4 py-2.5 font-medium transition-all duration-200 rounded-xl text-base ${
                 isActive
                   ? "text-purple-600 dark:text-purple-400"
                   : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
@@ -46,14 +46,14 @@ const NavItems = ({ items }: NavItemsProps) => {
               {isActive && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-950/50 dark:to-indigo-950/50 border border-purple-200/50 dark:border-purple-800/50 rounded-full -z-10"
+                  className="absolute inset-0 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-950/50 dark:to-indigo-950/50 border border-purple-200/50 dark:border-purple-800/50 rounded-xl -z-10"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
 
               {isHovered && !isActive && (
                 <motion.div
-                  className="absolute inset-0 bg-gray-100/80 dark:bg-purple-950/10 rounded-lg -z-10"
+                  className="absolute inset-0 bg-gray-300/30 dark:bg-purple-950/20 rounded-xl -z-10"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}

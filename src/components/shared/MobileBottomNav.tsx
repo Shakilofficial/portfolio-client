@@ -19,7 +19,7 @@ const MobileBottomNav = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
       <div className="mx-3 mb-3">
-        <div className="bg-white/70 dark:bg-purple-950/50 backdrop-blur-xl border border-stone-700/60 rounded-2xl shadow-xl shadow-black/50 dark:shadow-black/20">
+      <div className="bg-gradient-to-br from-purple-600/20 via-violet-700/20 to-indigo-800/20 dark:bg-purple-950/50 backdrop-blur-xl border border-stone-700/60 rounded-2xl shadow-xl shadow-black/50 dark:shadow-black/20">
           <div className="flex items-center justify-around p-1">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
