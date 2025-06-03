@@ -120,7 +120,7 @@ const AboutMe = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-28 px-4 md:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950/10 dark:to-slate-900/10"
+      className="py-4 md:py-8 lg:py-28 px-4 md:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950/10 dark:to-slate-900/10"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">

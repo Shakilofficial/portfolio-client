@@ -33,7 +33,7 @@ const ProjectsPage = () => {
   );
 
   return (
-    <div className="max-w-[1400px] w-full mx-auto py-28 px-4 md:px-6 lg:px-8 flex flex-col gap-12">
+    <div className="max-w-[1400px] w-full mx-auto py-8 md:py-12 lg:py-28 px-4 md:px-6 lg:px-8 flex flex-col gap-12">
       <div className="text-center mb-8">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
           <AuroraText>All Projects</AuroraText>

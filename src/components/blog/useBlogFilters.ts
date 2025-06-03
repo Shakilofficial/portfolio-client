@@ -1,10 +1,12 @@
+
 "use client";
 
 import type { TQueryParam } from "@/types/global";
 import { useCallback, useState } from "react";
 
-export const useBlogFilters = (initialLimit = 9) => {
+export const useBlogFilters = (initialLimit = 12) => {
   const [sortBy, setSortBy] = useState("");
+  const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [limit] = useState(initialLimit);
 
@@ -21,12 +23,18 @@ export const useBlogFilters = (initialLimit = 9) => {
       params.push({ name: "sortOrder", value: order });
     }
 
+    if (search.trim()) {
+      params.push({ name: "search", value: search.trim() });
+    }
+
     return params;
-  }, [currentPage, limit, sortBy]);
+  }, [currentPage, limit, sortBy, search]);
 
   return {
     sortBy,
     setSortBy,
+    search,
+    setSearch,
     currentPage,
     setCurrentPage,
     limit,

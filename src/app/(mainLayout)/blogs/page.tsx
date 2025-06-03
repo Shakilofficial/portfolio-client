@@ -1,4 +1,5 @@
 "use client";
+
 import BlogCard from "@/components/blog/BlogCard";
 import BlogFilter from "@/components/blog/BlogFilter";
 import { useBlogFilters } from "@/components/blog/useBlogFilters";
@@ -13,15 +14,21 @@ const BlogsPage = () => {
   const {
     sortBy,
     setSortBy,
+    search,
+    setSearch,
     currentPage,
     setCurrentPage,
     limit,
     getQueryParams,
   } = useBlogFilters();
 
-  const { isFetching, isLoading, isError, data, error } = useGetAllBlogsQuery(
-    getQueryParams()
-  );
+  const {
+    data,
+    isFetching,
+    isLoading,
+    isError,
+    error,
+  } = useGetAllBlogsQuery(getQueryParams());
 
   const BlogsSkeleton = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -30,10 +37,12 @@ const BlogsPage = () => {
       ))}
     </div>
   );
+ 
+  const hasBlogs = Boolean(data?.data?.length ?? 0);
 
   return (
-    <div className="max-w-[1400px] w-full mx-auto py-28 px-4 md:px-6 lg:px-8 flex flex-col gap-12">
-      {/* Background elements */}
+    <div className="max-w-[1400px] w-full mx-auto py-8 md:py-12 lg:py-28 px-4 md:px-6 lg:px-8 flex flex-col gap-12">
+      {/* Background pattern */}
       <div className="absolute inset-0 -z-10">
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -44,6 +53,8 @@ const BlogsPage = () => {
           }}
         />
       </div>
+
+      {/* Header */}
       <motion.div
         className="text-center mb-8"
         initial={{ opacity: 0, y: 20 }}
@@ -58,25 +69,39 @@ const BlogsPage = () => {
         </p>
       </motion.div>
 
-      <BlogFilter sortBy={sortBy} onSortChange={setSortBy} />
+      {/* Filter */}
+      <BlogFilter
+        sortBy={sortBy}
+        onSortChange={setSortBy}
+        search={search}
+        onSearchChange={setSearch}
+      />
 
+      {/* Content */}
       {isFetching || isLoading ? (
         <BlogsSkeleton />
       ) : isError || error ? (
         <Error message="Error loading blog posts" />
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {data?.data?.map((blog) => (
-              <BlogCard key={blog._id} blog={blog} />
-            ))}
-          </div>
-          {data?.data?.length === 0 && <Error message="No blog posts found" />}
-          <Pagination
-            currentPage={currentPage}
-            totalPages={data?.meta?.totalPage || 1}
-            onPageChange={setCurrentPage}
-          />
+          {hasBlogs ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+              {data?.data?.map((blog) => (
+                <BlogCard key={blog._id} blog={blog} />
+              ))}
+            </div>
+          ) : (
+            <Error message="No blog posts found" />
+          )}
+
+          {/* Pagination */}
+          {hasBlogs && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={data?.meta?.totalPage || 1}
+              onPageChange={setCurrentPage}
+            />
+          )}
         </>
       )}
     </div>
