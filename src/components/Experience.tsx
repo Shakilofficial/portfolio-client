@@ -72,9 +72,9 @@ const Experience = () => {
       {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Gradient orbs */}
-        <div className="absolute top-1/4 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-0 w-64 h-64 bg-purple-500/5 rounded-xl blur-3xl" />
+        <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-blue-500/5 rounded-xl blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-emerald-500/5 rounded-xl blur-3xl" />
 
         {/* Subtle grid pattern */}
         <div
@@ -107,7 +107,7 @@ const Experience = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
+          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
             <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
               My Journey
             </span>
@@ -157,7 +157,7 @@ const Experience = () => {
 
                     <div className="flex items-center gap-4">
                       <div
-                        className={`relative flex-shrink-0 w-10 h-10 rounded-full overflow-hidden flex items-center justify-center transition-all duration-300 ${
+                        className={`relative flex-shrink-0 w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center transition-all duration-300 ${
                           activeExperience === index
                             ? "ring-2 ring-purple-500 ring-offset-2 dark:ring-offset-slate-900 shadow-md shadow-purple-500/20"
                             : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group-hover:border-purple-200 dark:group-hover:border-purple-800/30"
@@ -238,7 +238,7 @@ const Experience = () => {
                           {experiences[activeExperience].position}
                         </h3>
                         <div className="flex items-center gap-2">
-                          <div className="relative w-7 h-7 rounded-full overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                          <div className="relative w-7 h-7 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
                             {experiences[activeExperience].companyLogo ? (
                               <Image
                                 src={
@@ -273,8 +273,8 @@ const Experience = () => {
                         {experiences[activeExperience].isCurrent && (
                           <Badge className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 hover:from-green-200 hover:to-emerald-200 dark:from-green-900/30 dark:to-emerald-900/30 dark:text-green-400 dark:hover:from-green-900/40 dark:hover:to-emerald-900/40 border-0 px-3 py-1">
                             <span className="relative flex h-2 w-2 mr-1.5">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                              <span className="animate-ping absolute inline-flex h-full w-full rounded-xl bg-green-400 opacity-75"></span>
+                              <span className="relative inline-flex rounded-xl h-2 w-2 bg-green-500"></span>
                             </span>
                             Current Position
                           </Badge>
@@ -284,7 +284,7 @@ const Experience = () => {
 
                     <div className="flex flex-wrap gap-4 mb-8 p-4 bg-slate-50/80 dark:bg-slate-800/40 rounded-xl border border-slate-100/80 dark:border-slate-800/80 backdrop-blur-sm">
                       <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                        <div className="flex items-center justify-center w-8 h-8 rounded-full bg-purple-100/80 dark:bg-purple-900/20">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-purple-100/80 dark:bg-purple-900/20">
                           <Calendar className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                         </div>
                         <span>
@@ -307,7 +307,7 @@ const Experience = () => {
                       </div>
                       {experiences[activeExperience].location && (
                         <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                          <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-100/80 dark:bg-blue-900/20">
+                          <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-blue-100/80 dark:bg-blue-900/20">
                             <MapPin className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                           </div>
                           <span>{experiences[activeExperience].location}</span>

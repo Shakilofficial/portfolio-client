@@ -88,7 +88,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative overflow-hidden py-28 lg:py-32">
+    <section className="relative overflow-hidden pb-28 lg:py-32">
       <Head>
         <link
           rel="preload"

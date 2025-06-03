@@ -139,7 +139,7 @@ const TechSkills = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Large gradient circles */}
         <div
-          className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full opacity-10 dark:opacity-[0.07] blur-3xl"
+          className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-xl opacity-10 dark:opacity-[0.07] blur-3xl"
           style={{
             background: `radial-gradient(circle at center, ${
               getCurrentCategoryStyle().color
@@ -147,7 +147,7 @@ const TechSkills = () => {
           }}
         />
         <div
-          className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full opacity-10 dark:opacity-[0.07] blur-3xl"
+          className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-xl opacity-10 dark:opacity-[0.07] blur-3xl"
           style={{
             background: `radial-gradient(circle at center, ${
               getCurrentCategoryStyle().color
@@ -157,7 +157,7 @@ const TechSkills = () => {
 
         {/* Medium gradient circles */}
         <div
-          className="absolute top-1/3 right-10 w-[300px] h-[300px] rounded-full opacity-10 dark:opacity-[0.05] blur-2xl"
+          className="absolute top-1/3 right-10 w-[300px] h-[300px] rounded-xl opacity-10 dark:opacity-[0.05] blur-2xl"
           style={{
             background: `radial-gradient(circle at center, ${
               getCurrentCategoryStyle().color
@@ -165,7 +165,7 @@ const TechSkills = () => {
           }}
         />
         <div
-          className="absolute bottom-1/4 left-20 w-[250px] h-[250px] rounded-full opacity-10 dark:opacity-[0.05] blur-2xl"
+          className="absolute bottom-1/4 left-20 w-[250px] h-[250px] rounded-xl opacity-10 dark:opacity-[0.05] blur-2xl"
           style={{
             background: `radial-gradient(circle at center, ${
               getCurrentCategoryStyle().color
@@ -181,7 +181,7 @@ const TechSkills = () => {
           return (
             <div
               key={category}
-              className="absolute w-[150px] h-[150px] rounded-full opacity-10 dark:opacity-[0.05] blur-xl"
+              className="absolute w-[150px] h-[150px] rounded-xl opacity-10 dark:opacity-[0.05] blur-xl"
               style={{
                 background: `radial-gradient(circle at center, ${categoryStyle.color} 0%, transparent 70%)`,
                 top: `${15 + index * 20}%`,
@@ -210,7 +210,7 @@ const TechSkills = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20">
+          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20">
             <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
               My Skills
             </span>
@@ -268,7 +268,7 @@ const TechSkills = () => {
           ) : (
             <div className="mb-10">
               <div className="flex justify-center">
-                <div className="inline-flex bg-background/50 backdrop-blur-sm border border-border/50 rounded-full shadow-xl p-1.5">
+                <div className="inline-flex bg-background/50 backdrop-blur-sm border border-border/50 rounded-xl shadow-xl p-1.5">
                   {orderedSkillCategories.map((category) => {
                     const categoryStyle =
                       categoryColors[
@@ -281,7 +281,7 @@ const TechSkills = () => {
                         key={category.category}
                         onClick={() => setActiveTab(category.category)}
                         className={`
-                          relative mx-1 rounded-full
+                          relative mx-1 rounded-xl
                           transition-all duration-300
                           flex items-center justify-center
                           text-sm font-medium
@@ -384,7 +384,7 @@ const TechSkills = () => {
                             borderColor: categoryStyle.color,
                           }}
                         >
-                          <div className="relative w-12 h-12 sm:w-16 sm:h-16 mb-3 sm:mb-4 p-2 rounded-full bg-background/90 flex items-center justify-center shadow-md">
+                          <div className="relative w-12 h-12 sm:w-16 sm:h-16 mb-3 sm:mb-4 p-2 rounded-xl bg-background/90 flex items-center justify-center shadow-md">
                             <Image
                               src={skill.icon || "/placeholder.svg"}
                               alt={skill.name}
@@ -393,7 +393,7 @@ const TechSkills = () => {
                               className="object-contain p-2.5"
                             />
                             <div
-                              className="absolute inset-0 rounded-full opacity-30"
+                              className="absolute inset-0 rounded-xl opacity-30"
                               style={{
                                 background: `radial-gradient(circle at center, ${categoryStyle.color} 0%, transparent 70%)`,
                               }}
@@ -427,7 +427,7 @@ const SkillsSkeleton = () => {
         </div>
 
         <div className="flex justify-center mb-10">
-          <Skeleton className="h-14 w-full max-w-3xl rounded-full" />
+          <Skeleton className="h-14 w-full max-w-3xl rounded-xl" />
         </div>
 
         <Skeleton className="h-[500px] w-full rounded-3xl" />

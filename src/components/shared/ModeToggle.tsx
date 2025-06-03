@@ -43,7 +43,7 @@ const ModeToggle = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="relative h-9 w-9 rounded-full bg-gradient-to-r from-purple-600/10 to-indigo-600/10 border border-purple-200/40 dark:border-purple-700/40 shadow-lg shadow-purple-500/10 dark:shadow-purple-500/20"
+        className="relative h-9 w-9 rounded-full bg-gradient-to-r from-purple-900/10 to-indigo-900/10 border border-purple-500/40 dark:border-purple-700/40 shadow-lg shadow-purple-500/10 dark:shadow-purple-500/20"
         onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
         aria-label="Toggle theme"
       >

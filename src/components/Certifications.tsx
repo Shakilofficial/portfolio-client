@@ -125,16 +125,16 @@ const Certifications = () => {
         />
 
         {/* Gradient orbs */}
-        <div className="absolute top-20 left-10 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 blur-[120px] opacity-60" />
-        <div className="absolute bottom-20 right-10 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-emerald-500/10 to-teal-500/10 blur-[100px] opacity-60" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 blur-[120px] opacity-40" />
+        <div className="absolute top-20 left-10 w-[500px] h-[500px] rounded-xl bg-gradient-to-r from-purple-500/10 to-blue-500/10 blur-[120px] opacity-60" />
+        <div className="absolute bottom-20 right-10 w-[400px] h-[400px] rounded-xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 blur-[100px] opacity-60" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-xl bg-gradient-to-r from-blue-500/5 to-indigo-500/5 blur-[120px] opacity-40" />
 
         {/* Animated particles */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
+              className="absolute rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
               style={{
                 width: Math.random() * 2 + 2 + "px",
                 height: Math.random() * 2 + 2 + "px",
@@ -167,7 +167,7 @@ const Certifications = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
+          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
             <span className="text-sm font-medium bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
               My Qualifications
             </span>
@@ -207,8 +207,8 @@ const Certifications = () => {
 
                     <div className="relative pl-16">
                       {/* Timeline dot with pulse effect */}
-                      <div className="absolute left-0 top-1 w-3 h-3 rounded-full bg-gradient-to-br from-purple-500 to-indigo-500 shadow-lg shadow-purple-500/20">
-                        <div className="absolute inset-0 rounded-full bg-purple-500 animate-ping opacity-75"></div>
+                      <div className="absolute left-0 top-1 w-3 h-3 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-500 shadow-lg shadow-purple-500/20">
+                        <div className="absolute inset-0 rounded-xl bg-purple-500 animate-ping opacity-75"></div>
                       </div>
 
                       <div className="bg-white dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group">
@@ -249,7 +249,7 @@ const Certifications = () => {
                             {edu.achievements.map((achievement, i) => (
                               <div
                                 key={i}
-                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-700 dark:text-green-300 text-sm"
+                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-700 dark:text-green-300 text-sm"
                               >
                                 <Trophy className="w-3.5 h-3.5" />
                                 {achievement}

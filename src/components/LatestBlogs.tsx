@@ -130,8 +130,8 @@ const LatestBlogs = () => {
       </div>
 
       {/* Gradient overlays */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-10 dark:opacity-[0.07] blur-3xl bg-gradient-to-br from-blue-500 to-indigo-500" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full opacity-10 dark:opacity-[0.07] blur-3xl bg-gradient-to-br from-purple-500 to-pink-500" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-xl opacity-10 dark:opacity-[0.07] blur-3xl bg-gradient-to-br from-blue-500 to-indigo-500" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-xl opacity-10 dark:opacity-[0.07] blur-3xl bg-gradient-to-br from-purple-500 to-pink-500" />
 
       {/* Dotted pattern overlay */}
       <div
@@ -150,7 +150,7 @@ const LatestBlogs = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20">
+          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20">
             <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
               My Blogs
             </span>

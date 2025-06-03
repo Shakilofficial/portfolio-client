@@ -120,13 +120,13 @@ const AboutMe = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-4 md:py-8 lg:py-28 px-4 md:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950/10 dark:to-slate-900/10"
+      className="py-8 md:py-12 lg:py-28 px-4 md:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950/10 dark:to-slate-900/10"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Gradient orbs */}
-        <div className="absolute top-20 left-10 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-purple-500/5 to-blue-500/5 blur-[120px] opacity-60" />
-        <div className="absolute bottom-20 right-10 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-emerald-500/5 to-teal-500/5 blur-[100px] opacity-60" />
+        <div className="absolute top-20 left-10 w-[500px] h-[500px] rounded-xl bg-gradient-to-r from-purple-500/5 to-blue-500/5 blur-[120px] opacity-60" />
+        <div className="absolute bottom-20 right-10 w-[400px] h-[400px] rounded-xl bg-gradient-to-r from-emerald-500/5 to-teal-500/5 blur-[100px] opacity-60" />
 
         {/* Geometric pattern overlay */}
         <div
@@ -151,7 +151,7 @@ const AboutMe = () => {
           {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
+              className="absolute rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
               style={{
                 width: Math.random() * 6 + 2 + "px",
                 height: Math.random() * 6 + 2 + "px",
@@ -222,7 +222,7 @@ const AboutMe = () => {
                 {/* Profile info */}
                 <div className="p-6 relative">
                   <div className="absolute -top-16 inset-x-0 flex justify-center">
-                    <div className="bg-white dark:bg-slate-900 px-6 py-2 rounded-full border border-slate-200 dark:border-slate-800 shadow-lg">
+                    <div className="bg-white dark:bg-slate-900 px-6 py-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-lg">
                       <Badge className="bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 hover:from-purple-200 hover:to-blue-200 dark:from-purple-900/30 dark:to-blue-900/30 dark:text-purple-300 border-0 px-3 py-1">
                         Available for Projects
                       </Badge>
@@ -238,31 +238,31 @@ const AboutMe = () => {
 
                   <div className="space-y-3 mt-6">
                     <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800">
                         <MapPin className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                       </div>
                       <span>{personalInfo.location}</span>
                     </div>
                     <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800">
                         <Mail className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                       </div>
                       <span>{personalInfo.email}</span>
                     </div>
                     <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800">
                         <Github className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                       </div>
                       <span>{personalInfo.github}</span>
                     </div>
                     <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800">
                         <Linkedin className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                       </div>
                       <span>{personalInfo.linkedin}</span>
                     </div>
                     <div className="flex items-center gap-3 text-slate-600 dark:text-slate-300">
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800">
                         <Globe className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                       </div>
                       <span>{personalInfo.website}</span>
@@ -294,7 +294,7 @@ const AboutMe = () => {
                       key={index}
                       className="flex items-center gap-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-800"
                     >
-                      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white dark:bg-slate-700 shadow-sm">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-white dark:bg-slate-700 shadow-sm">
                         <interest.icon className="w-4 h-4 text-purple-500 dark:text-purple-400" />
                       </div>
                       <span className="text-slate-700 dark:text-slate-300 font-medium">
@@ -438,8 +438,8 @@ const AboutMe = () => {
                 {education.map((edu, index) => (
                   <div key={index} className="relative pl-12">
                     {/* Timeline dot */}
-                    <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-white" />
+                    <div className="absolute left-0 top-1 w-6 h-6 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+                      <div className="w-2 h-2 rounded-xl bg-white" />
                     </div>
 
                     {/* Timeline line */}

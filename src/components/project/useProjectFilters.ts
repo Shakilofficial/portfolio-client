@@ -3,7 +3,7 @@
 import type { TQueryParam } from "@/types/global";
 import { useCallback, useState } from "react";
 
-const useProjectFilters = (initialLimit = 9) => {
+const useProjectFilters = (initialLimit = 8) => {
   const [category, setCategory] = useState("all");
   const [sortBy, setSortBy] = useState("");
   const [currentPage, setCurrentPage] = useState(1);

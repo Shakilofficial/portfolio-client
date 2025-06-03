@@ -158,16 +158,16 @@ const MyService = () => {
         />
 
         {/* Gradient orbs */}
-        <div className="absolute top-20 left-10 w-[500px] h-[500px] rounded-full bg-gradient-to-r from-purple-500/5 to-blue-500/5 blur-[120px] opacity-60" />
-        <div className="absolute bottom-20 right-10 w-[400px] h-[400px] rounded-full bg-gradient-to-r from-emerald-500/5 to-teal-500/5 blur-[100px] opacity-60" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-r from-blue-500/5 to-indigo-500/5 blur-[120px] opacity-40" />
+        <div className="absolute top-20 left-10 w-[500px] h-[500px] rounded-xl bg-gradient-to-r from-purple-500/5 to-blue-500/5 blur-[120px] opacity-60" />
+        <div className="absolute bottom-20 right-10 w-[400px] h-[400px] rounded-xl bg-gradient-to-r from-emerald-500/5 to-teal-500/5 blur-[100px] opacity-60" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-xl bg-gradient-to-r from-blue-500/5 to-indigo-500/5 blur-[120px] opacity-40" />
 
         {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden">
           {[...Array(15)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute rounded-full bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
+              className="absolute rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
               style={{
                 width: Math.random() * 6 + 2 + "px",
                 height: Math.random() * 6 + 2 + "px",
@@ -240,7 +240,7 @@ const MyService = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-full border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
+          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
             <span className="text-sm font-medium bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
               What I Do
             </span>
@@ -355,7 +355,7 @@ const MyService = () => {
                         {service.skills.map((skill, i) => (
                           <motion.span
                             key={i}
-                            className={`text-xs px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group-hover:bg-${service.highlightColor}-50 group-hover:border-${service.highlightColor}-200 dark:group-hover:bg-${service.highlightColor}-900/20 dark:group-hover:border-${service.highlightColor}-800/30 transition-colors duration-300`}
+                            className={`text-xs px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group-hover:bg-${service.highlightColor}-50 group-hover:border-${service.highlightColor}-200 dark:group-hover:bg-${service.highlightColor}-900/20 dark:group-hover:border-${service.highlightColor}-800/30 transition-colors duration-300`}
                             whileHover={{ y: -2 }}
                             transition={{
                               type: "spring",
