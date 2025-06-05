@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
@@ -21,7 +22,7 @@ const NavItems = ({ items }: NavItemsProps) => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-2">
       {items.map((item) => {
         const isActive = pathname === item.href;
         const isHovered = hoveredItem === item.href;
@@ -32,32 +33,49 @@ const NavItems = ({ items }: NavItemsProps) => {
             className="relative"
             onMouseEnter={() => setHoveredItem(item.href)}
             onMouseLeave={() => setHoveredItem(null)}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <Link
               href={item.href}
-              className={`relative px-4 py-2.5 font-medium transition-all duration-200 rounded-xl text-base ${
+              className={cn(
+                "relative px-3 py-1.5 font-medium transition-all duration-300 rounded-xl text-sm uppercase tracking-wide",
+                "flex items-center gap-2",
                 isActive
-                  ? "text-purple-600 dark:text-purple-400"
-                  : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-              }`}
+                  ? "text-white shadow-lg"
+                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+              )}
             >
-              {item.label}
+              <item.icon className="w-4 h-4" />
+              <span>{item.label}</span>
 
+              {/* Active state background */}
               {isActive && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-950/50 dark:to-indigo-950/50 border border-purple-200/50 dark:border-purple-800/50 rounded-xl -z-10"
+                  className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600  via-violet-600 rounded-xl -z-10 shadow-lg shadow-purple-500/25"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
 
+              {/* Hover state background */}
               {isHovered && !isActive && (
                 <motion.div
-                  className="absolute inset-0 bg-gray-300/30 dark:bg-purple-950/20 rounded-xl -z-10"
+                  className="absolute inset-0 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm rounded-xl -z-10 border border-purple-200/30 dark:border-purple-700/30"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                />
+              )}
+
+              {/* Subtle glow effect for active item */}
+              {isActive && (
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-purple-600 via-fuchsia-600 to-pink-600 rounded-xl -z-20 blur-lg opacity-30"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.15 }}
+                  animate={{ opacity: 0.3 }}
+                  transition={{ duration: 0.3 }}
                 />
               )}
             </Link>

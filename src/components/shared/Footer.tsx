@@ -278,31 +278,27 @@ const Footer = () => {
                   </span>
                 </motion.div>
 
-                <form onSubmit={handleSubmit} className="mt-6 space-y-3">
-                  <div className="w-full max-w-md mx-auto">
-                    <form onSubmit={handleSubmit}>
-                      <div className="relative flex items-center">
-                        <Input
-                          type="email"
-                          placeholder="Enter your email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          required
-                          className="w-full pr-12 py-2 rounded-md border border-slate-300 dark:border-stone-700 focus:border-purple-500 dark:focus:border-purple-500 bg-white dark:bg-purple-950/5 placeholder:text-sm placeholder:text-slate-400"
-                        />
-                        <Button
-                          type="submit"
-                          size="icon"
-                          className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8 rounded-md p-0 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md"
-                        >
-                          {isSubmitted ? (
-                            <CheckCircle2 className="h-4 w-4" />
-                          ) : (
-                            <ArrowRight className="h-4 w-4" />
-                          )}
-                        </Button>
-                      </div>
-                    </form>
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  <div className="relative">
+                    <Input
+                      type="email"
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="w-full pr-12 py-3 rounded-xl border-0 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm focus:bg-white dark:focus:bg-slate-800 transition-all duration-300 placeholder:text-slate-400"
+                    />
+                    <Button
+                      type="submit"
+                      size="icon"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 h-8 w-8 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg border-0"
+                    >
+                      {isSubmitted ? (
+                        <CheckCircle2 className="h-4 w-4" />
+                      ) : (
+                        <ArrowRight className="h-4 w-4" />
+                      )}
+                    </Button>
                   </div>
 
                   {isSubmitted && (
