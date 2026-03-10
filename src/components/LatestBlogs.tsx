@@ -25,7 +25,7 @@ const LatestBlogs = () => {
     { name: "isPublished", value: true },
     { name: "sortBy", value: "createdAt" },
     { name: "sortOrder", value: "desc" },
-    { name: "limit", value: 4 },
+    { name: "limit", value: 3 },
   ];
 
   const { isFetching, isLoading, isError, data, error } =
@@ -164,7 +164,7 @@ const LatestBlogs = () => {
             Exploring new technologies, sharing development tips, and documenting my architectural journeys.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {data?.data?.length > 0 ? (
             data?.data?.map((blog) => <BlogCard key={blog?._id} blog={blog} />)
           ) : (
