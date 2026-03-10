@@ -107,17 +107,16 @@ const Experience = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
-            <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
+          <div className="inline-flex items-center justify-center mb-6 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-sm">
+            <span className="text-xs font-bold font-heading uppercase tracking-[0.3em] text-purple-600 dark:text-purple-400">
               My Journey
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-tight">
             <AuroraText>Professional Experience</AuroraText>
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
-            My journey through various roles and organizations that have shaped
-            my professional career
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+            Tracing my professional evolution through high-impact roles and technical leadership.
           </p>
         </motion.div>
 
@@ -137,31 +136,28 @@ const Experience = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
                     onClick={() => setActiveExperience(index)}
-                    className={`relative p-4 rounded-2xl cursor-pointer transition-all duration-300 group ${
-                      activeExperience === index
-                        ? "bg-white dark:bg-slate-900/90 shadow-lg border border-purple-200/50 dark:border-purple-800/30 backdrop-blur-sm"
-                        : "bg-slate-50/80 dark:bg-slate-900/50 hover:bg-white/90 dark:hover:bg-slate-900/70 border border-transparent hover:border-slate-200/50 dark:hover:border-slate-800/30 hover:shadow-md backdrop-blur-sm"
-                    }`}
+                    className={`relative p-4 rounded-2xl cursor-pointer transition-all duration-300 group ${activeExperience === index
+                      ? "bg-white dark:bg-slate-900/90 shadow-lg border border-purple-200/50 dark:border-purple-800/30 backdrop-blur-sm"
+                      : "bg-slate-50/80 dark:bg-slate-900/50 hover:bg-white/90 dark:hover:bg-slate-900/70 border border-transparent hover:border-slate-200/50 dark:hover:border-slate-800/30 hover:shadow-md backdrop-blur-sm"
+                      }`}
                   >
                     {/* Vertical timeline connector */}
                     {index !== experiences.length - 1 && (
                       <div
-                        className={`absolute left-[25px] top-[52px] bottom-[-20px] w-0.5 ${
-                          activeExperience === index ||
+                        className={`absolute left-[25px] top-[52px] bottom-[-20px] w-0.5 ${activeExperience === index ||
                           activeExperience === index + 1
-                            ? "bg-gradient-to-b from-purple-500 to-indigo-500"
-                            : "bg-slate-300 dark:bg-slate-700"
-                        }`}
+                          ? "bg-gradient-to-b from-purple-500 to-indigo-500"
+                          : "bg-slate-300 dark:bg-slate-700"
+                          }`}
                       />
                     )}
 
                     <div className="flex items-center gap-4">
                       <div
-                        className={`relative flex-shrink-0 w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center transition-all duration-300 ${
-                          activeExperience === index
-                            ? "ring-2 ring-purple-500 ring-offset-2 dark:ring-offset-slate-900 shadow-md shadow-purple-500/20"
-                            : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group-hover:border-purple-200 dark:group-hover:border-purple-800/30"
-                        }`}
+                        className={`relative flex-shrink-0 w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center transition-all duration-300 ${activeExperience === index
+                          ? "ring-2 ring-purple-500 ring-offset-2 dark:ring-offset-slate-900 shadow-md shadow-purple-500/20"
+                          : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group-hover:border-purple-200 dark:group-hover:border-purple-800/30"
+                          }`}
                       >
                         {exp.companyLogo ? (
                           <Image
@@ -173,40 +169,36 @@ const Experience = () => {
                           />
                         ) : (
                           <Briefcase
-                            className={`w-5 h-5 ${
-                              activeExperience === index
-                                ? "text-purple-500 dark:text-purple-400"
-                                : "text-slate-500 dark:text-slate-400 group-hover:text-purple-500 dark:group-hover:text-purple-400"
-                            } transition-colors duration-300`}
+                            className={`w-5 h-5 ${activeExperience === index
+                              ? "text-purple-500 dark:text-purple-400"
+                              : "text-slate-500 dark:text-slate-400 group-hover:text-purple-500 dark:group-hover:text-purple-400"
+                              } transition-colors duration-300`}
                           />
                         )}
                       </div>
                       <div className="flex-grow">
                         <h3
-                          className={`font-medium text-sm sm:text-base line-clamp-1 transition-colors duration-300 ${
-                            activeExperience === index
-                              ? "text-slate-900 dark:text-slate-100"
-                              : "text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100"
-                          }`}
+                          className={`font-medium text-sm sm:text-base line-clamp-1 transition-colors duration-300 ${activeExperience === index
+                            ? "text-slate-900 dark:text-slate-100"
+                            : "text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-100"
+                            }`}
                         >
                           {exp.company}
                         </h3>
                         <p
-                          className={`text-xs line-clamp-1 transition-colors duration-300 ${
-                            activeExperience === index
-                              ? "text-purple-600 dark:text-purple-400"
-                              : "text-slate-500 dark:text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"
-                          }`}
+                          className={`text-xs line-clamp-1 transition-colors duration-300 ${activeExperience === index
+                            ? "text-purple-600 dark:text-purple-400"
+                            : "text-slate-500 dark:text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400"
+                            }`}
                         >
                           {exp.position}
                         </p>
                       </div>
                       <ChevronRight
-                        className={`w-5 h-5 transition-all duration-300 ${
-                          activeExperience === index
-                            ? "text-purple-500 dark:text-purple-400 opacity-100"
-                            : "text-slate-400 dark:text-slate-600 opacity-0 group-hover:opacity-50 -translate-x-2 group-hover:translate-x-0"
-                        }`}
+                        className={`w-5 h-5 transition-all duration-300 ${activeExperience === index
+                          ? "text-purple-500 dark:text-purple-400 opacity-100"
+                          : "text-slate-400 dark:text-slate-600 opacity-0 group-hover:opacity-50 -translate-x-2 group-hover:translate-x-0"
+                          }`}
                       />
                     </div>
                   </motion.div>
@@ -297,11 +289,11 @@ const Experience = () => {
                           -{" "}
                           {experiences[activeExperience].endDate
                             ? new Date(
-                                experiences[activeExperience].endDate
-                              ).toLocaleDateString("en-US", {
-                                month: "short",
-                                year: "numeric",
-                              })
+                              experiences[activeExperience].endDate
+                            ).toLocaleDateString("en-US", {
+                              month: "short",
+                              year: "numeric",
+                            })
                             : "Present"}
                         </span>
                       </div>
@@ -332,7 +324,7 @@ const Experience = () => {
 
                       {experiences[activeExperience].responsibilities &&
                         experiences[activeExperience].responsibilities.length >
-                          0 && (
+                        0 && (
                           <div className="rounded-xl p-6 bg-gradient-to-br from-blue-50/50 to-slate-50/50 dark:from-blue-900/10 dark:to-slate-900/10 border border-blue-100/50 dark:border-blue-800/20">
                             <h4 className="text-lg font-semibold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
                               <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center shadow-sm">
@@ -370,7 +362,7 @@ const Experience = () => {
 
                       {experiences[activeExperience].technologies &&
                         experiences[activeExperience].technologies.length >
-                          0 && (
+                        0 && (
                           <div className="rounded-xl p-6 bg-gradient-to-br from-emerald-50/50 to-slate-50/50 dark:from-emerald-900/10 dark:to-slate-900/10 border border-emerald-100/50 dark:border-emerald-800/20">
                             <h4 className="text-lg font-semibold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
                               <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center shadow-sm">

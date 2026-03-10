@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Badge } from "@/components/ui/badge";
@@ -27,11 +29,26 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaFootball } from "react-icons/fa6";
+import BookingSection from "../BookingSection";
 import { AuroraText } from "../magicui/aurora-text";
 
 const AboutMe = () => {
+  const [particles, setParticles] = useState<any[]>([]);
+  useEffect(() => {
+    setParticles(
+      [...Array(15)].map((_, i) => ({
+        width: Math.random() * 6 + 2,
+        height: Math.random() * 6 + 2,
+        top: Math.random() * 100,
+        left: Math.random() * 100,
+        yDest: Math.random() * -100 - 50,
+        duration: Math.random() * 10 + 10,
+      }))
+    );
+  }, []);
+
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -53,9 +70,9 @@ const AboutMe = () => {
     github: "Shakilofficial",
     linkedin: "md-shakilhossain",
     website: "https://shakil-tawny.vercel.app",
-    bio: "I'm a passionate full-stack developer with over 5 years of experience building modern web applications. I specialize in React, Next.js, Node.js, and MongoDB, creating seamless user experiences with clean, efficient code. My journey in tech began with a curiosity about how websites work, which led me to pursue a degree in Computer Science and Engineering.",
+    bio: "I'm a dedicated full-stack developer with over 2 years of professional experience building modern, scalable web applications. I specialize in the MERN stack (MongoDB, Express, React, Node.js) and Next.js, focusing on creating high-performance digital solutions with meticulous attention to detail and user experience.",
     longBio:
-      "Beyond coding, I'm deeply interested in UI/UX design principles and believe that great software should not only function flawlessly but also delight users with intuitive interfaces. I'm constantly learning new technologies and techniques to stay at the forefront of web development. When I'm not coding, you'll find me exploring new hiking trails, experimenting with photography, or contributing to open-source projects.",
+      "My approach to development is rooted in writing clean, maintainable code and implementing robust architectures. I've successfully delivered over 25 projects, ranging from complex SaaS platforms to intuitive e-commerce systems. I am deeply committed to continuous learning, constantly exploring emerging technologies like AI integration and cloud-native solutions to provide cutting-edge results for my clients.",
   };
 
   // Skills data
@@ -87,8 +104,8 @@ const AboutMe = () => {
       color: "from-emerald-500 to-teal-500",
     },
     {
-      category: "Tools & Others",
-      items: ["Git", "Docker", "AWS", "Firebase", "Vercel", "Figma", "CI/CD"],
+      category: "Tools & DevOps",
+      items: ["Docker", "AWS", "CI/CD", "Git", "Vercel", "System Design", "Architecture"],
       icon: Briefcase,
       color: "from-purple-500 to-indigo-500",
     },
@@ -148,22 +165,22 @@ const AboutMe = () => {
 
         {/* Animated particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
+          {particles.map((particle, i) => (
             <motion.div
               key={i}
               className="absolute rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
               style={{
-                width: Math.random() * 6 + 2 + "px",
-                height: Math.random() * 6 + 2 + "px",
-                top: Math.random() * 100 + "%",
-                left: Math.random() * 100 + "%",
+                width: particle.width + "px",
+                height: particle.height + "px",
+                top: particle.top + "%",
+                left: particle.left + "%",
               }}
               animate={{
-                y: [0, Math.random() * -100 - 50],
+                y: [0, particle.yDest],
                 opacity: [0.2, 0],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: particle.duration,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "linear",
               }}
@@ -180,12 +197,16 @@ const AboutMe = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            <AuroraText>About Me</AuroraText>
+          <div className="inline-flex items-center justify-center mb-6 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-sm">
+            <span className="text-xs font-bold font-heading uppercase tracking-[0.3em] text-purple-600 dark:text-purple-400">
+              Personal Narrative
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-tight">
+            <AuroraText>The Person Behind The Code</AuroraText>
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
-            A passionate developer dedicated to crafting beautiful, functional
-            web experiences
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+            A deep dive into my professional journey, philosophical approach to development, and personal interests.
           </p>
         </motion.div>
 
@@ -399,13 +420,12 @@ const AboutMe = () => {
                           }}
                         >
                           <Badge
-                            className={`bg-gradient-to-r ${
-                              index === 0
-                                ? "from-blue-50 to-cyan-50 text-blue-700 hover:from-blue-100 hover:to-cyan-100"
-                                : index === 1
+                            className={`bg-gradient-to-r ${index === 0
+                              ? "from-blue-50 to-cyan-50 text-blue-700 hover:from-blue-100 hover:to-cyan-100"
+                              : index === 1
                                 ? "from-emerald-50 to-teal-50 text-emerald-700 hover:from-emerald-100 hover:to-teal-100"
                                 : "from-purple-50 to-indigo-50 text-purple-700 hover:from-purple-100 hover:to-indigo-100"
-                            } dark:from-slate-800 dark:to-slate-800 dark:text-slate-300 dark:hover:from-slate-700 dark:hover:to-slate-700 border-0 px-3 py-1.5 text-sm font-medium`}
+                              } dark:from-slate-800 dark:to-slate-800 dark:text-slate-300 dark:hover:from-slate-700 dark:hover:to-slate-700 border-0 px-3 py-1.5 text-sm font-medium`}
                           >
                             {skill}
                           </Badge>
@@ -478,6 +498,8 @@ const AboutMe = () => {
           </div>
         </motion.div>
       </div>
+
+      <BookingSection />
     </section>
   );
 };

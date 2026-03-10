@@ -23,6 +23,9 @@ const config = {
     extend: {
       fontFamily: {
         "big-shoulders": ['"Big Shoulders Text"', "sans-serif"],
+        serif: ["var(--font-dm-serif)", "sans-serif"],
+        heading: ["var(--font-space-grotesk)", "sans-serif"],
+        body: ["var(--font-manrope)", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

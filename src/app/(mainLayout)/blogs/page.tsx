@@ -31,13 +31,13 @@ const BlogsPage = () => {
   } = useGetAllBlogsQuery(getQueryParams());
 
   const BlogsSkeleton = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
       {[...Array(limit)].map((_, index) => (
         <Skeleton key={index} className="h-[400px] w-full" />
       ))}
     </div>
   );
- 
+
   const hasBlogs = Boolean(data?.data?.length ?? 0);
 
   return (
@@ -61,7 +61,7 @@ const BlogsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+        <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-wider">
           <AuroraText>All Blogs</AuroraText>
         </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -85,7 +85,7 @@ const BlogsPage = () => {
       ) : (
         <>
           {hasBlogs ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {data?.data?.map((blog) => (
                 <BlogCard key={blog._id} blog={blog} />
               ))}

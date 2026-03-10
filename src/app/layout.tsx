@@ -1,24 +1,29 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Providers from "@/lib/providers";
 
 import type { Metadata } from "next";
-import { Big_Shoulders_Text, Share_Tech_Mono } from "next/font/google";
+import { DM_Serif_Display, Manrope, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-const bigshoulders = Big_Shoulders_Text({
+const dmSerifDisplay = DM_Serif_Display({
   weight: "400",
   subsets: ["latin"],
+  variable: "--font-dm-serif",
 });
 
-const share_tech = Share_Tech_Mono({
-  weight: "400",
+const manrope = Manrope({
   subsets: ["latin"],
+  variable: "--font-manrope",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
 });
 
 export const metadata: Metadata = {
   title: "Shakil's Portfolio",
   description:
-    "Md Shakil Hossain is a software engineer and a full stack developer. He is passionate about building scalable and high-performance web applications. He has a strong background  development and has experience in building full-stack applications using various technologies.",
+    "Md Shakil Hossain is a software engineer and a full stack developer. He is passionate about building scalable and high-performance web applications. He has a strong background development and has experience in building full-stack applications using various technologies.",
 };
 
 export default function RootLayout({
@@ -27,8 +32,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={share_tech.className}>
+    <html lang="en" suppressHydrationWarning className={`${dmSerifDisplay.variable} ${manrope.variable} ${spaceGrotesk.variable}`}>
+      <body className={`${manrope.className} antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -1,5 +1,6 @@
 "use client";
 
+import BookingSection from "@/components/BookingSection";
 import DetailsSkeleton from "@/components/feedback/DetailsSkeleton";
 import Error from "@/components/feedback/Error";
 import { AuroraText } from "@/components/magicui/aurora-text";
@@ -246,6 +247,7 @@ const BlogDetailsPage = () => {
           </Button>
         </motion.div>
       </div>
+      <BookingSection />
     </div>
   );
 };

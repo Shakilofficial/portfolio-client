@@ -20,6 +20,7 @@ import {
   Code,
   Mail,
   MapPin,
+  MessageCircle,
   PenTool,
   Phone,
   Server,
@@ -87,16 +88,28 @@ const Footer = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-24 right-3 lg:bottom-6 lg:right-6 z-50"
+            className="fixed bottom-24 right-3 lg:bottom-6 lg:right-6 z-50 flex flex-col gap-3"
           >
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              href="https://wa.me/8801620521215"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-green-500 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle className="h-4 w-4 lg:h-5 lg:w-5" />
+            </motion.a>
+
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={scrollToTop}
-              className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              className="flex items-center justify-center w-8 h-8 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg hover:shadow-xl transition-all duration-300"
               aria-label="Scroll to top"
             >
-              <ArrowUp className="h-4 w-4" />
+              <ArrowUp className="h-4 w-4 lg:h-5 lg:w-5" />
             </motion.button>
           </motion.div>
         )}

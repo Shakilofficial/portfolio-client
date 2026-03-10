@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import BookingSection from "@/components/BookingSection";
 import DetailsSkeleton from "@/components/feedback/DetailsSkeleton";
 import Error from "@/components/feedback/Error";
 import { AuroraText } from "@/components/magicui/aurora-text";
@@ -162,7 +163,7 @@ const ProjectDetailsPage = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-12"
         >
-          <Card className="overflow-hidden border border-white/10 backdrop-blur-sm shadow-xl rounded-xl group">
+          <Card className="overflow-hidden border border-white/10 shadow-sm rounded-xl">
             <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden">
               <Image
                 src={
@@ -171,7 +172,7 @@ const ProjectDetailsPage = () => {
                 }
                 alt={project?.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                className="object-contain transition-transform duration-700 group-hover:scale-105"
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1400px"
               />
@@ -318,6 +319,36 @@ const ProjectDetailsPage = () => {
           )}
         </motion.div>
       </div>
+      {/* Related posts or share section could go here */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="flex justify-center mb-10"
+      >
+        <Button
+          asChild
+          className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white border-none shadow-md hover:shadow-lg transition-all duration-300"
+        >
+          <Link href="/projects" className="flex items-center gap-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+            Back to all projects
+          </Link>
+        </Button>
+      </motion.div>
+      <BookingSection />
     </div>
   );
 };

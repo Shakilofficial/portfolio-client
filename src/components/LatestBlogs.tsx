@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useGetAllBlogsQuery } from "@/redux/features/blog/blogApi";
 import type { TQueryParam } from "@/types/global";
@@ -12,7 +13,7 @@ import {
   Quote,
 } from "lucide-react";
 import Link from "next/link";
-
+import { useEffect, useState } from "react";
 import BlogCard from "./blog/BlogCard";
 import Error from "./feedback/Error";
 import GridSkeleton from "./feedback/GridSkeleton";
@@ -30,6 +31,23 @@ const LatestBlogs = () => {
   const { isFetching, isLoading, isError, data, error } =
     useGetAllBlogsQuery(queryParams);
 
+  const [elements, setElements] = useState<any[]>([]);
+
+  useEffect(() => {
+    const generateRandomElements = (count: number) => {
+      return Array.from({ length: count }).map((_, index) => ({
+        id: index,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 20 + 15,
+        rotation: Math.random() * 30 - 15,
+        type: index % 6, // 0: message, 1: quote, 2: book, 3: file, 4: hash, 5: message-square
+        opacity: Math.random() * 0.15 + 0.05,
+      }));
+    };
+    setElements(generateRandomElements(12));
+  }, []);
+
   if (isFetching || isLoading) {
     return <GridSkeleton />;
   }
@@ -37,21 +55,6 @@ const LatestBlogs = () => {
   if (isError || error || !data?.data) {
     return <Error message="No blogs found" />;
   }
-
-  // Generate random positions for speech bubbles and text elements
-  const generateRandomElements = (count: number) => {
-    return Array.from({ length: count }).map((_, index) => ({
-      id: index,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 20 + 15,
-      rotation: Math.random() * 30 - 15,
-      type: index % 6, // 0: message, 1: quote, 2: book, 3: file, 4: hash, 5: message-square
-      opacity: Math.random() * 0.15 + 0.05,
-    }));
-  };
-
-  const elements = generateRandomElements(12);
 
   // Generate random text snippets for the background
   const textSnippets = [
@@ -94,7 +97,7 @@ const LatestBlogs = () => {
         {elements.map((element) => (
           <div
             key={element.id}
-            className="absolute transform transition-transform duration-[15000ms] ease-in-out"
+            className="absolute transform transition-transform [transition-duration:15000ms] ease-in-out"
             style={{
               left: `${element.x}%`,
               top: `${element.y}%`,
@@ -102,9 +105,8 @@ const LatestBlogs = () => {
               transform: `rotate(${element.rotation}deg)`,
               width: `${element.size}px`,
               height: `${element.size}px`,
-              animation: `float-blog-${element.id % 3} ${
-                15 + (element.id % 10)
-              }s infinite ease-in-out`,
+              animation: `float-blog-${element.id % 3} ${15 + (element.id % 10)
+                }s infinite ease-in-out`,
             }}
           >
             {element.type === 0 && (
@@ -145,22 +147,21 @@ const LatestBlogs = () => {
 
       <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12 relative z-10">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20">
-            <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
-              My Blogs
+          <div className="inline-flex items-center justify-center mb-6 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-sm">
+            <span className="text-xs font-bold font-heading uppercase tracking-[0.3em] text-purple-600 dark:text-purple-400">
+              Latest Insights
             </span>
           </div>
-          <h2 className="text-3xl font-bold mb-3">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-tight">
             <AuroraText>Latest Blog Posts</AuroraText>
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Read my latest blog posts and stay up to date with my latest
-            projects.
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+            Exploring new technologies, sharing development tips, and documenting my architectural journeys.
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">

@@ -27,8 +27,7 @@ const NAV_ITEMS = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
-  const driveLink =
-    "https://drive.google.com/file/d/1HYhZ7ApwPkrFpDJM1TvigWJarxeqsRdn/view?usp=sharing";
+  const calendlyLink = "https://calendly.com/mrshakilhossain/meeting";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,11 +41,10 @@ const Navbar = () => {
     <>
       {/* Desktop/Tablet Navbar */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "py-3 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-purple-200/30 dark:border-purple-800/30 shadow-sm"
-            : "py-5 bg-transparent"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+          ? "py-3 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl border-b border-purple-200/30 dark:border-purple-800/30 shadow-sm"
+          : "py-5 bg-transparent"
+          }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
@@ -69,7 +67,7 @@ const Navbar = () => {
               {/* CTA Button */}
               <div>
                 <motion.a
-                  href={driveLink}
+                  href={calendlyLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex justify-center relative overflow-hidden px-4 py-2 text-sm font-semibold uppercase text-white bg-gradient-to-r from-purple-600/90 to-indigo-600/90 rounded-xl hover:from-purple-500 hover:to-indigo-500 transition-all duration-300 shadow-lg hover:shadow-xl shadow-purple-500/25 hover:shadow-purple-500/35"

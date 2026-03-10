@@ -1,35 +1,27 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
-  Database,
+  Cloud,
   Layers,
-  LayoutDashboard,
   Palette,
   Server,
-  Zap,
+  ShieldCheck,
+  Zap
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AuroraText } from "./magicui/aurora-text";
 
 const services = [
   {
     title: "Full-Stack Development",
     description:
-      "End-to-end web development using modern JavaScript/TypeScript, combining scalable backend with interactive frontend.",
+      "Developing end-to-end, high-performance web applications with seamless integration between scalable backends and modern, interactive frontends.",
     icon: Layers,
-    skills: [
-      "React.js",
-      "Next.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "TypeScript",
-      "JWT",
-      "Zod",
-      "Next Auth",
-    ],
+    skills: ["Next.js", "React.js", "Node.js", "Express.js", "MongoDB", "TypeScript", "Redux", "Tailwind CSS"],
     color: "from-fuchsia-500 to-pink-600",
     darkColor: "from-fuchsia-600 to-pink-800",
     pattern: "circuit",
@@ -37,22 +29,11 @@ const services = [
     highlightColor: "fuchsia",
   },
   {
-    title: "Frontend Development",
+    title: "Frontend Engineering",
     description:
-      "Responsive and interactive UI with reusable components, animation, and modern design systems.",
+      "Crafting pixel-perfect, responsive user interfaces with a focus on accessibility, modern design patterns, and smooth micro-interactions.",
     icon: Palette,
-    skills: [
-      "React.js",
-      "Next.js",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Redux Toolkit",
-      "React Hook Form",
-      "TypeScript",
-      "Shadcn UI",
-      "Material UI",
-      "Ant Design",
-    ],
+    skills: ["React", "Next.js", "Framer Motion", "Shadcn UI", "Tailwind CSS", "TypeScript", "Three.js", "GSAP"],
     color: "from-sky-500 to-cyan-600",
     darkColor: "from-sky-600 to-cyan-800",
     pattern: "dots",
@@ -60,21 +41,11 @@ const services = [
     highlightColor: "sky",
   },
   {
-    title: "Backend Development",
+    title: "Backend Architecture",
     description:
-      "Secure and efficient backend systems with RESTful APIs, authentication, and scalable MongoDB integration.",
+      "Building robust, secure, and highly scalable server-side systems with optimized database management and efficient API structures.",
     icon: Server,
-    skills: [
-      "Node.js",
-      "Express.js",
-      "Mongoose",
-      "Prisma",
-      "RESTful APIs",
-      "GraphQL",
-      "JWT",
-      "Zod",
-      "OAuth",
-    ],
+    skills: ["Node.js", "Express", "Mongoose", "PostgreSQL", "Prisma", "Redis", "JWT/OAuth", "REST/GraphQL"],
     color: "from-lime-500 to-green-600",
     darkColor: "from-lime-600 to-green-800",
     pattern: "grid",
@@ -82,17 +53,11 @@ const services = [
     highlightColor: "lime",
   },
   {
-    title: "System Architecture",
+    title: "System Design & Architecture",
     description:
-      "Designing maintainable architecture using Modular Monolith and MVC patterns with clean code principles.",
-    icon: LayoutDashboard,
-    skills: [
-      "MVC",
-      "Modular Monolith",
-      "Clean Code",
-      "Agile Development",
-      "Project Structuring",
-    ],
+      "Architecting complex software systems using Modular Monolith, Microservices, and Clean Architecture patterns for long-term maintainability.",
+    icon: ShieldCheck,
+    skills: ["System Design", "Clean Architecture", "Modular Monolith", "Design Patterns", "UML", "Agile", "UAT"],
     color: "from-indigo-500 to-blue-600",
     darkColor: "from-indigo-600 to-blue-800",
     pattern: "hexagons",
@@ -100,17 +65,11 @@ const services = [
     highlightColor: "indigo",
   },
   {
-    title: "Database & Integrations",
+    title: "DevOps & Cloud Deployment",
     description:
-      "Effective data modeling, storage solutions, and third-party integrations for modern applications.",
-    icon: Database,
-    skills: [
-      "MongoDB",
-      "Firebase",
-      "PostgreSQL",
-      "Cloudinary",
-      "Nodemailer",
-    ],
+      "Streamlining development workflows with CI/CD pipelines and managing scalable cloud infrastructure for zero-downtime deployments.",
+    icon: Cloud,
+    skills: ["Docker", "AWS", "Vercel", "GitHub Actions", "Nginx", "Linux Server", "Cloudflare", "Monitoring"],
     color: "from-orange-500 to-amber-600",
     darkColor: "from-orange-600 to-amber-800",
     pattern: "squares",
@@ -118,17 +77,11 @@ const services = [
     highlightColor: "orange",
   },
   {
-    title: "Performance Optimization",
+    title: "Systems Optimization",
     description:
-      "Improving app speed, responsiveness, and SEO using smart optimization strategies and tools.",
+      "Enhancing application performance, security, and scalability through advanced caching, code splitting, and database indexing strategies.",
     icon: Zap,
-    skills: [
-      "Lazy Loading",
-      "Code Splitting",
-      "Caching",
-      "Compression",
-      "Responsive Design",
-    ],
+    skills: ["Performance Audit", "Caching", "SEO Opt", "Security", "Scale Up", "Load Balancing", "Query Opt"],
     color: "from-rose-500 to-red-600",
     darkColor: "from-rose-600 to-red-800",
     pattern: "triangles",
@@ -141,6 +94,20 @@ const MyService = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
+  const [particles, setParticles] = useState<any[]>([]);
+
+  useEffect(() => {
+    setParticles(
+      [...Array(15)].map((_, i) => ({
+        width: Math.random() * 6 + 2,
+        height: Math.random() * 6 + 2,
+        top: Math.random() * 100,
+        left: Math.random() * 100,
+        yDest: Math.random() * -100 - 50,
+        duration: Math.random() * 10 + 10,
+      }))
+    );
+  }, []);
 
   return (
     <section
@@ -164,22 +131,22 @@ const MyService = () => {
 
         {/* Floating particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(15)].map((_, i) => (
+          {particles.map((particle, i) => (
             <motion.div
               key={i}
               className="absolute rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
               style={{
-                width: Math.random() * 6 + 2 + "px",
-                height: Math.random() * 6 + 2 + "px",
-                top: Math.random() * 100 + "%",
-                left: Math.random() * 100 + "%",
+                width: particle.width + "px",
+                height: particle.height + "px",
+                top: particle.top + "%",
+                left: particle.left + "%",
               }}
               animate={{
-                y: [0, Math.random() * -100 - 50],
+                y: [0, particle.yDest],
                 opacity: [0.2, 0],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: particle.duration,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "linear",
               }}
@@ -235,23 +202,21 @@ const MyService = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
-            <span className="text-sm font-medium bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-              What I Do
+          <div className="inline-flex items-center justify-center mb-6 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-sm">
+            <span className="text-xs font-bold font-heading uppercase tracking-[0.3em] text-purple-600 dark:text-purple-400">
+              Services Portfolio
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
-            <AuroraText>Services I Offer</AuroraText>
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-tight">
+            <AuroraText>My Premium Services</AuroraText>
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
-            Comprehensive development solutions tailored to transform your ideas
-            into exceptional digital experiences using modern technologies and
-            best practices.
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+            Delivering high-end, scalable digital solutions with a focus on architecture, performance, and user experience.
           </p>
         </motion.div>
 
@@ -275,43 +240,43 @@ const MyService = () => {
                       service.pattern === "dots"
                         ? `radial-gradient(${service.patternColor} 1px, transparent 1px)`
                         : service.pattern === "grid"
-                        ? `linear-gradient(to right, ${service.patternColor} 1px, transparent 1px), 
+                          ? `linear-gradient(to right, ${service.patternColor} 1px, transparent 1px), 
                            linear-gradient(to bottom, ${service.patternColor} 1px, transparent 1px)`
-                        : service.pattern === "circuit"
-                        ? `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H40 V40 H70 V70 H90 V90' stroke='${encodeURIComponent(
-                            service.patternColor
-                          )}' fill='none' strokeWidth='1'/%3E%3Ccircle cx='10' cy='10' r='2' fill='${encodeURIComponent(
-                            service.patternColor
-                          )}'/%3E%3Ccircle cx='40' cy='40' r='2' fill='${encodeURIComponent(
-                            service.patternColor
-                          )}'/%3E%3Ccircle cx='70' cy='70' r='2' fill='${encodeURIComponent(
-                            service.patternColor
-                          )}'/%3E%3Ccircle cx='90' cy='90' r='2' fill='${encodeURIComponent(
-                            service.patternColor
-                          )}'/%3E%3C/svg%3E")`
-                        : service.pattern === "zigzag"
-                        ? `url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 L20 0 L40 10 L60 0 L80 10 L100 0 L100 20 L0 20 Z' stroke='${encodeURIComponent(
-                            service.patternColor
-                          )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
-                        : service.pattern === "squares"
-                        ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='20' height='20' x='10' y='10' stroke='${encodeURIComponent(
-                            service.patternColor
-                          )}' fill='none' strokeWidth='1'/%3E%3Crect width='20' height='20' x='30' y='30' stroke='${encodeURIComponent(
-                            service.patternColor
-                          )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
-                        : service.pattern === "triangles"
-                        ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 40 L30 10 L50 40 Z' stroke='${encodeURIComponent(
-                            service.patternColor
-                          )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
-                        : "",
+                          : service.pattern === "circuit"
+                            ? `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H40 V40 H70 V70 H90 V90' stroke='${encodeURIComponent(
+                              service.patternColor
+                            )}' fill='none' strokeWidth='1'/%3E%3Ccircle cx='10' cy='10' r='2' fill='${encodeURIComponent(
+                              service.patternColor
+                            )}'/%3E%3Ccircle cx='40' cy='40' r='2' fill='${encodeURIComponent(
+                              service.patternColor
+                            )}'/%3E%3Ccircle cx='70' cy='70' r='2' fill='${encodeURIComponent(
+                              service.patternColor
+                            )}'/%3E%3Ccircle cx='90' cy='90' r='2' fill='${encodeURIComponent(
+                              service.patternColor
+                            )}'/%3E%3C/svg%3E")`
+                            : service.pattern === "zigzag"
+                              ? `url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 L20 0 L40 10 L60 0 L80 10 L100 0 L100 20 L0 20 Z' stroke='${encodeURIComponent(
+                                service.patternColor
+                              )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
+                              : service.pattern === "squares"
+                                ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='20' height='20' x='10' y='10' stroke='${encodeURIComponent(
+                                  service.patternColor
+                                )}' fill='none' strokeWidth='1'/%3E%3Crect width='20' height='20' x='30' y='30' stroke='${encodeURIComponent(
+                                  service.patternColor
+                                )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
+                                : service.pattern === "triangles"
+                                  ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 40 L30 10 L50 40 Z' stroke='${encodeURIComponent(
+                                    service.patternColor
+                                  )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
+                                  : "",
                     backgroundSize:
                       service.pattern === "dots"
                         ? "20px 20px"
                         : service.pattern === "grid"
-                        ? "30px 30px"
-                        : service.pattern === "zigzag"
-                        ? "100px 20px"
-                        : "60px 60px",
+                          ? "30px 30px"
+                          : service.pattern === "zigzag"
+                            ? "100px 20px"
+                            : "60px 60px",
                   }}
                 />
 
@@ -371,11 +336,10 @@ const MyService = () => {
 
                     {/* Learn more link */}
                     <motion.div
-                      className={`flex items-center text-sm font-medium transition-all duration-300 ${
-                        hoveredIndex === index
-                          ? `text-${service.highlightColor}-600 dark:text-${service.highlightColor}-400`
-                          : "text-slate-500 dark:text-slate-400"
-                      }`}
+                      className={`flex items-center text-sm font-medium transition-all duration-300 ${hoveredIndex === index
+                        ? `text-${service.highlightColor}-600 dark:text-${service.highlightColor}-400`
+                        : "text-slate-500 dark:text-slate-400"
+                        }`}
                       whileHover={{ x: 5 }}
                       transition={{
                         type: "spring",
@@ -385,9 +349,8 @@ const MyService = () => {
                     >
                       <span>Learn more</span>
                       <ArrowRight
-                        className={`ml-1 w-4 h-4 transition-transform duration-300 ${
-                          hoveredIndex === index ? "translate-x-1" : ""
-                        }`}
+                        className={`ml-1 w-4 h-4 transition-transform duration-300 ${hoveredIndex === index ? "translate-x-1" : ""
+                          }`}
                       />
                     </motion.div>
                   </div>

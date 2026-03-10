@@ -9,7 +9,7 @@ import { TypingAnimation } from "./magicui/typing-animation";
 
 const Hero = () => {
   const cvPath =
-    "https://drive.google.com/file/d/1fmc5elUzSAikh6psxyPc2VDd57k-1eoI/view?usp=sharing";
+    "https://drive.google.com/file/d/1dbRyW0kIetu3cGq8j_TdTea5leywTKP6/view?usp=sharing";
 
   const handleEmailClick = () => {
     window.location.href = "mailto:MrShakilHossain@outlook.com";
@@ -19,7 +19,7 @@ const Hero = () => {
     const link = document.createElement("a");
     link.href = cvPath;
     link.download =
-      "https://drive.google.com/file/d/1fmc5elUzSAikh6psxyPc2VDd57k-1eoI/view?usp=sharing";
+      "https://drive.google.com/file/d/1dbRyW0kIetu3cGq8j_TdTea5leywTKP6/view?usp=sharing";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -56,7 +56,7 @@ const Hero = () => {
             </ShinyButton>
             <ShinyButton
               onClick={handleDownloadCV}
-              className="flex items-center gap-2 bg-slate-400/50 hover:text-rose-600 dark:text-purple-400 dark:hover:text-rose-400 dark:hover:bg-purple-900/50 transition-all duration-300 px-4 py-2 rounded-lg" 
+              className="flex items-center gap-2 bg-slate-400/50 hover:text-rose-600 dark:text-purple-400 dark:hover:text-rose-400 dark:hover:bg-purple-900/50 transition-all duration-300 px-4 py-2 rounded-lg"
             >
               <div className="flex items-center gap-2">
                 <span>Download CV</span>

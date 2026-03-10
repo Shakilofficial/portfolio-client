@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Download, ExternalLink, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -11,80 +11,80 @@ import { SparklesText } from "./magicui/sparkles-text";
 import { TypingAnimation } from "./magicui/typing-animation";
 import Socials from "./shared/Socials";
 
+const roles = [
+  "Full Stack Engineer",
+  "Backend Engineer",
+  "Node.js Engineer",
+  "Cloud and DevOps Engineer",
+  "MERN Stack Developer",
+  "Frontend Developer",
+  "Next.js Developer",
+];
+
+const CALENDLY_LINK =
+  "https://calendly.com/creative-shakilofficial/30min";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
 const Hero = () => {
   const [isDownloading, setIsDownloading] = useState(false);
   const [currentRole, setCurrentRole] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
-
-  const roles = [
-    "MERN Stack Developer",
-    "Full Stack Developer",
-    "Frontend Developer",
-    "Next.js Developer",
-    "UI/UX Enthusiast",
-    "Backend Developer",
-    "Node.js Developer",
-    "Web Architect",
-  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRole((prev) => (prev + 1) % roles.length);
     }, 3500);
     return () => clearInterval(interval);
-  }, [roles.length]);
-
-  const cvFileName = "Md-Shakil-Hossain-Full-Stack-Developer-CV.pdf";
-  const cvPath = `/cv/${cvFileName}`;
+  }, []);
 
   const driveLink =
-    "https://drive.google.com/file/d/1VGMuYOQF5bgM7xshoMJ5Qnp3QnvmnydK/view?usp=sharing";
+    "https://drive.google.com/file/d/1dbRyW0kIetu3cGq8j_TdTea5leywTKP6/view?usp=sharing";
 
   const handleEmailClick = () => {
     window.location.href = "mailto:MrShakilHossain@outlook.com";
   };
 
+  const handleScheduleMeeting = () => {
+    window.open(CALENDLY_LINK, "_blank");
+  };
+
   const handleDownloadCV = async () => {
     setIsDownloading(true);
     try {
-      const response = await fetch(cvPath, { method: "HEAD" });
-      if (response.ok) {
-        const link = document.createElement("a");
-        link.href = cvPath;
-        link.setAttribute("download", cvFileName);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        window.open(driveLink, "_blank");
-      }
+      const fileId = "1dbRyW0kIetu3cGq8j_TdTea5leywTKP6";
+      const directDownloadLink = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+      const link = document.createElement("a");
+      link.href = directDownloadLink;
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     } catch (error) {
-      console.error("Download error:", error);
+      console.error("Download failed:", error);
       window.open(driveLink, "_blank");
     } finally {
-      setTimeout(() => setIsDownloading(false), 1500);
+      setTimeout(() => setIsDownloading(false), 2000);
     }
-  };
-
-  // Variants for staggered animations
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-    },
   };
 
   return (
@@ -97,7 +97,7 @@ const Hero = () => {
         />
       </Head>
 
-      {/* Dotted background pattern */}
+      {/* dotted bg */}
       <div className="absolute inset-0 -z-10">
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -109,16 +109,14 @@ const Hero = () => {
         />
       </div>
 
-      {/* Animated gradient blobs */}
+      {/* gradient blobs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.05 }}
           transition={{ duration: 1 }}
           className="absolute -top-[30%] -right-[10%] h-[500px] w-[500px] rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-[100px]"
-          style={{
-            animation: "float 15s ease-in-out infinite alternate",
-          }}
+          style={{ animation: "float 15s ease-in-out infinite alternate" }}
         />
         <motion.div
           initial={{ opacity: 0 }}
@@ -139,7 +137,8 @@ const Hero = () => {
           className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16"
         >
           <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0 space-y-8">
-            {/* Rotating roles with enhanced animation */}
+
+            {/* rotating roles */}
             <motion.div
               variants={itemVariants}
               className="relative h-10 overflow-hidden"
@@ -150,102 +149,88 @@ const Hero = () => {
                   initial={{ y: 20, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -20, opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  transition={{ duration: 0.5 }}
                   className="absolute inset-0 flex items-center justify-center lg:justify-start"
                 >
-                  <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold tracking-tight">
+                  <h1 className="text-lg md:text-xl font-bold uppercase tracking-[0.3em] font-heading text-purple-600 dark:text-purple-400">
                     <AuroraText>{roles[currentRole]}</AuroraText>
                   </h1>
                 </motion.div>
               </AnimatePresence>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="relative">
-              <SparklesText className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold tracking-tight font-big-shoulders uppercase">
+            <motion.div variants={itemVariants}>
+              <SparklesText className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tight font-serif leading-[1.1]">
                 Building Digital Experiences
               </SparklesText>
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <TypingAnimation className="text-gray-500 text-base sm:text-lg">
+              <TypingAnimation className="text-muted-foreground text-sm sm:text-lg leading-relaxed max-w-xl">
                 I&apos;m a passionate full-stack developer dedicated to crafting
-                modern, high-performance web applications with a seamless user
-                experience. With a strong foundation in computer science and
-                hands-on expertise in modern technologies, I thrive on
-                transforming ideas into impactful digital solutions. Let&apos;s
-                turn ideas into reality and create something extraordinary
-                together!
+                modern, high-performance web applications with seamless user
+                experience.
               </TypingAnimation>
             </motion.div>
 
+            {/* CTA buttons */}
             <motion.div
               variants={itemVariants}
               className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4"
             >
               <ShinyButton
+                onClick={handleScheduleMeeting}
+                className="flex items-center gap-2 border border-green-500/30 bg-green-500/10 hover:bg-green-500/20 text-green-600 dark:text-green-400 px-6 py-2.5 rounded-lg hover:-translate-y-1 transition-all"
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
+                </span>
+                <span>Schedule a Meeting</span>
+              </ShinyButton>
+
+              <ShinyButton
                 onClick={handleEmailClick}
-                className="flex items-center gap-2 border border-purple-500/30 hover:border-purple-500/70 text-primary transition-all duration-300 px-6 py-2.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
+                className="flex items-center gap-2 border border-purple-500/30 hover:border-purple-500/70 text-primary px-6 py-2.5 rounded-lg"
               >
                 <Mail className="h-5 w-5" />
-                <span>Contact Me</span>
+                Contact Me
               </ShinyButton>
 
               <ShinyButton
                 onClick={handleDownloadCV}
-                className="flex items-center gap-2 border border-transparent bg-gradient-to-r from-purple-500 to-indigo-500 text-white transition-all duration-300 px-6 py-2.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
+                className="flex items-center gap-2 bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-6 py-2.5 rounded-lg"
                 disabled={isDownloading}
               >
-                <div className="flex items-center gap-2">
-                  <span>
-                    {isDownloading ? "Downloading..." : "Download CV"}
-                  </span>
-                  <Download
-                    className={`h-5 w-5 ${
-                      isDownloading ? "animate-bounce" : ""
+                {isDownloading ? "Downloading..." : "Download Resume"}
+                <Download
+                  className={`h-5 w-5 ${isDownloading ? "animate-bounce" : ""
                     }`}
-                  />
-                </div>
-              </ShinyButton>
-              <ShinyButton
-                onClick={() => window.open(driveLink, "_blank")}
-                className="flex items-center gap-2 border border-purple-500/30 hover:border-purple-500/70 text-primary transition-all duration-300 px-6 py-2.5 rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1"
-              >
-                <span>View CV</span>
-                <ExternalLink className="ml-2 h-4 w-4" />
+                />
               </ShinyButton>
             </motion.div>
 
-            {/* Social Media Links */}
-            <div>
-              <div className="flex space-x-3 justify-center lg:justify-start">
-                <Socials />
-              </div>
+            <div className="flex justify-center lg:justify-start">
+              <Socials />
             </div>
 
             <motion.div
               variants={itemVariants}
               className="flex items-center gap-4 pt-2 justify-center lg:justify-start"
             >
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
-                </span>
-                <span className="text-sm text-gray-500">
-                  Available for projects
-                </span>
-              </div>
+              <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                Available for projects
+              </span>
 
-              <div className="h-4 w-px bg-gray-200"></div>
+              <div className="h-4 w-px bg-gray-200" />
 
               <motion.a
                 href="/projects"
-                className="group flex items-center gap-1 text-sm text-gray-500 transition-colors hover:text-purple-500"
+                className="group flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-purple-500"
                 whileHover={{ x: 5 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 View my work
-                <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
               </motion.a>
             </motion.div>
           </div>
@@ -289,11 +274,11 @@ const Hero = () => {
               >
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-blue-500 text-white">
-                    <span className="text-xs font-bold">1+</span>
+                    <span className="text-xs font-bold">2+</span>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-primary">Years of</p>
-                    <p className="text-sm font-bold text-gray-500">
+                    <p className="text-xs font-medium text-white">Years of</p>
+                    <p className="text-sm font-bold text-white dark:text-slate-400">
                       Experience
                     </p>
                   </div>
@@ -309,11 +294,11 @@ const Hero = () => {
               >
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                    <span className="text-xs font-bold">10+</span>
+                    <span className="text-xs font-bold">25+</span>
                   </div>
                   <div>
-                    <p className="text-xs font-medium text-primary">Projects</p>
-                    <p className="text-sm font-bold text-gray-500">Completed</p>
+                    <p className="text-xs font-medium text-white">Projects</p>
+                    <p className="text-sm font-bold text-white dark:text-slate-400">Completed</p>
                   </div>
                 </div>
               </motion.div>

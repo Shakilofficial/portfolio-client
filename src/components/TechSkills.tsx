@@ -141,17 +141,15 @@ const TechSkills = () => {
         <div
           className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-xl opacity-10 dark:opacity-[0.07] blur-3xl"
           style={{
-            background: `radial-gradient(circle at center, ${
-              getCurrentCategoryStyle().color
-            } 0%, transparent 70%)`,
+            background: `radial-gradient(circle at center, ${getCurrentCategoryStyle().color
+              } 0%, transparent 70%)`,
           }}
         />
         <div
           className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-xl opacity-10 dark:opacity-[0.07] blur-3xl"
           style={{
-            background: `radial-gradient(circle at center, ${
-              getCurrentCategoryStyle().color
-            } 0%, transparent 70%)`,
+            background: `radial-gradient(circle at center, ${getCurrentCategoryStyle().color
+              } 0%, transparent 70%)`,
           }}
         />
 
@@ -159,17 +157,15 @@ const TechSkills = () => {
         <div
           className="absolute top-1/3 right-10 w-[300px] h-[300px] rounded-xl opacity-10 dark:opacity-[0.05] blur-2xl"
           style={{
-            background: `radial-gradient(circle at center, ${
-              getCurrentCategoryStyle().color
-            } 0%, transparent 70%)`,
+            background: `radial-gradient(circle at center, ${getCurrentCategoryStyle().color
+              } 0%, transparent 70%)`,
           }}
         />
         <div
           className="absolute bottom-1/4 left-20 w-[250px] h-[250px] rounded-xl opacity-10 dark:opacity-[0.05] blur-2xl"
           style={{
-            background: `radial-gradient(circle at center, ${
-              getCurrentCategoryStyle().color
-            } 0%, transparent 70%)`,
+            background: `radial-gradient(circle at center, ${getCurrentCategoryStyle().color
+              } 0%, transparent 70%)`,
           }}
         />
 
@@ -205,21 +201,22 @@ const TechSkills = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20">
-            <span className="text-sm font-medium text-purple-700 dark:text-purple-300">
-              My Skills
+          <div className="inline-flex items-center justify-center mb-6 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-sm">
+            <span className="text-xs font-bold font-heading uppercase tracking-[0.3em] text-purple-600 dark:text-purple-400">
+              Technical Stack
             </span>
           </div>
-          <h2 className="text-4xl font-bold mb-3">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-tight">
             <AuroraText>Skills & Technologies</AuroraText>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Technologies and tools I work with to bring ideas to life
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
+            A comprehensive overview of the specialized tools and architectural patterns I leverage for complex builds.
           </p>
         </motion.div>
 
@@ -245,7 +242,7 @@ const TechSkills = () => {
                   {orderedSkillCategories.map((category) => {
                     const categoryStyle =
                       categoryColors[
-                        category.category as keyof typeof categoryColors
+                      category.category as keyof typeof categoryColors
                       ] || defaultColor;
                     return (
                       <SelectItem
@@ -272,7 +269,7 @@ const TechSkills = () => {
                   {orderedSkillCategories.map((category) => {
                     const categoryStyle =
                       categoryColors[
-                        category.category as keyof typeof categoryColors
+                      category.category as keyof typeof categoryColors
                       ] || defaultColor;
                     const isActive = activeTab === category.category;
 
@@ -285,10 +282,9 @@ const TechSkills = () => {
                           transition-all duration-300
                           flex items-center justify-center
                           text-sm font-medium
-                          ${
-                            isActive
-                              ? "text-white"
-                              : "text-foreground hover:text-foreground/80 hover:bg-background/80"
+                          ${isActive
+                            ? "text-white"
+                            : "text-foreground hover:text-foreground/80 hover:bg-background/80"
                           }
                           ${isTablet ? "py-1.5 px-3" : "py-2 px-4"}
                         `}
@@ -316,7 +312,7 @@ const TechSkills = () => {
           {orderedSkillCategories.map((category) => {
             const categoryStyle =
               categoryColors[
-                category.category as keyof typeof categoryColors
+              category.category as keyof typeof categoryColors
               ] || defaultColor;
 
             return (

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Badge } from "@/components/ui/badge";
@@ -13,7 +15,7 @@ import {
   Star,
   Trophy,
 } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AuroraText } from "./magicui/aurora-text";
 
 const certificationsData = {
@@ -99,6 +101,20 @@ const certificationsData = {
 };
 
 const Certifications = () => {
+  const [particles, setParticles] = useState<any[]>([]);
+  useEffect(() => {
+    setParticles(
+      [...Array(20)].map((_, i) => ({
+        width: Math.random() * 2 + 2,
+        height: Math.random() * 2 + 2,
+        top: Math.random() * 100,
+        left: Math.random() * 100,
+        yDest: Math.random() * -100 - 50,
+        duration: Math.random() * 10 + 10,
+      }))
+    );
+  }, []);
+
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -131,22 +147,22 @@ const Certifications = () => {
 
         {/* Animated particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
+          {particles.map((particle, i) => (
             <motion.div
               key={i}
               className="absolute rounded-xl bg-gradient-to-r from-purple-500 to-blue-500 opacity-20"
               style={{
-                width: Math.random() * 2 + 2 + "px",
-                height: Math.random() * 2 + 2 + "px",
-                top: Math.random() * 100 + "%",
-                left: Math.random() * 100 + "%",
+                width: particle.width + "px",
+                height: particle.height + "px",
+                top: particle.top + "%",
+                left: particle.left + "%",
               }}
               animate={{
-                y: [0, Math.random() * -100 - 50],
+                y: [0, particle.yDest],
                 opacity: [0.2, 0],
               }}
               transition={{
-                duration: Math.random() * 10 + 10,
+                duration: particle.duration,
                 repeat: Number.POSITIVE_INFINITY,
                 ease: "linear",
               }}
@@ -167,12 +183,12 @@ const Certifications = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="inline-flex items-center justify-center mb-4 px-4 py-1.5 rounded-xl border border-purple-200 dark:border-purple-800/30 bg-purple-50 dark:bg-purple-900/20 backdrop-blur-sm">
-            <span className="text-sm font-medium bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <div className="inline-flex items-center justify-center mb-6 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-sm">
+            <span className="text-xs font-bold font-heading uppercase tracking-[0.3em] text-purple-600 dark:text-purple-400">
               My Qualifications
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-tight">
             <AuroraText>Education & Certifications</AuroraText>
           </h2>
           <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
