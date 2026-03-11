@@ -137,7 +137,7 @@ const AboutMe = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-8 md:py-12 lg:py-28 px-4 md:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950/10 dark:to-slate-900/10"
+      className="py-8 md:py-12 lg:py-28 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950/10 dark:to-slate-900/10"
     >
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -241,7 +241,7 @@ const AboutMe = () => {
                 </div>
 
                 {/* Profile info */}
-                <div className="p-6 relative">
+                <div className="p-4 relative">
                   <div className="absolute -top-16 inset-x-0 flex justify-center">
                     <div className="bg-white dark:bg-slate-900 px-6 py-2 rounded-xl border border-slate-200 dark:border-slate-800 shadow-lg">
                       <Badge className="bg-gradient-to-r from-purple-100 to-blue-100 text-purple-800 hover:from-purple-200 hover:to-blue-200 dark:from-purple-900/30 dark:to-blue-900/30 dark:text-purple-300 border-0 px-3 py-1">
@@ -318,7 +318,7 @@ const AboutMe = () => {
               </div>
 
               {/* Interests card */}
-              <div className="bg-white/90 dark:bg-violet-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-xl p-2">
+              <div className="bg-white/90 dark:bg-violet-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-xl p-4">
                 <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-6 flex items-center gap-2">
                   <Heart className="w-5 h-5 text-rose-500" />
                   <span>Interests & Hobbies</span>
@@ -351,7 +351,7 @@ const AboutMe = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white/90 dark:bg-slate-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-xl p-8"
+              className="bg-white/90 dark:bg-slate-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-sm p-4"
             >
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-indigo-500/20 shadow-sm">
@@ -397,7 +397,7 @@ const AboutMe = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white/90 dark:bg-pink-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-xl p-8"
+              className="bg-white/90 dark:bg-pink-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-sm p-4"
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 shadow-sm">
@@ -458,7 +458,7 @@ const AboutMe = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white/90 dark:bg-blue-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-xl p-8"
+              className="bg-white/90 dark:bg-blue-900/10 backdrop-blur-sm rounded-3xl overflow-hidden border border-slate-200/50 dark:border-slate-800/50 shadow-sm p-4"
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 shadow-sm">
