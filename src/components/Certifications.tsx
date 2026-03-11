@@ -227,72 +227,46 @@ const Certifications = () => {
                         <div className="absolute inset-0 rounded-xl bg-purple-500 animate-ping opacity-75"></div>
                       </div>
 
-                      <div className="bg-white dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-                        {/* Top gradient bar */}
-                        <div className="h-1.5 w-full bg-gradient-to-r from-purple-500 to-indigo-500" />
-
-                        {/* Card pattern background */}
-                        <div
-                          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-                          style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23a855f7' fillOpacity='0.4' fillRule='evenodd'/%3E%3C/svg%3E")`,
-                          }}
-                        />
-
-                        <div className="p-8 relative">
-                          <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                            <h4 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+                      <div className="bg-white/50 dark:bg-slate-900/60 backdrop-blur-xl rounded-[2rem] border border-white/20 dark:border-slate-800 shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 overflow-hidden group">
+                        <div className="p-10 relative">
+                          <div className="flex flex-wrap items-center justify-between gap-6 mb-8">
+                            <h4 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                               {edu.degree}
                             </h4>
-                            <Badge className="bg-gradient-to-r from-purple-500/20 to-indigo-500/20 hover:from-purple-500/30 hover:to-indigo-500/30 text-purple-800 dark:text-purple-300 border-0 px-3 py-1 text-sm">
-                              <Calendar className="w-3.5 h-3.5 mr-1" />
+                            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest shadow-lg shadow-purple-500/20">
                               {edu.year}
-                            </Badge>
+                            </div>
                           </div>
 
-                          <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 mb-4">
-                            <Building2 className="w-4 h-4 flex-shrink-0" />
-                            <span className="font-medium">
-                              {edu.institution}
-                            </span>
+                          <div className="flex items-center gap-3 text-purple-600 dark:text-purple-400 mb-6 font-bold uppercase tracking-[0.2em] text-xs">
+                            <Building2 className="w-5 h-5" />
+                            <span>{edu.institution}</span>
                           </div>
 
-                          <p className="text-slate-700 dark:text-slate-300 mb-6 leading-relaxed">
+                          <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg leading-relaxed max-w-3xl">
                             {edu.description}
                           </p>
 
-                          <div className="flex flex-wrap gap-2 mb-6">
+                          <div className="flex flex-wrap gap-3 mb-8">
                             {edu.achievements.map((achievement, i) => (
                               <div
                                 key={i}
-                                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 text-green-700 dark:text-green-300 text-sm"
+                                className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 text-green-700 dark:text-green-400 text-xs font-bold uppercase tracking-widest border border-green-500/20"
                               >
-                                <Trophy className="w-3.5 h-3.5" />
+                                <Trophy className="w-4 h-4" />
                                 {achievement}
                               </div>
                             ))}
                           </div>
 
-                          <div>
-                            <h5 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-3 flex items-center gap-2">
-                              <CheckCircle2 className="w-5 h-5 text-purple-500" />
-                              Key Courses
-                            </h5>
-                            <div className="flex flex-wrap gap-2">
-                              {edu.courses.map((course, i) => (
-                                <Badge
-                                  key={i}
-                                  variant="secondary"
-                                  className="bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 transition-colors duration-200"
-                                >
-                                  {course}
-                                </Badge>
-                              ))}
-                            </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-slate-200 dark:border-slate-800">
+                            {edu.courses.map((course, i) => (
+                              <div key={i} className="flex items-center gap-3 group/item">
+                                <div className="w-2 h-2 rounded-full bg-purple-500 group-hover/item:scale-150 transition-transform duration-300" />
+                                <span className="text-slate-600 dark:text-slate-300 font-medium">{course}</span>
+                              </div>
+                            ))}
                           </div>
-
-                          {/* Hover effect line */}
-                          <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-500 to-indigo-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                         </div>
                       </div>
                     </div>
@@ -324,92 +298,51 @@ const Certifications = () => {
                   whileHover={{ y: -5 }}
                   className="group"
                 >
-                  <div className="h-full bg-white dark:bg-slate-900/80 backdrop-blur-sm rounded-2xl border border-slate-200/80 dark:border-slate-700/80 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden">
-                    {/* Top accent bar with gradient */}
-                    <div
-                      className={`h-1.5 w-full bg-gradient-to-r ${cert.bgGradient}`}
-                    />
-
-                    {/* Card pattern background */}
-                    <div
-                      className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
-                      style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='${encodeURIComponent(
-                          cert.patternColor
-                        )}' fillOpacity='1' fillRule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E")`,
-                      }}
-                    />
-
-                    <div className="p-6 relative">
-                      <div className="flex items-center justify-between mb-4">
+                  <div className="h-full bg-white/50 dark:bg-slate-900/40 backdrop-blur-xl rounded-3xl border border-white/10 dark:border-slate-800 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden group/cert">
+                    <div className="p-8 relative">
+                      <div className="flex items-center justify-between mb-6">
                         <div
-                          className={`flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br ${cert.bgGradient} bg-opacity-20 shadow-lg shadow-${cert.color}-500/20`}
+                          className={`flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${cert.bgGradient} shadow-lg shadow-purple-500/20 group-hover/cert:scale-110 transition-transform duration-500`}
                         >
-                          <cert.icon
-                            className={`w-5 h-5 text-${cert.color}-600 dark:text-${cert.color}-400`}
-                          />
+                          <cert.icon className="w-7 h-7 text-white" />
                         </div>
-                        <Badge
-                          className={`bg-gradient-to-r ${cert.bgGradient} bg-opacity-10 text-${cert.color}-800 dark:text-${cert.color}-300 border-0`}
-                        >
+                        <div className="text-xs font-black uppercase tracking-widest text-slate-400">
                           {cert.year}
-                        </Badge>
+                        </div>
                       </div>
 
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2 line-clamp-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-blue-600 transition-all duration-300">
+                      <h4 className="text-xl font-black mb-3 text-slate-900 dark:text-white group-hover/cert:text-purple-500 transition-colors duration-300">
                         {cert.title}
                       </h4>
 
-                      <div className="flex items-center gap-2 text-slate-600 dark:text-slate-400 mb-4">
-                        <Building2 className="w-4 h-4 flex-shrink-0" />
-                        <span className="font-medium">{cert.platform}</span>
+                      <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 mb-6 font-bold uppercase tracking-widest text-[10px]">
+                        <Building2 className="w-4 h-4" />
+                        <span>{cert.platform}</span>
                       </div>
 
-                      <div className="mb-4">
-                        <div className="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
-                          Skills & Technologies
-                        </div>
-                        <div className="flex flex-wrap gap-1.5">
-                          {cert.skills.slice(0, 6).map((skill, i) => (
-                            <Badge
-                              key={i}
-                              variant="outline"
-                              className={`bg-${cert.color}-50 dark:bg-${cert.color}-900/10 text-${cert.color}-700 dark:text-${cert.color}-300 border-${cert.color}-200 dark:border-${cert.color}-800/30 text-xs hover:bg-${cert.color}-100 dark:hover:bg-${cert.color}-900/20 transition-colors duration-200`}
-                            >
-                              {skill}
-                            </Badge>
-                          ))}
-                          {cert.skills.length > 6 && (
-                            <Badge
-                              variant="outline"
-                              className={`bg-${cert.color}-50 dark:bg-${cert.color}-900/10 text-${cert.color}-700 dark:text-${cert.color}-300 border-${cert.color}-200 dark:border-${cert.color}-800/30 text-xs hover:bg-${cert.color}-100 dark:hover:bg-${cert.color}-900/20 transition-colors duration-200`}
-                            >
-                              +{cert.skills.length - 6} more
-                            </Badge>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="mt-auto pt-2 border-t border-slate-100 dark:border-slate-800">
-                        <div className="flex items-center justify-between">
-                          <div className="text-xs text-slate-500 dark:text-slate-400">
-                            Credential: {cert.credential}
-                          </div>
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`flex items-center gap-1 text-xs font-medium text-${cert.color}-600 dark:text-${cert.color}-400 hover:underline`}
+                      <div className="flex flex-wrap gap-2 mb-8">
+                        {cert.skills.slice(0, 4).map((skill, i) => (
+                          <span
+                            key={i}
+                            className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700"
                           >
-                            <span>View certificate</span>
-                            <ExternalLink className="w-3 h-3" />
-                          </motion.button>
-                        </div>
+                            {skill}
+                          </span>
+                        ))}
                       </div>
 
-                      {/* Hover effect line */}
-                      <div
-                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r ${cert.bgGradient} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`}
-                      />
+                      <div className="flex items-center justify-between pt-6 border-t border-slate-200 dark:border-slate-800">
+                        <span className="text-[10px] font-medium text-slate-400">
+                          ID: {cert.credential}
+                        </span>
+                        <motion.button
+                          whileHover={{ x: 5 }}
+                          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-purple-600 dark:text-purple-400"
+                        >
+                          <span>Verify</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </motion.button>
+                      </div>
                     </div>
                   </div>
                 </motion.div>

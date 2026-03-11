@@ -39,11 +39,11 @@ const NavItems = ({ items }: NavItemsProps) => {
             <Link
               href={item.href}
               className={cn(
-                "relative px-3 py-1.5 font-medium transition-all duration-300 rounded-xl text-sm uppercase tracking-wide",
-                "flex items-center gap-2",
+                "relative px-2.5 py-1.5 font-black transition-all duration-300 rounded-xl text-[10px] uppercase tracking-[0.2em]",
+                "flex items-center gap-1.5",
                 isActive
                   ? "text-white shadow-lg"
-                  : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                  : "text-slate-500 hover:text-slate-900 dark:hover:text-white"
               )}
             >
               <item.icon className="w-4 h-4" />

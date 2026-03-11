@@ -35,11 +35,18 @@ const ProjectsPage = () => {
   return (
     <div className="max-w-[1400px] w-full mx-auto py-8 md:py-12 lg:py-28 px-4 md:px-6 lg:px-8 flex flex-col gap-12">
       <div className="text-center mb-8">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-md mb-6">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 font-heading">
+            Case Studies
+          </span>
+        </div>
+
         <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-wider">
-          <AuroraText>All Projects</AuroraText>
+          <AuroraText>Featured Projects</AuroraText>
         </h2>
+
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Check out my latest projects and showcases.
+          Explore my recent projects and real-world case studies that demonstrate my expertise in building scalable, high-performance web applications.
         </p>
       </div>
       <ProjectFilter

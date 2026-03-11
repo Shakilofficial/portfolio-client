@@ -56,7 +56,7 @@ const AboutMe = () => {
   });
 
   const driveLink =
-    "https://drive.google.com/file/d/1HYhZ7ApwPkrFpDJM1TvigWJarxeqsRdn/view?usp=sharing";
+    "https://drive.google.com/file/d/1dbRyW0kIetu3cGq8j_TdTea5leywTKP6/view?usp=sharing";
 
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [60, 0, 0, 60]);
@@ -64,13 +64,13 @@ const AboutMe = () => {
   // Personal info data
   const personalInfo = {
     name: "Shakil Hossain",
-    title: "Full Stack Developer",
+    title: "Full Stack Engineer",
     location: "Tangail, Dhaka, Bangladesh",
     email: "mrshakilhossain@outlook.com",
     github: "Shakilofficial",
     linkedin: "md-shakilhossain",
     website: "https://shakil-tawny.vercel.app",
-    bio: "I'm a dedicated full-stack developer with over 2 years of professional experience building modern, scalable web applications. I specialize in the MERN stack (MongoDB, Express, React, Node.js) and Next.js, focusing on creating high-performance digital solutions with meticulous attention to detail and user experience.",
+    bio: "I'm a dedicated full-stack engineer with over 2 years of professional experience building modern, scalable web applications. I specialize in the MERN stack (MongoDB, Express, React, Node.js) and Next.js, focusing on creating high-performance digital solutions with meticulous attention to detail and user experience.",
     longBio:
       "My approach to development is rooted in writing clean, maintainable code and implementing robust architectures. I've successfully delivered over 25 projects, ranging from complex SaaS platforms to intuitive e-commerce systems. I am deeply committed to continuous learning, constantly exploring emerging technologies like AI integration and cloud-native solutions to provide cutting-edge results for my clients.",
   };
@@ -290,13 +290,28 @@ const AboutMe = () => {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex justify-center">
+                  <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 flex justify-center gap-4 flex-wrap">
+                    {/* Download Resume */}
                     <Button
                       onClick={() => window.open(driveLink, "_blank")}
-                      className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md"
+                      className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md flex items-center gap-2"
                     >
-                      <Download className="mr-2 h-4 w-4" />
+                      <Download className="h-4 w-4" />
                       Download Resume
+                    </Button>
+
+                    {/* Download Cover Letter */}
+                    <Button
+                      onClick={() =>
+                        window.open(
+                          "https://drive.google.com/file/d/1Jhr6bqLO-IcDhCSsjzcURwKRq_rAXOyE/view?usp=sharing",
+                          "_blank"
+                        )
+                      }
+                      className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white shadow-md flex items-center gap-2"
+                    >
+                      <FileText className="h-4 w-4" />
+                      Download Cover Letter
                     </Button>
                   </div>
                 </div>

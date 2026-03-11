@@ -18,9 +18,9 @@ const MobileBottomNav = () => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 lg:hidden">
-      <div className="mx-3 mb-3">
-      <div className="bg-gradient-to-br from-purple-600/20 via-violet-700/20 to-indigo-800/20 dark:bg-purple-950/50 backdrop-blur-xl border border-stone-700/60 rounded-2xl shadow-xl shadow-black/50 dark:shadow-black/20">
-          <div className="flex items-center justify-around p-1">
+      <div className="mx-4 mb-4">
+        <div className="bg-white/10 dark:bg-slate-900/40 backdrop-blur-2xl border border-white/20 dark:border-slate-800 rounded-[2rem] shadow-2xl overflow-hidden">
+          <div className="flex items-center justify-between px-2 py-2">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
               const Icon = item.icon;
@@ -29,23 +29,30 @@ const MobileBottomNav = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex flex-col items-center justify-center p-2 rounded-xl transition-all duration-200 uppercase"
+                  className="relative flex flex-col items-center justify-center py-2 px-1 flex-1 transition-all duration-300"
                 >
                   <motion.div
-                    className={`flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-200 ${
+                    className={`flex items-center justify-center w-10 h-10 rounded-2xl transition-all duration-500 ${
                       isActive
-                        ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/25"
-                        : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        ? "bg-gradient-to-br from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30"
+                        : "text-slate-400 hover:text-slate-900 dark:hover:text-white"
                     }`}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.9 }}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-5 h-5" />
+                    
+                    {isActive && (
+                      <motion.div
+                        layoutId="navTab"
+                        className="absolute inset-x-2 -bottom-1 h-1 bg-purple-500 rounded-full blur-[2px]"
+                      />
+                    )}
                   </motion.div>
                   <span
-                    className={`text-sm md:text-base font-medium mt-0.5 transition-colors duration-200 ${
+                    className={`text-[8px] font-black uppercase tracking-[0.2em] mt-1.5 transition-colors duration-300 ${
                       isActive
                         ? "text-purple-600 dark:text-purple-400"
-                        : "text-gray-500 dark:text-gray-400"
+                        : "text-slate-500"
                     }`}
                   >
                     {item.label}

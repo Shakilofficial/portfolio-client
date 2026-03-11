@@ -1,5 +1,4 @@
 "use client";
-
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import Head from "next/head";
@@ -160,7 +159,7 @@ const Hero = () => {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <SparklesText className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tight font-serif leading-[1.1]">
+              <SparklesText className="text-4xl md:text-5xl lg:text-7xl xl:text-7xl font-black tracking-wide font-serif">
                 Building Digital Experiences
               </SparklesText>
             </motion.div>
@@ -210,7 +209,7 @@ const Hero = () => {
               </ShinyButton>
             </motion.div>
 
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex justify-center lg:justify-start space-x-2">
               <Socials />
             </div>
 
@@ -242,35 +241,73 @@ const Hero = () => {
             onMouseLeave={() => setIsHovered(false)}
           >
             <div className="relative aspect-square">
-              {/* Decorative rings with enhanced animation */}
-              <motion.div
-                animate={{
-                  scale: isHovered ? [1.15, 1.2, 1.15] : 1.15,
-                  opacity: isHovered ? [0.2, 0.3, 0.2] : 0.2,
-                }}
-                transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-                className="absolute inset-0 rounded-full border border-purple-500/20"
-              />
-              <motion.div
-                animate={{
-                  scale: isHovered ? [1.3, 1.35, 1.3] : 1.3,
-                  opacity: isHovered ? [0.1, 0.2, 0.1] : 0.1,
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  delay: 0.5,
-                }}
-                className="absolute inset-0 rounded-full border border-purple-500/10"
-              />
 
-              {/* Floating tech badges with enhanced animations */}
+              {/* ================== Decorative Rings ================== */}
+              <motion.div className="absolute inset-0 flex items-center justify-center">
+
+                {/* Outer Gradient Ring */}
+                <motion.div
+                  animate={{
+                    rotate: 360,
+                    scale: isHovered ? 1.08 : 1,
+                  }}
+                  transition={{
+                    rotate: { duration: 30, repeat: Infinity, ease: "linear" },
+                    scale: { duration: 0.6 },
+                  }}
+                  className="absolute w-[120%] h-[120%] rounded-full"
+                >
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-fuchsia-500/10 blur-sm" />
+                </motion.div>
+
+                {/* Secondary Orbit Ring */}
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{
+                    duration: 40,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute w-[105%] h-[105%] rounded-full border border-white/10"
+                />
+
+                {/* Glow Pulse Ring */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.08, 1],
+                    opacity: [0.25, 0.5, 0.25],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="absolute w-[110%] h-[110%] rounded-full bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-fuchsia-500/10 blur-2xl"
+                />
+
+                {/* Orbit Particles */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 12,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute w-[130%] h-[130%]"
+                >
+                  <div className="absolute top-0 left-1/2 h-2 w-2 rounded-full bg-purple-400 shadow-lg shadow-purple-500/20" />
+                  <div className="absolute bottom-0 left-1/3 h-2 w-2 rounded-full bg-blue-400 shadow-lg shadow-blue-500/20" />
+                  <div className="absolute top-1/3 right-0 h-2 w-2 rounded-full bg-fuchsia-400 shadow-lg shadow-fuchsia-500/20" />
+                </motion.div>
+              </motion.div>
+
+              {/* ================== Floating Tech Badges ================== */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="absolute -right-4 top-1/4 rounded-xl border border-purple-500/20 p-3 shadow-lg backdrop-blur-sm z-20"
+                className="absolute -right-4 top-1/4 rounded-xl border border-purple-500/20 p-3 shadow-lg backdrop-blur-sm z-20 bg-white/10"
               >
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-blue-500 text-white">
@@ -278,9 +315,7 @@ const Hero = () => {
                   </div>
                   <div>
                     <p className="text-xs font-medium text-white">Years of</p>
-                    <p className="text-sm font-bold text-white dark:text-slate-400">
-                      Experience
-                    </p>
+                    <p className="text-sm font-bold text-white dark:text-slate-400">Experience</p>
                   </div>
                 </div>
               </motion.div>
@@ -290,7 +325,7 @@ const Hero = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.6 }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="absolute -left-4 bottom-1/4 rounded-xl border border-purple-500/20 p-3 shadow-lg backdrop-blur-sm z-20"
+                className="absolute -left-4 bottom-1/4 rounded-xl border border-purple-500/20 p-3 shadow-lg backdrop-blur-sm z-20 bg-white/10"
               >
                 <div className="flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white">
@@ -303,37 +338,38 @@ const Hero = () => {
                 </div>
               </motion.div>
 
-              {/* Profile image with enhanced effects */}
+              {/* ================== Profile Image ================== */}
               <motion.div
-                className="relative z-10 h-full w-full rounded-full overflow-hidden border-4 border-purple-500 shadow-xl"
+                className="relative z-10 h-full w-full rounded-full overflow-hidden p-[3px]"
                 animate={{
                   boxShadow: isHovered
-                    ? "0 20px 25px -5px rgba(147, 51, 234, 0.3), 0 10px 10px -5px rgba(147, 51, 234, 0.2)"
-                    : "0 10px 15px -3px rgba(147, 51, 234, 0.2), 0 4px 6px -2px rgba(147, 51, 234, 0.1)",
+                    ? "0 0 60px rgba(168,85,247,0.45)"
+                    : "0 0 30px rgba(168,85,247,0.25)",
                 }}
-                transition={{ duration: 0.3 }}
-                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.4 }}
+                whileHover={{ scale: 1.05 }}
               >
-                <Image
-                  src="https://res.cloudinary.com/dcyupktj6/image/upload/v1746154677/my-avtar-profile_ezyfub.png"
-                  alt="Profile"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover"
+                {/* Animated Gradient Border */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-blue-500 to-fuchsia-500"
                 />
 
-                {/* Enhanced gradient overlay */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-transparent"
-                  animate={{
-                    opacity: isHovered ? 0.2 : 0.1,
-                    background: isHovered
-                      ? "linear-gradient(to top right, rgba(147, 51, 234, 0.2), transparent, rgba(59, 130, 246, 0.1))"
-                      : "linear-gradient(to top right, rgba(147, 51, 234, 0.1), transparent)",
-                  }}
-                  transition={{ duration: 0.5 }}
-                />
+                {/* Profile */}
+                <div className="relative h-full w-full rounded-full overflow-hidden bg-background">
+                  <Image
+                    src="https://res.cloudinary.com/dcyupktj6/image/upload/v1746154677/my-avtar-profile_ezyfub.png"
+                    alt="Profile"
+                    fill
+                    priority
+                    sizes="(max-width:768px)100vw,(max-width:1200px)50vw,33vw"
+                    className="object-cover"
+                  />
+
+                  {/* Soft Radial Light Overlay */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.25),transparent_60%)]" />
+                </div>
               </motion.div>
             </div>
           </motion.div>

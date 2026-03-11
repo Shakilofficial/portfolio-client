@@ -67,7 +67,7 @@ const Experience = () => {
   return (
     <section
       ref={sectionRef}
-      className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950/30 dark:to-slate-900/30"
+      className="py-16 relative overflow-hidden bg-gradient-to-b from-white to-slate-50 dark:from-slate-950/30 dark:to-slate-900/30"
     >
       {/* Decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -99,7 +99,7 @@ const Experience = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto px-4">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -214,7 +214,7 @@ const Experience = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm rounded-3xl p-8 sm:p-10 shadow-xl border border-slate-200/50 dark:border-slate-800/50 overflow-hidden"
+                  className="relative bg-white/90 dark:bg-slate-900/90 backdrop-blur-xs rounded-3xl p-4 md:p-6 shadow-sm border border-slate-200/50 dark:border-slate-800/50 overflow-hidden"
                 >
                   {/* Decorative corner accent */}
                   <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-bl from-purple-500/10 to-transparent rounded-bl-full" />
@@ -230,7 +230,7 @@ const Experience = () => {
                           {experiences[activeExperience].position}
                         </h3>
                         <div className="flex items-center gap-2">
-                          <div className="relative w-7 h-7 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm">
+                          <div className="relative w-7 h-7 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xs">
                             {experiences[activeExperience].companyLogo ? (
                               <Image
                                 src={
@@ -309,14 +309,14 @@ const Experience = () => {
 
                     <div className="space-y-8">
                       {experiences[activeExperience].description && (
-                        <div className="rounded-xl p-6 bg-gradient-to-br from-purple-50/50 to-slate-50/50 dark:from-purple-900/10 dark:to-slate-900/10 border border-purple-100/50 dark:border-purple-800/20">
+                        <div className="rounded-xl p-4 bg-gradient-to-br from-purple-50/50 to-slate-50/50 dark:from-purple-900/10 dark:to-slate-900/10 border border-purple-100/50 dark:border-purple-800/20">
                           <h4 className="text-lg font-semibold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
                             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500/20 to-indigo-500/20 flex items-center justify-center shadow-sm">
                               <GraduationCap className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                             </div>
                             Overview
                           </h4>
-                          <p className="text-slate-600 dark:text-slate-300 leading-relaxed pl-11">
+                          <p className="text-slate-600 dark:text-slate-300 leading-relaxed ">
                             {experiences[activeExperience].description}
                           </p>
                         </div>
@@ -325,14 +325,14 @@ const Experience = () => {
                       {experiences[activeExperience].responsibilities &&
                         experiences[activeExperience].responsibilities.length >
                         0 && (
-                          <div className="rounded-xl p-6 bg-gradient-to-br from-blue-50/50 to-slate-50/50 dark:from-blue-900/10 dark:to-slate-900/10 border border-blue-100/50 dark:border-blue-800/20">
+                          <div className="rounded-xl p-4 bg-gradient-to-br from-blue-50/50 to-slate-50/50 dark:from-blue-900/10 dark:to-slate-900/10 border border-blue-100/50 dark:border-blue-800/20">
                             <h4 className="text-lg font-semibold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
                               <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center shadow-sm">
                                 <CheckCircle2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                               </div>
                               Key Responsibilities
                             </h4>
-                            <ul className="space-y-3 pl-11">
+                            <ul className="space-y-3">
                               {experiences[
                                 activeExperience
                               ].responsibilities.map(
@@ -363,14 +363,14 @@ const Experience = () => {
                       {experiences[activeExperience].technologies &&
                         experiences[activeExperience].technologies.length >
                         0 && (
-                          <div className="rounded-xl p-6 bg-gradient-to-br from-emerald-50/50 to-slate-50/50 dark:from-emerald-900/10 dark:to-slate-900/10 border border-emerald-100/50 dark:border-emerald-800/20">
+                          <div className="rounded-xl p-4 bg-gradient-to-br from-emerald-50/50 to-slate-50/50 dark:from-emerald-900/10 dark:to-slate-900/10 border border-emerald-100/50 dark:border-emerald-800/20">
                             <h4 className="text-lg font-semibold mb-4 text-slate-900 dark:text-slate-100 flex items-center gap-2">
                               <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center shadow-sm">
                                 <Award className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                               </div>
                               Technologies Used
                             </h4>
-                            <div className="flex flex-wrap gap-2 pl-11">
+                            <div className="flex flex-wrap gap-2">
                               {experiences[activeExperience].technologies.map(
                                 (tech: any, idx: number) => (
                                   <motion.div

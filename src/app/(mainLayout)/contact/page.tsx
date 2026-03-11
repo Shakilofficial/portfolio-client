@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import CalendlyEmbed from "@/components/shared/CalendlyEmbed";
 import { Form } from "@/components/form/Form";
 import { Textarea } from "@/components/form/Textarea";
 import { TextInput } from "@/components/form/TextInput";
 import { AuroraText } from "@/components/magicui/aurora-text";
+import CalendlyEmbed from "@/components/shared/CalendlyEmbed";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { useCreateMessageMutation } from "@/redux/features/message/messageApi";
@@ -20,8 +20,7 @@ import {
   MapPin,
   MessageCircle,
   Phone,
-  Sparkles,
-  User,
+  User
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -118,7 +117,7 @@ const ContactPage = () => {
           viewport={{ once: true }}
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-md mb-6">
-            <Sparkles className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
+
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 font-heading">
               Contact Me
             </span>

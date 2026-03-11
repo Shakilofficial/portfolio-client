@@ -30,10 +30,10 @@ import { useEffect, useState } from "react";
 import Socials from "./Socials";
 
 const services = [
-  { name: "Web Development", icon: Code },
-  { name: "Frontend Development", icon: PenTool },
-  { name: "Backend Development", icon: Server },
-  { name: "Full Stack Development", icon: Briefcase },
+  { name: "Full Stack Development", icon: Code },
+  { name: "Backend Architecture", icon: Server },
+  { name: "System Design", icon: PenTool },
+  { name: "Cloud & DevOps", icon: Briefcase },
 ];
 
 const quickLinks = [
@@ -157,13 +157,13 @@ const Footer = () => {
                     Md Shakil Hossain
                   </h2>
                   <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                    Full Stack Developer
+                    Full Stack Engineer
                   </p>
                 </div>
               </div>
 
               <p className="text-slate-600 dark:text-slate-400">
-                I am a passionate developer creating innovative web solutions
+                I am a passionate engineer creating innovative web solutions
                 with modern technologies. Let&apos;s build something amazing
                 together!
               </p>

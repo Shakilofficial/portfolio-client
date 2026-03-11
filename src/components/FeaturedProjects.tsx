@@ -146,7 +146,7 @@ const FeaturedProjects = () => {
         </div>
       </div>
 
-      <div className="max-w-[1400px] w-full mx-auto px-4 py-12 lg:py-20 flex flex-col gap-12 relative z-10">
+      <div className="max-w-[1400px] w-full mx-auto py-12 lg:py-20 flex flex-col gap-2 relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -158,14 +158,14 @@ const FeaturedProjects = () => {
               My Portfolio
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-black font-serif tracking-tight">
             <AuroraText>Featured Projects</AuroraText>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed">
             A curated selection of my most architectural and complex projects showcasing full-stack expertise.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 mb-6 md:md-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
           {data?.data?.length > 0 ? (
             data?.data?.map((project: TProject) => (
               <FeaturedProjectCard key={project?._id} project={project} />
@@ -175,7 +175,7 @@ const FeaturedProjects = () => {
           )}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="flex justify-center">
           <Link href={"/projects"}>
             <ShinyButton className="flex items-center gap-2 text-purple-600 hover:text-rose-600 hover:bg-purple-100 dark:text-purple-400 dark:hover:text-rose-400 dark:hover:bg-purple-900/50 transition-all duration-300 px-4 py-2 rounded-lg">
               <div className="flex items-center gap-2">

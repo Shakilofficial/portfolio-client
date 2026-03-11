@@ -61,11 +61,18 @@ const BlogsPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-purple-200/50 dark:border-purple-800/30 bg-purple-50/50 dark:bg-purple-900/10 backdrop-blur-md mb-6">
+          <span className="text-xs font-bold uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 font-heading">
+            Discover Insights
+          </span>
+        </div>
+
         <h2 className="text-4xl md:text-6xl font-black mb-6 font-serif tracking-wider">
-          <AuroraText>All Blogs</AuroraText>
+          <AuroraText>Blog & Articles</AuroraText>
         </h2>
+
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Explore my thoughts, tutorials, and insights on various topics.
+          Dive into expert tutorials, industry insights, and practical tips that I share to help developers and product enthusiasts stay ahead in technology and innovation.
         </p>
       </motion.div>
 

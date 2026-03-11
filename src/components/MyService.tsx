@@ -231,102 +231,44 @@ const MyService = () => {
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div className="relative h-full rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white dark:bg-slate-900/80 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:shadow-2xl dark:hover:shadow-2xl dark:hover:shadow-purple-900/10 group">
-                {/* Service-specific pattern background */}
-                <div
-                  className="absolute inset-0 opacity-[0.05] dark:opacity-[0.07] pointer-events-none"
-                  style={{
-                    backgroundImage:
-                      service.pattern === "dots"
-                        ? `radial-gradient(${service.patternColor} 1px, transparent 1px)`
-                        : service.pattern === "grid"
-                          ? `linear-gradient(to right, ${service.patternColor} 1px, transparent 1px), 
-                           linear-gradient(to bottom, ${service.patternColor} 1px, transparent 1px)`
-                          : service.pattern === "circuit"
-                            ? `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10 H40 V40 H70 V70 H90 V90' stroke='${encodeURIComponent(
-                              service.patternColor
-                            )}' fill='none' strokeWidth='1'/%3E%3Ccircle cx='10' cy='10' r='2' fill='${encodeURIComponent(
-                              service.patternColor
-                            )}'/%3E%3Ccircle cx='40' cy='40' r='2' fill='${encodeURIComponent(
-                              service.patternColor
-                            )}'/%3E%3Ccircle cx='70' cy='70' r='2' fill='${encodeURIComponent(
-                              service.patternColor
-                            )}'/%3E%3Ccircle cx='90' cy='90' r='2' fill='${encodeURIComponent(
-                              service.patternColor
-                            )}'/%3E%3C/svg%3E")`
-                            : service.pattern === "zigzag"
-                              ? `url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 10 L20 0 L40 10 L60 0 L80 10 L100 0 L100 20 L0 20 Z' stroke='${encodeURIComponent(
-                                service.patternColor
-                              )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
-                              : service.pattern === "squares"
-                                ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='20' height='20' x='10' y='10' stroke='${encodeURIComponent(
-                                  service.patternColor
-                                )}' fill='none' strokeWidth='1'/%3E%3Crect width='20' height='20' x='30' y='30' stroke='${encodeURIComponent(
-                                  service.patternColor
-                                )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
-                                : service.pattern === "triangles"
-                                  ? `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 40 L30 10 L50 40 Z' stroke='${encodeURIComponent(
-                                    service.patternColor
-                                  )}' fill='none' strokeWidth='1'/%3E%3C/svg%3E")`
-                                  : "",
-                    backgroundSize:
-                      service.pattern === "dots"
-                        ? "20px 20px"
-                        : service.pattern === "grid"
-                          ? "30px 30px"
-                          : service.pattern === "zigzag"
-                            ? "100px 20px"
-                            : "60px 60px",
-                  }}
+              <div className="relative h-full rounded-[2.5rem] border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 group">
+                {/* Dynamic gradient background on hover */}
+                <div 
+                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br ${service.color} dark:${service.darkColor} mix-blend-soft-light`}
                 />
 
-                {/* Colored gradient accent */}
-                <div
-                  className={`absolute top-0 left-0 h-1.5 w-full bg-gradient-to-r ${service.color} dark:${service.darkColor} transition-all duration-300`}
-                />
-
-                {/* Animated corner accent */}
-                <div
-                  className={`absolute top-0 right-0 w-16 h-16 bg-gradient-to-br ${service.color} dark:${service.darkColor} opacity-10 rounded-bl-full transform scale-0 group-hover:scale-100 transition-transform duration-500 origin-top-right`}
-                />
-
-                <div className="p-8 sm:p-10 h-full flex flex-col relative z-10">
-                  {/* Icon with gradient background */}
-                  <div className="mb-6">
-                    <div
-                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} dark:${service.darkColor} flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}
+                <div className="p-10 sm:p-12 h-full flex flex-col relative z-10">
+                  {/* Icon with interactive container */}
+                  <div className="mb-8 relative">
+                    <motion.div
+                      className={`w-20 h-20 rounded-[2rem] bg-gradient-to-br ${service.color} dark:${service.darkColor} flex items-center justify-center shadow-2xl relative z-10`}
+                      whileHover={{ rotate: [0, 10, -10, 0], scale: 1.1 }}
+                      transition={{ duration: 0.5 }}
                     >
-                      <service.icon className="w-7 h-7 text-white" />
-                    </div>
+                      <service.icon className="w-10 h-10 text-white" />
+                    </motion.div>
+                    
+                    {/* Shadow effect for icon */}
+                    <div className={`absolute -bottom-2 -right-2 w-20 h-20 rounded-[2rem] bg-gradient-to-br ${service.color} dark:${service.darkColor} blur-xl opacity-20`} />
                   </div>
 
                   {/* Content */}
-                  <h3
-                    className={`text-2xl font-bold mb-3 group-hover:text-${service.highlightColor}-600 dark:group-hover:text-${service.highlightColor}-400 transition-colors duration-300`}
-                  >
+                  <h3 className="text-3xl font-black mb-4 tracking-tight group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-300">
                     {service.title}
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-300 mb-6">
+                  <p className="text-slate-600 dark:text-slate-400 mb-8 text-lg leading-relaxed">
                     {service.description}
                   </p>
 
-                  {/* Skills */}
+                  {/* Skills with enhanced chips */}
                   <div className="mt-auto">
-                    <div className="mb-4">
-                      <h4 className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">
-                        Technologies
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
+                    <div className="mb-6">
+                      <div className="flex flex-wrap gap-2.5">
                         {service.skills.map((skill, i) => (
                           <motion.span
                             key={i}
-                            className={`text-xs px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 group-hover:bg-${service.highlightColor}-50 group-hover:border-${service.highlightColor}-200 dark:group-hover:bg-${service.highlightColor}-900/20 dark:group-hover:border-${service.highlightColor}-800/30 transition-colors duration-300`}
-                            whileHover={{ y: -2 }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 10,
-                            }}
+                            className="text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 hover:bg-white dark:hover:bg-slate-700 transition-colors duration-300"
+                            whileHover={{ scale: 1.05, y: -2 }}
                           >
                             {skill}
                           </motion.span>
@@ -334,25 +276,11 @@ const MyService = () => {
                       </div>
                     </div>
 
-                    {/* Learn more link */}
-                    <motion.div
-                      className={`flex items-center text-sm font-medium transition-all duration-300 ${hoveredIndex === index
-                        ? `text-${service.highlightColor}-600 dark:text-${service.highlightColor}-400`
-                        : "text-slate-500 dark:text-slate-400"
-                        }`}
-                      whileHover={{ x: 5 }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 10,
-                      }}
-                    >
-                      <span>Learn more</span>
-                      <ArrowRight
-                        className={`ml-1 w-4 h-4 transition-transform duration-300 ${hoveredIndex === index ? "translate-x-1" : ""
-                          }`}
-                      />
-                    </motion.div>
+                    {/* Interactive link */}
+                    <div className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-purple-500 transition-colors duration-300">
+                      <span>Explore Services</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
+                    </div>
                   </div>
                 </div>
               </div>
