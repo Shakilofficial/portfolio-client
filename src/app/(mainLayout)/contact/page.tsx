@@ -99,7 +99,7 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="relative w-full min-h-screen pt-28 pb-12 px-4 md:px-6 lg:px-8 overflow-hidden bg-white dark:bg-[#030712]">
+    <div className="relative w-full min-h-screen pt-28 pb-12 px-4 md:px-6 lg:px-8 bg-white dark:bg-[#030712]">
       {/* Dynamic Background */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] dark:opacity-[0.05]"
@@ -199,7 +199,7 @@ const ContactPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Card className="h-full border-purple-200/50 dark:border-purple-800/30 bg-white dark:bg-slate-900/60 backdrop-blur-xs shadow-sm overflow-hidden min-h-[700px]">
+            <Card className="h-full border-purple-200/50 dark:border-purple-800/30 bg-transparent backdrop-blur-xs shadow-sm overflow-hidden">
               <div className="p-8 border-b border-purple-100 dark:border-purple-800/50 flex items-center justify-between bg-purple-50/30 dark:bg-purple-900/10">
                 <div className="flex items-center gap-4">
                   <div className="p-3 rounded-2xl bg-white dark:bg-slate-800 text-purple-500 shadow-sm">
@@ -212,9 +212,7 @@ const ContactPage = () => {
                 </div>
                 <Badge className="bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20">Instant Booking</Badge>
               </div>
-              <div className="flex-1 overflow-hidden">
-                <CalendlyEmbed />
-              </div>
+              <CalendlyEmbed />
             </Card>
           </motion.div>
         </div>
