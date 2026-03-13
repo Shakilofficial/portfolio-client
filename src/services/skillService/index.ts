@@ -45,10 +45,21 @@ export const updateSkill = async (data: FormData, id: string) => {
   }
 };
 
-export const getAllSKills = async (page?: string, limit?: string) => {
+export const getAllSKills = async (
+  page?: string,
+  limit?: string,
+  searchTerm?: string,
+  category?: string
+) => {
+  const queryParams = new URLSearchParams();
+  if (page) queryParams.append("page", page);
+  if (limit) queryParams.append("limit", limit);
+  if (searchTerm) queryParams.append("searchTerm", searchTerm);
+  if (category) queryParams.append("category", category);
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/skills?limit=${limit}&page=${page}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/skills?${queryParams.toString()}`,
       {
         next: { tags: ["SKILLS"] },
       }

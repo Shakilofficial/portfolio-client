@@ -4,11 +4,20 @@
 import { getValidToken } from "@/utils/verifyToken";
 import { revalidateTag } from "next/cache";
 
-export const getAllMessages = async (page?: string, limit?: string) => {
+export const getAllMessages = async (
+  page?: string,
+  limit?: string,
+  searchTerm?: string
+) => {
   const token = await getValidToken();
+  const queryParams = new URLSearchParams();
+  if (page) queryParams.append("page", page || "1");
+  if (limit) queryParams.append("limit", limit || "10");
+  if (searchTerm) queryParams.append("searchTerm", searchTerm);
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/messages?limit=${limit}&page=${page}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/messages?${queryParams.toString()}`,
       {
         method: "GET",
         headers: {
