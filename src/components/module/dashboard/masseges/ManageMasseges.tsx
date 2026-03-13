@@ -17,6 +17,7 @@ import { motion } from "framer-motion";
 import { Calendar, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import { SearchFilter } from "@/components/core/SearchFilter";
 
 interface ManageMessagesProps {
   messages: IMessage[];
@@ -111,13 +112,18 @@ const ManageMessages = ({ messages, meta }: ManageMessagesProps) => {
       transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
           Manage Messages
         </h1>
       </div>
+      <div className="flex flex-col md:flex-row justify-between gap-4 items-start md:items-center bg-card p-4 rounded-xl border border-border shadow-sm">
+        <SearchFilter placeholder="Search messages by name or email..." />
+      </div>
 
-      <DTable columns={columns} data={messages} />
+      <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
+        <DTable columns={columns} data={messages} />
+      </div>
 
       <Pagination totalPage={meta?.totalPage} />
 

@@ -24,6 +24,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import CreateProjectDialog from "./CreateProjectDialog";
 import UpdateProjectDialog from "./UpdateProjectDialog";
+import { SearchFilter } from "@/components/core/SearchFilter";
+import { projectCategoryOptions } from "@/constants/projectCategory";
 
 interface ManageProjectsProps {
   projects: IProject[];
@@ -196,16 +198,25 @@ const ManageProjects = ({ projects, meta }: ManageProjectsProps) => {
       transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
           Manage Projects
         </h1>
-        <div>
+      </div>
+      <div className="flex flex-col md:flex-row justify-between gap-4 items-start md:items-center bg-card p-4 rounded-xl border border-border shadow-sm">
+        <SearchFilter 
+          placeholder="Search projects..." 
+          filterParam="category"
+          filterOptions={projectCategoryOptions}
+        />
+        <div className="shrink-0">
           <CreateProjectDialog />
         </div>
       </div>
 
-      <DTable columns={columns} data={projects} />
+      <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
+        <DTable columns={columns} data={projects} />
+      </div>
 
       <Pagination totalPage={meta?.totalPage} />
 

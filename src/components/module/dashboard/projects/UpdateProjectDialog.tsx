@@ -39,7 +39,7 @@ const UpdateProjectDialog = ({ project }: { project: IProject }) => {
   useEffect(() => {
     const fetchTechnologies = async () => {
       try {
-        const { data } = await getAllSKills("1", "20");
+        const { data } = await getAllSKills("1", "100");
         setTechnologies(data || []);
       } catch (error) {
         console.error("Error fetching subjects:", error);

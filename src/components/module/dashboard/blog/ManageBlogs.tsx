@@ -25,6 +25,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import CreateBlogDialog from "./CreateBlogDialog";
 import UpdateBlogDialog from "./UpdateBlogDialog";
+import { SearchFilter } from "@/components/core/SearchFilter";
+import { blogCategoryOptions } from "@/constants/blogCategory";
 
 interface ManageBlogsProps {
   blogs: IBlog[];
@@ -253,16 +255,26 @@ const ManageBlogs = ({ blogs, meta }: ManageBlogsProps) => {
       transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
           Manage Blogs
         </h1>
-        <div>
+      </div>
+
+      <div className="flex flex-col md:flex-row justify-between gap-4 items-start md:items-center bg-card p-4 rounded-xl border border-border shadow-sm">
+        <SearchFilter 
+          placeholder="Search blogs..." 
+          filterParam="category"
+          filterOptions={blogCategoryOptions}
+        />
+        <div className="shrink-0">
           <CreateBlogDialog />
         </div>
       </div>
 
-      <DTable columns={columns} data={blogs} />
+      <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
+        <DTable columns={columns} data={blogs} />
+      </div>
 
       <Pagination totalPage={meta?.totalPage} />
 

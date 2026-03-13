@@ -20,6 +20,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import CreateSkillDialog from "./CreateSkillDialog";
 import UpdateSkillDialog from "./UpdateSkillDialog";
+import { SearchFilter } from "@/components/core/SearchFilter";
+import { skillsCategoryOptions } from "@/constants/skillsCategory";
 
 interface ManageSkillsProps {
   skills: ISkill[];
@@ -171,16 +173,26 @@ const ManageSkills = ({ skills, meta }: ManageSkillsProps) => {
       transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
           Manage Skills
         </h1>
-        <div>
+      </div>
+
+      <div className="flex flex-col md:flex-row justify-between gap-4 items-start md:items-center bg-card p-4 rounded-xl border border-border shadow-sm">
+        <SearchFilter 
+          placeholder="Search skills..." 
+          filterParam="category"
+          filterOptions={skillsCategoryOptions}
+        />
+        <div className="shrink-0">
           <CreateSkillDialog />
         </div>
       </div>
 
-      <DTable columns={columns} data={skills} />
+      <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
+        <DTable columns={columns} data={skills} />
+      </div>
 
       <Pagination totalPage={meta?.totalPage} />
 
