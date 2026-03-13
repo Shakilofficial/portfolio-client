@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 const ExperiencesPage = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>;
+  searchParams: Promise<{ page: string; searchTerm: string }>;
 }) => {
-  const { page } = await searchParams;
-  const { data, meta } = await getAllExperiences(page);
+  const { page, searchTerm } = await searchParams;
+  const { data, meta } = await getAllExperiences(page, "10", searchTerm);
 
   return (
     <div>
