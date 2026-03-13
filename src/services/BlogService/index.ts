@@ -45,16 +45,18 @@ export const updateBlog = async (data: FormData, id: string) => {
 export const getAllBlogs = async (
   page?: string,
   limit?: string,
-  query?: { [key: string]: string | string[] | undefined }
+  searchTerm?: string,
+  category?: string
 ) => {
-  const params = new URLSearchParams();
-
-  if (query?.searchTerm)
-    params.append("searchTerm", query.searchTerm.toString());
+  const queryParams = new URLSearchParams();
+  if (page) queryParams.append("page", page);
+  if (limit) queryParams.append("limit", limit);
+  if (searchTerm) queryParams.append("searchTerm", searchTerm);
+  if (category) queryParams.append("category", category);
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/blogs?limit=${limit}&page=${page}&${params}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/blogs?${queryParams.toString()}`,
       {
         next: { tags: ["BLOGS"] },
       }

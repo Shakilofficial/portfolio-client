@@ -18,6 +18,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import CreateExperienceDialog from "./CreateExperienceDialog";
 import UpdateExperienceDialog from "./UpdateExperienceDialog";
+import { SearchFilter } from "@/components/core/SearchFilter";
 
 interface ManageExperienceProps {
   experiences: IExperience[];
@@ -146,16 +147,22 @@ const ManageExperience = ({ experiences, meta }: ManageExperienceProps) => {
       transition={{ duration: 0.3 }}
       className="space-y-6"
     >
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary to-orange-500 bg-clip-text text-transparent">
           Manage Experiences
         </h1>
-        <div className="flex flex-col sm:flex-row gap-3">
+      </div>
+
+      <div className="flex flex-col md:flex-row justify-between gap-4 items-start md:items-center bg-card p-4 rounded-xl border border-border shadow-sm">
+        <SearchFilter placeholder="Search experiences..." />
+        <div className="shrink-0">
           <CreateExperienceDialog />
         </div>
       </div>
 
-      <DTable columns={columns} data={experiences} />
+      <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
+        <DTable columns={columns} data={experiences} />
+      </div>
 
       <Pagination totalPage={meta?.totalPage} />
 

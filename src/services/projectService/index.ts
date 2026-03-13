@@ -4,10 +4,21 @@
 import { getValidToken } from "@/utils/verifyToken";
 import { revalidateTag } from "next/cache";
 
-export const getAllProjects = async (page?: string, limit?: string) => {
+export const getAllProjects = async (
+  page?: string,
+  limit?: string,
+  searchTerm?: string,
+  category?: string
+) => {
+  const queryParams = new URLSearchParams();
+  if (page) queryParams.append("page", page);
+  if (limit) queryParams.append("limit", limit);
+  if (searchTerm) queryParams.append("searchTerm", searchTerm);
+  if (category) queryParams.append("category", category);
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/projects?limit=${limit}&page=${page}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/projects?${queryParams.toString()}`,
       {
         next: { tags: ["PROJECTS"] },
       }

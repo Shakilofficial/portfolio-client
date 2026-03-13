@@ -4,10 +4,19 @@
 import { getValidToken } from "@/utils/verifyToken";
 import { revalidateTag } from "next/cache";
 
-export const getAllExperiences = async (page?: string, limit?: string) => {
+export const getAllExperiences = async (
+  page?: string,
+  limit?: string,
+  searchTerm?: string
+) => {
+  const queryParams = new URLSearchParams();
+  if (page) queryParams.append("page", page);
+  if (limit) queryParams.append("limit", limit);
+  if (searchTerm) queryParams.append("searchTerm", searchTerm);
+
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/experiences?limit=${limit}&page=${page}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/experiences?${queryParams.toString()}`,
       {
         next: {
           tags: ["EXPERIENCES"],

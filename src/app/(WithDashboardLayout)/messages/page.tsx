@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 const MessagesPage = async ({
   searchParams,
 }: {
-  searchParams: Promise<{ page: string }>;
+  searchParams: Promise<{ page: string; searchTerm: string }>;
 }) => {
-  const { page } = await searchParams;
-  const { data, meta } = await getAllMessages(page);
+  const { page, searchTerm } = await searchParams;
+  const { data, meta } = await getAllMessages(page, "10", searchTerm);
   return (
     <div>
       <ManageMasseges messages={data} meta={meta} />
